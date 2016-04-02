@@ -5,29 +5,36 @@
 	}
 </style>
 
-<div class=" form-group">
+<div class=" form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
 <?php 
 	//echo validation_errors();
 	echo isset($error)?$error:"";
 ?>
-	<form id="frm-admin" method="post" action="" enctype="multipart/form-data">
-	<div class="box box-info">
-                <div class="box-header">
-                  <h3 class="box-title">Long Question</h3>
-                  <!-- tools box -->
-                  
-                </div><!-- /.box-header -->
-                <div class="box-body pad">
-                    <textarea id="long_question" name="long_question" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_question') ?></textarea>
-                </div>
-    </div><!-- /.box -->
+<form id="frm-admin" method="post" action="" enctype="multipart/form-data">
+	<div class="form-group">
+                    <h4>Long question</h4>
+
+                  <div class="form-group">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option selected="selected"></option>
+
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div><!-- /.form-group -->               
+    </div>
+      
 	<div class="form-group">	
 		<h4>Question</h4>
 		<textarea class="form-control" rows="5" placeholder=" Enter ..."
 		 name="content" value = ""><?php echo $this->input->post('content') ?></textarea>
 	</div>
-	<div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">	
+	<div class="form-group">	
 		<h4>Group</h4>
 		<select name="group" class="form-control">
 		<?php 
@@ -38,11 +45,23 @@
 		<?php } ?>
 		</select>
 	</div>
-	
-	<div class="input-group col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-	<h4>Level:</h4>
-		   <input name="level" type="text" value = "<?php echo $this->input->post('level') ?>" placeholder = "Enter number level " class="form-control" >
-	</div>
+    <h4> Level:</h4>
+	    <div class="radio">
+
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="1" checked="checked">
+	                          Easy
+	        </label> <br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="2">
+	        	Medium
+	        </label><br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="3">
+	           Difficult
+	        </label>
+	     </div>
+
 
 	<h4 style="width: 200px">Number Chooses:</h4>
 	<div class="input-group">

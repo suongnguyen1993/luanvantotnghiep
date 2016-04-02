@@ -34,6 +34,7 @@ class Question extends CI_Controller {
 		}
 		
 		$data['template']='backend/question/index';
+
 		$this->load->view('backend/layout/admin_index',$data);
 	}
 
@@ -43,9 +44,6 @@ class Question extends CI_Controller {
 		$data['title'] = 'Manager Add Question';
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['error'] = $this->session->flashdata('error');
-		// $a = $this->add_long_question();
-		// print_r($a);
-		// die;
 		if($this->input->post())
 		{
 			if($this->add_check_validation())
@@ -134,6 +132,7 @@ class Question extends CI_Controller {
 			 
 		}
 		$data['template']='backend/question/add';
+		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
 		$this->load->view('backend/layout/admin',$data);
 	}
 
@@ -150,13 +149,16 @@ class Question extends CI_Controller {
 		$data['chooses']= $this->query_sql
 		->select_array('choice','id,content,correct_answer',array('question_id' => $id),'','');
 		
-		$data ['long_question'] = $this->query_sql->select_join ('*','long_question','question','question.id_long_question=long_question.id','');
-		echo "<pre>";
-		print_r($data['long_question']);
-		die;
+		if($data['question']['id_long_question'] != '')
+			{
+				$data ['long_question'] = $this->query_sql
+				->select_row ("long_question","id,long_content",array('id' =>$data['question']['id_long_question']));
+				$this->form_validation->set_rules('long_question','Long question','required');
+			}
 
 		if($this->add_check_validation())
 		{
+				
 			if($this->input->post())
 			{
 				/*
@@ -249,6 +251,7 @@ class Question extends CI_Controller {
 			}
 		}
 		$data['template']='backend/question/edit';
+		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
 
 		$this->load->view('backend/layout/admin',$data);
 	}
@@ -288,7 +291,6 @@ class Question extends CI_Controller {
 	{
 		if($this->input->post('long_question')!= "")
 		{
-			$long_question = $this->add_long_question();
 			$question = array(
 			'id'	   =>'',	
 			'content'  => $this->input->post('content'),
@@ -321,12 +323,19 @@ class Question extends CI_Controller {
 	{
 		$long_question = array(
 			'id'	   =>'',	
-			'content'  => $this->input->post('long_question'),
+			'long_content'  => $this->input->post('long_question'),
 				);
 			$result = $this->query_sql->add('long_question',$long_question);			
 			return $result['id'];
 	}
-
+	private function update_long_question($img = "", $audio = "",$id)
+	{
+		$long_question = array(
+			'long_content'  => $this->input->post('long_question')			
+				);
+			$result = $this->query_sql->edit('question',$long_question,array('id'=>$id));			
+			return $result;
+	}
 	private function update_question($img = "", $audio = "",$id)
 	{
 		$question = array(

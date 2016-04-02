@@ -1,5 +1,5 @@
 <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url(); ?>/public/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="<?php echo base_url(); ?>/public/admin/plugins/js/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -33,26 +33,3 @@
     <script src="<?php echo base_url(); ?>/public/admin/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url(); ?>/public/admin/dist/js/demo.js"></script>
-
-     <script src="<?php echo base_url(); ?>/public/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="<?php echo base_url(); ?>/public/admin/bootstrap/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url(); ?>public/admin/plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo base_url(); ?>/public/admin/dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url(); ?>/public/admin/dist/js/demo.js"></script>
-    <!-- CK Editor -->
-    <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src="<?php echo base_url(); ?>/public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-    <script>
-      $(function () {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace('long_question');
-        //bootstrap WYSIHTML5 - text editor
-        $(".textarea").wysihtml5();
-      });
-    </script>

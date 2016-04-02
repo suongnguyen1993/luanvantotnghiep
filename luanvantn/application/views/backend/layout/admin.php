@@ -24,53 +24,11 @@
 	    <?php $this->load->view('backend/element/item/control_sidebar'); ?>
 	</div>
 	<?php $this->load->view('backend/element/foot/admin'); ?>
-	<!-- o day nen bo sung 1 section
-    
-	 -->
-	 <script type="text/javascript">	
-		$(function(){
-			$('input[name="numberchoose"]').change(function(){
-				
-				var number =$(this).val();
-				if(number == 3)
-				{
-					$("#chooseD").hide();
-					$("#radioD").attr("name", "");
-					$("#textD").attr("name", "");
-				}
-				else
-				{
-					$("#chooseD").show();
-					$("#radioD").attr("name", "choosecorrect");
-					$("#textD").attr("name", "choosecontent4");
-				}
-			});
+	<!-- my js -->
+	<?php if (isset($my_js) && !empty($my_js))
+				{ $this->load->view($my_js);}
+				?>
 
-			function readURL(input, obj) {
-
-			    if (input.files && input.files[0]) {
-			        var reader = new FileReader();
-
-			        reader.onload = function (e) {
-			            $(obj).attr('src', e.target.result);
-			            $(obj).show();
-			        }
-
-			        reader.readAsDataURL(input.files[0]);
-			    }
-			}
-
-			
-
-			$("#image").change(function(){
-			    readURL(this, '#prevImage');
-			});
-
-			$("#audio_file").change(function(){
-			    readURL(this, '#prevAudio');
-			});
-			
-		});
-	</script>
+	 
 </body>
 </html>
