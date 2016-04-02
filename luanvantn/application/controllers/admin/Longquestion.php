@@ -58,12 +58,8 @@ class Longquestion extends CI_Controller {
 						'long_content' => $this->input->post('long_content')								
 						);
 				$flag = $this->query_sql->add('long_question',$data);				
-				$this->session->set_flashdata('noice',
-				 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-				  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only>Close</span></button>
-				  <strong>Add success!</strong>
-				</div>');	
-				redirect('admin/long_question/index');
+				$this->session->set_flashdata('noice',1);	
+				redirect('admin/longquestion/index');
 				}
 				
 			}
@@ -90,7 +86,7 @@ class Longquestion extends CI_Controller {
 							  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 							  <strong>Updated success!</strong>
 							</div>');
-						redirect('admin/long_question/index');
+						redirect('admin/longquestion/index');
 					}
 		}
 		$data['template']='backend/longquestion/edit';
@@ -100,6 +96,8 @@ class Longquestion extends CI_Controller {
 	public function delete($id)
 	{
 		$this->query_sql->del('long_question',array('id' => $id));
+		
+		
 		$this->session->set_flashdata('noice',
 					 '<div class="alert alert-success alert-dismissable text-center" role="alert">
 					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
