@@ -44,8 +44,15 @@ class Question extends CI_Controller {
 		$data['title'] = 'Manager Add Question';
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['error'] = $this->session->flashdata('error');
+
+		$data ['long_question'] = $this->query_sql
+				->select_array ("long_question","id,long_content","","","");
+		// print_r($data['long_question']);
+		// die;
+
 		if($this->input->post())
 		{
+
 			if($this->add_check_validation())
 			{	
 				$img = $_FILES["image"]["name"];
@@ -68,7 +75,8 @@ class Question extends CI_Controller {
 					}
 					////////////////////////////////////
 					$audio_data = $this->add_audio();
-					if($audio_data['file_ext'] != ".mp3")
+					$type_audio = array(".mp3",".MP3");
+					if(!in_array($audio_data['file_ext'],$type_audio))
 					{
 						$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
 						redirect('admin/question/add');
@@ -100,7 +108,8 @@ class Question extends CI_Controller {
 					if($audio)
 					{					
 						$audio_data = $this->add_audio();
-						if($audio_data['file_ext'] != ".mp3")
+						$type_audio = array(".mp3",".MP3");
+						if(!in_array($audio_data['file_ext'],$type_audio))
 						{
 							$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
 							redirect('admin/question/add');
@@ -149,12 +158,9 @@ class Question extends CI_Controller {
 		$data['chooses']= $this->query_sql
 		->select_array('choice','id,content,correct_answer',array('question_id' => $id),'','');
 		
-		if($data['question']['id_long_question'] != '')
-			{
 				$data ['long_question'] = $this->query_sql
-				->select_row ("long_question","id,long_content",array('id' =>$data['question']['id_long_question']));
-				$this->form_validation->set_rules('long_question','Long question','required');
-			}
+				->select_array ("long_question","id,long_content","","","");
+				$this->form_validation->set_rules('long_question','Long question','required'); 			
 
 		if($this->add_check_validation())
 		{
@@ -169,8 +175,29 @@ class Question extends CI_Controller {
 					$audio = $_FILES["audio_file"]["name"];
 					if( $img && $audio)
 					{
-
+						$img_data = $this->add_img();
+						$type_img = array("jpg","png","jpeg","gif");
+						if(!in_array($img_data['image_type'],$type_img))
+						{
+							$this->session->set_flashdata('error', "The filetype of image you are attempting to upload is not allowed."); 
+							redirect("admin/question/update/$id");
+						}
+						
+						if($img_data['file_size']>5120)
+						{
+							$this->session->set_flashdata('error', "The sizemax of image you are attempting to upload is not allowed."); 
+							redirect("admin/question/update/$id");
+						}
+						////////////////////////////////////
 						$audio_data = $this->add_audio();
+						$type_audio = array(".mp3",".MP3");
+						if(!in_array($audio_data['file_ext'],$type_audio))
+						{
+							$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
+							redirect("admin/question/update/$id");
+						}
+
+
 						//unlink
 						if($data['question']['image']!="" && $data['question']['audio']!="")
 						{
@@ -181,7 +208,8 @@ class Question extends CI_Controller {
 						}
 						else
 						{
-							if($data['question']['image']!="") 
+
+							if($data['question']['image']!="" ) 
 							{
 								$unlink_img = "uploads/listen_photo/".$data['question']['image'];
 								unlink($unlink_img);
@@ -195,12 +223,26 @@ class Question extends CI_Controller {
 						//update
 						$question_id = $this->update_question($img_data['file_name'],$audio_data['file_name'],$id);
 						
-						}	
+					}	
 					else
 					{
 						if($img )
 						{
 							$img_data = $this->add_img();
+
+							$type_img = array("jpg","png","jpeg","gif");
+							if(!in_array($img_data['image_type'],$type_img))
+							{
+								$this->session->set_flashdata('error', "The filetype of image you are attempting to upload is not allowed."); 
+								redirect("admin/question/update/$id");
+							}
+							
+							if($img_data['file_size']>5120)
+							{
+								$this->session->set_flashdata('error', "The sizemax of image you are attempting to upload is not allowed."); 
+								redirect("admin/question/update/$id");
+							}
+
 							//unlink
 							if($data['question']['image']!="") 
 							{
@@ -213,6 +255,12 @@ class Question extends CI_Controller {
 						if($audio)
 						{	
 							$audio_data = $this->add_audio();
+							$type_audio = array(".mp3",".MP3");
+							if(!in_array($audio_data['file_ext'],$type_audio))
+							{
+								$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
+								redirect("admin/question/update/$id");
+							}
 							if($data['question']['audio']!="") 
 							{
 								$unlink_audio = "uploads/audio_files/".$data['question']['audio'];	
@@ -222,13 +270,31 @@ class Question extends CI_Controller {
 						}
 						else
 						{
-							$update_data = array(	
+							$long_question = $this->input->post('long_question');
+							if($long_question != '-1')
+							{
+								$update_data = array(	
+									'content'  => $this->input->post('content'),
+									'level'	   => $this->input->post('level'),
+									'group_id' => $this->input->post('group'),
+									'id_long_question' =>$long_question,
+									'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+									);	
+								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+
+							}
+							else
+							{
+								$long_question = NULL;
+								$update_data = array(	
 								'content'  => $this->input->post('content'),
 								'level'	   => $this->input->post('level'),
 								'group_id' => $this->input->post('group'),
+								'id_long_question' =>$long_question,
 								'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 								);	
-							$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+							}
 						}				
 					} //end add question
 
@@ -289,8 +355,9 @@ class Question extends CI_Controller {
 	*/
 	private function add_question($img = "", $audio = "")
 	{
-		if($this->input->post('long_question')!= "")
-		{
+		if($this->input->post('long_question') != "-1")
+		{ 
+			$long_question = $this->input->post('long_question');
 			$question = array(
 			'id'	   =>'',	
 			'content'  => $this->input->post('content'),
@@ -319,35 +386,56 @@ class Question extends CI_Controller {
 			return $result['id'];
 		}
 	}
-	private function add_long_question()
-	{
-		$long_question = array(
-			'id'	   =>'',	
-			'long_content'  => $this->input->post('long_question'),
-				);
-			$result = $this->query_sql->add('long_question',$long_question);			
-			return $result['id'];
-	}
-	private function update_long_question($img = "", $audio = "",$id)
-	{
-		$long_question = array(
-			'long_content'  => $this->input->post('long_question')			
-				);
-			$result = $this->query_sql->edit('question',$long_question,array('id'=>$id));			
-			return $result;
-	}
+	// private function add_long_question()
+	// {
+	// 	$long_question = array(
+	// 		'id'	   =>'',	
+	// 		'long_content'  => $this->input->post('long_question'),
+	// 			);
+	// 		$result = $this->query_sql->add('long_question',$long_question);			
+	// 		return $result['id'];
+	// }
+	// private function update_long_question($img = "", $audio = "",$id)
+	// {
+	// 	$long_question = array(
+	// 		'long_content'  => $this->input->post('long_question')			
+	// 			);
+	// 		$result = $this->query_sql->edit('question',$long_question,array('id'=>$id));			
+	// 		return $result;
+	// }
 	private function update_question($img = "", $audio = "",$id)
 	{
-		$question = array(
-			'content'  => $this->input->post('content'),
-			'image'    => $img,
-			'audio'    => $audio,
-			'level'	   => $this->input->post('level'),
-			'group_id' => $this->input->post('group'),
-			'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
-				);
-			$result = $this->query_sql->edit('question',$question,array('id'=>$id));			
+		$long_question = $this->input->post("long_question");		
+		if($this->input->post("long_question")!='-1')
+		{
+			
+			$question = array(
+				'content'  => $this->input->post('content'),
+				'image'    => $img,
+				'audio'    => $audio,
+				'level'	   => $this->input->post('level'),
+				'id_long_question' => $long_question,
+				'group_id' => $this->input->post('group'),
+				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+					);
+			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
 			return $result;
+		}
+		else
+		{
+			$long_question = NULL;
+			$question = array(
+				'content'  => $this->input->post('content'),
+				'image'    => $img,
+				'audio'    => $audio,
+				'level'	   => $this->input->post('level'),
+				'id_long_question' => $long_question,
+				'group_id' => $this->input->post('group'),
+				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+					);
+			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
+			return $result;
+		}
 	}
 
 
@@ -409,7 +497,7 @@ class Question extends CI_Controller {
 			$album_dir = './uploads/audio_files/';
 			if(!is_dir($album_dir)){ create_dir($album_dir); } 
 			$config['upload_path']	= $album_dir;
-			$config['allowed_types'] = 'mp3';
+			$config['allowed_types'] = 'mp3|MP3';
 
 			$this->load->library('upload', $config); 
 			$this->upload->initialize($config); 

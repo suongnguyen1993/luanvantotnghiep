@@ -96,14 +96,15 @@ class Longquestion extends CI_Controller {
 	public function delete($id)
 	{
 		$this->query_sql->del('long_question',array('id' => $id));
-		
-		
-		$this->session->set_flashdata('noice',
-					 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					  <strong>Deleted success!</strong>
-					</div>');
-				redirect('admin/longquestion/index');
+	
+		// $this->session->set_flashdata('noice',
+		// 			 '<div class="alert alert-success alert-dismissable text-center" role="alert">
+		// 			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		// 			  <strong>Deleted success!</strong>
+		// 			</div>');
+		// 		redirect('admin/longquestion/index');
+
+		$data['question'][] = $this->query_sql->select_array();
 	}
 
 }

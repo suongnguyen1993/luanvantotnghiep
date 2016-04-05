@@ -16,15 +16,11 @@
                     <h4>Long question</h4>
 
                   <div class="form-group">
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected"></option>
-
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
+                    <select class="form-control select2" name="long_question" style="width: 100%;">
+                      <option value="-1" selected="selected"></option>
+					<?php foreach ($long_question as $L_Q){ ?>
+                      <option value="<?php echo $L_Q['id'] ?>"><?php echo $L_Q['long_content'] ?></option>
+                    <?php } ?>  
                     </select>
                   </div><!-- /.form-group -->               
     </div>
