@@ -1,4 +1,4 @@
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 <?php echo validation_errors();
       echo isset($error)?$error:"";
 ?>
@@ -24,3 +24,4 @@
 
 </form>
 </div>
+

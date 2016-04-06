@@ -71,11 +71,7 @@ class User extends CI_Controller {
 						'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 						);
 				$flag = $this->query_sql->add('user',$data);				
-				$this->session->set_flashdata('noice',
-				 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-				  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				  <strong>Add success!</strong>
-				</div>');	
+				$this->session->set_flashdata('noice',1);	
 				redirect('admin/user/index');
 				}
 				
@@ -103,11 +99,7 @@ class User extends CI_Controller {
 						'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 								);
 				$flag = $this->query_sql->edit('user',$data,array('id' => $id));
-				$this->session->set_flashdata('noice',
-							 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-							  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							  <strong>Updated success!</strong>
-							</div>');
+				$this->session->set_flashdata('noice',2);
 						redirect('admin/user/index');
 					}
 		}
@@ -117,11 +109,7 @@ class User extends CI_Controller {
 	public function delete($id)
 	{
 		$this->query_sql->del('user',array('id' => $id));
-		$this->session->set_flashdata('noice',
-					 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					  <strong>Deleted success!</strong>
-					</div>');
+		$this->session->set_flashdata('noice',3);
 				redirect('admin/user/index');
 	}
 

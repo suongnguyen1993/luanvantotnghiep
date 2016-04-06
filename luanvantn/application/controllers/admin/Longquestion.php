@@ -40,12 +40,9 @@ class Longquestion extends CI_Controller {
 		$this->load->view('backend/layout/admin',$data);
 	}
 	public function add()
-	{
+	{	
 		$data['long_question'] = $this->query_sql
 			->select_array("long_question","id,long_content","","","");
-			
-		
-
 		$data['title'] = 'Manage Add Long Question';
 		$data['error'] = $this->session->flashdata('error');
 		// check form_validation
@@ -73,6 +70,8 @@ class Longquestion extends CI_Controller {
 	{
 		$data['title'] = 'Manage Update Long Question';	
 		$data['long_question']= $this->query_sql->select_row('long_question','long_content',array('id'=>$id),'');
+		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
+		
 		if($this->input->post()){
 			$this->form_validation->set_rules('long_content','Long question', 'required');			
 			if($this->form_validation->run()){
@@ -81,11 +80,8 @@ class Longquestion extends CI_Controller {
 							
 								);
 				$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
-				$this->session->set_flashdata('noice',
-							 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-							  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							  <strong>Updated success!</strong>
-							</div>');
+				$this->session->set_flashdata('noice',2
+							 );
 						redirect('admin/longquestion/index');
 					}
 		}
@@ -95,16 +91,37 @@ class Longquestion extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->query_sql->del('long_question',array('id' => $id));
-	
-		// $this->session->set_flashdata('noice',
-		// 			 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-		// 			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		// 			  <strong>Deleted success!</strong>
-		// 			</div>');
-		// 		redirect('admin/longquestion/index');
+		$data['question'] = $this->query_sql->select_array('question','id, content,image,audio',array('id_long_question'=>$id),'', "");
+		foreach($data['question'] as $q)
+		{	
+			$data['chooses']= $this->query_sql
+			->select_array('choice','id',array('question_id' => $q['id']),'','');
+			print_r($data['chooses']);
+			
+			foreach($data['chooses'] as $a)
+			{			
+				$this->query_sql->del('choice',array('id' => $a['id']));								
+			}
 
-		$data['question'][] = $this->query_sql->select_array();
+			$this->query_sql->del('question',array('id' => $q['id']));
+			if($q['image'] != "" || $q['audio'] !="")
+			{
+			$img = "uploads/listen_photo/".$q['image'];
+			unlink($img);
+			$audio = "uploads/audio_files/".$q['audio'];		
+			unlink($audio);
+			}
+
+		}
+
+		$this->query_sql->del('long_question',array('id' => $id));
+
+		$this->session->set_flashdata('noice',3
+				 );
+	
+				redirect('admin/longquestion/index');
+
+		//$data['question'][] = $this->query_sql->select_array();
 	}
 
 }

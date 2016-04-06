@@ -9,9 +9,9 @@
 
                   <div class="form-group">
                     <select class="form-control select2" name="long_question" style="width: 100%;">
-                      <option value="-1" selected="selected">Select Long question</option>
+                      <option value="-1">Select Long question</option>
 					<?php foreach ($long_question as $L_Q){ ?>
-                      <option value="<?php echo $L_Q['id'] ?>"><?php echo $L_Q['long_content'] ?></option>
+                      <option value="<?php echo $L_Q['id'] ?>" <?php echo ($question['id_long_question'] == $L_Q['id'])?'selected="selected"':""; ?>><?php echo $L_Q['long_content'] ?></option>
                     <?php } ?>  
                     </select>
                   </div><!-- /.form-group -->               

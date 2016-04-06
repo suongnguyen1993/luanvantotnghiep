@@ -4,6 +4,18 @@
   <strong>Add success!</strong>
 </div>
 <?php }?>
+<?php if(isset($error) && $error==2){ ?>
+<div class="alert alert-success alert-dismissable text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Update success!</strong>
+</div>
+<?php }?>
+<?php if(isset($error) && $error==3){ ?>
+<div class="alert alert-success alert-dismissable text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Delete success!</strong>
+</div>
+<?php }?>
 
 <section class="content">
           <div class="row">
@@ -38,9 +50,12 @@
                      ?>
                       <tr>
                         <td>
-                        <a href="admin/longquestion/update/<?php echo $u['id'] ?>"><?php if(strlen($u['long_content']) > 200 ){
+                        <a href="admin/longquestion/update/<?php echo $u['id'] ?>">
+                        
+                        <?php if(strlen($u['long_content']) > 200 ){
                           echo substr($u['long_content'],0,200)."...";
-                          } else echo $u['long_content'] ?></a>
+                          } else echo $u['long_content'] ?>
+                          </a>
                         </td>
 
                         <td>

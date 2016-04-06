@@ -1,4 +1,21 @@
-<?php echo isset($error)?$error:""; ?>
+<?php if(isset($error) && $error==1){ ?>
+<div class="alert alert-success alert-dismissable text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Add success!</strong>
+</div>
+<?php }?>
+<?php if(isset($error) && $error==2){ ?>
+<div class="alert alert-success alert-dismissable text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Update success!</strong>
+</div>
+<?php }?>
+<?php if(isset($error) && $error==3){ ?>
+<div class="alert alert-success alert-dismissable text-center" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Delete success!</strong>
+</div>
+<?php }?>
 
 <section class="content">
           <div class="row">

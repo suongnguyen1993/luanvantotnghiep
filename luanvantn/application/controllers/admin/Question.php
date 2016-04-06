@@ -24,7 +24,7 @@ class Question extends CI_Controller {
 		$this->pagination->initialize($config);
 		$data['list_pagination'] = $this->pagination->create_links();
 		$data['question']= $this->query_sql
-		->view('id, content, image, audio, level, created,',"question",($page-1)*$config['per_page'],$config['per_page'] );
+		->view('id, content, image, audio, level, created,id_long_question',"question",($page-1)*$config['per_page'],$config['per_page'] );
 		//end pagination
 		if($this->input->post())
 		{
@@ -105,7 +105,7 @@ class Question extends CI_Controller {
 						$question_id = $this->add_question($img_data['file_name'],"");
 						//////////////////////////////////////
 					}
-					if($audio)
+					else if($audio)
 					{					
 						$audio_data = $this->add_audio();
 						$type_audio = array(".mp3",".MP3");
@@ -128,11 +128,7 @@ class Question extends CI_Controller {
 					}
 					else $this->add_chosese($question_id['id'],$i,0);
 				}
-				$this->session->set_flashdata('noice',
-				 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-				  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				  <strong>Add success!</strong>
-				</div>');	
+				$this->session->set_flashdata('noice',1);	
 
 				redirect('admin/question/index');
 			}
@@ -307,11 +303,7 @@ class Question extends CI_Controller {
 						}
 						else $this->update_chosese($data['chooses'][$i-1]['id'],$i,0);
 					}
-					$this->session->set_flashdata('noice',
-					 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					  <strong>Updated success!</strong>
-					</div>');	
+					$this->session->set_flashdata('noice',2);	
 
 				redirect('admin/question/index');
 			}
@@ -339,11 +331,7 @@ class Question extends CI_Controller {
 		$audio = "uploads/audio_files/".$data['question']['audio'];		
 		unlink($audio);
 		$this->query_sql->del('question',array('id' => $id));
-		$this->session->set_flashdata('noice',
-					 '<div class="alert alert-success alert-dismissable text-center" role="alert">
-					  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					  <strong>Deleted success!</strong>
-					</div>');
+		$this->session->set_flashdata('noice',3);
 				redirect('admin/question/index');
 	}
 
@@ -364,7 +352,7 @@ class Question extends CI_Controller {
 			'image'    => $img,
 			'audio'    => $audio,
 			'level'	   => $this->input->post('level'),
-			'id_long_question' => $long_question['id'],
+			'id_long_question' => $long_question,
 			'group_id' => $this->input->post('group'),
 			'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 				);

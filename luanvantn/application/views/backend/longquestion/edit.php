@@ -1,4 +1,4 @@
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
   <?php echo validation_errors()?>
   <form id="frm-admin" method="post" action="">
                     
@@ -13,7 +13,59 @@
                     <div class="form-group text-right">
                       <button type="submit" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
                       <button type="reset" class="btn btn-success btn-flat reset"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset</button>
-                      <a href="admin/user/index" class="btn btn-success"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Return</a>
+                      <a href="admin/longquestion/index" class="btn btn-success"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Return</a>
                     </div>     
   </form>
 </div>
+<section class="content">
+          <div class="row">
+            <div class="col-xs-9">
+            <div class="box-header">
+                       <h4 class="box-title">List Question</h4>
+                                    <!-- tools box -->                       
+            </div>
+            <div class="box">
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                  <div class="form-group text-right">
+                       <a href="admin/question/add" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>                  
+                  </div>
+                    <thead>
+                      <tr>
+                        <th>Question</th>                        
+                        <th style="width: 50px">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($question as $q)
+                        { 
+                      ?>                      
+                      <tr>
+                      
+                        <td width="440px">
+                        <?php echo $q['content'] ?>
+                        </td>
+                        
+                        <td>
+                        <a href="admin/question/update/<?php echo $q['id'] ?>"><i class="fa fa-wrench"></i></a>
+                          <a onclick="del(<?php echo $q['id'] ?>)"><i class="fa fa-trash"></i></a>
+                        </td>
+                       
+                      </tr>
+                        <?php } ?>      
+                    </tbody>                    
+                  </table>
+                </div>
+              </div>
+
+    <?php echo (isset($list_pagination))?$list_pagination:"" ?>
+   <script type="text/javascript">
+     function del(id){
+        var msg = "Are you sure to delete this question ?";
+        var baseurl = "";
+        if(confirm(msg))
+        {
+            window.location = baseurl + "admin/question/delete/" + id;
+        }
+     }
+   </script>
