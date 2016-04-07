@@ -10,6 +10,10 @@ class Exam extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Exam';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
@@ -41,11 +45,12 @@ class Exam extends CI_Controller {
 	}
 	public function add()
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['exam'] = $this->query_sql
-			->select_array("exam","*","","","");
-			
-		
-
+			->select_array("exam","*","","","");			
 		$data['title'] = 'Manage Add exam';
 		$data['error'] = $this->session->flashdata('error');
 		// check form_validation
@@ -73,6 +78,10 @@ class Exam extends CI_Controller {
 	}
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Update exam';	
 		$data['exam']= $this->query_sql->select_row('exam','id, info, time, url, updated',array('id'=>$id),'');
 		if($this->input->post()){
@@ -97,15 +106,21 @@ class Exam extends CI_Controller {
 	}
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$this->query_sql->del('exam',array('id' => $id));
 		$this->session->set_flashdata('flag', $flag);
 		$this->session->set_flashdata('noice',3);
 				redirect('admin/exam/index');
 	}
 
-	public function Ajax()
+		public function check_login ()
 	{
-		echo 'hello';
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
 	}
 
 }

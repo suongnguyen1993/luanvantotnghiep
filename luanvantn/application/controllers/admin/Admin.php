@@ -10,6 +10,10 @@ class Admin extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Admin';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
@@ -41,6 +45,10 @@ class Admin extends CI_Controller {
 	}
 	public function add()
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['admin'] = $this->query_sql
 			->select_array("admin","username","","","");
 			
@@ -83,6 +91,10 @@ class Admin extends CI_Controller {
 	}
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Update Admin';	
 		$data['admin']= $this->query_sql->select_row('admin','fullname, username, email, password',array('id'=>$id),'');
 		if($this->input->post()){
@@ -102,13 +114,26 @@ class Admin extends CI_Controller {
 	}
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$this->query_sql->del('admin',array('id' => $id));
 		$this->session->set_flashdata('flag', $flag);
 		$this->session->set_flashdata('noice',3);
 				redirect('admin/admin/index');
 	}
 
+	public function check_login ()
+	{
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
+	}
+
 }
+
+
 
 /* End of file admin.php */
 /* Location: ./application/controllers/admin/admin.php */

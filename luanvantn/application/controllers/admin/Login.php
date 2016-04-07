@@ -5,7 +5,6 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
 	}
 
 	public function index()
@@ -15,8 +14,6 @@ class Login extends CI_Controller {
 		{
 			$username = $this->input->post('username');
 			$password = md5($this->input->post('password'));
-			// echo "asdff";
-			// die;
 			$flag = 0;
 			foreach($admin as $ad)
 			{
@@ -28,12 +25,26 @@ class Login extends CI_Controller {
 			}
 			if($flag == 1)
 			{
-				echo "dang nhap dung";
+				$login  = array(
+		        'username'  => $username
+				);
+				$this->session->set_userdata($login);	
+				redirect("admin/admin");		
 			}
-			else echo "sai";
+			else $data['error'] = 'invalid username or password';
+		}		
+		$this->load->view('backend/login/index',isset($data)?$data:"");
+	}
+	public function detroy_sess()
+	{
+		if($this->session->has_userdata('logged_in'))
+		{
+			$login  = array(
+		        'username'  => $username				
+				);
+			$this->session->unset_userdata('username');
+			redirect("admin/login");
 		}
-		
-		$this->load->view('backend/login/index');
 	}
 
 }

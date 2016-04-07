@@ -10,6 +10,10 @@ class Question extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manager Question';
 		$data['error'] = $this->session->flashdata('noice');
 		//pagination
@@ -35,12 +39,16 @@ class Question extends CI_Controller {
 		
 		$data['template']='backend/question/index';
 
-		$this->load->view('backend/layout/admin_index',$data);
+		$this->load->view('backend/layout/admin_index',isset($data)?$data:"");
 	}
 
 
 	public function add()
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manager Add Question';
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['error'] = $this->session->flashdata('error');
@@ -138,12 +146,16 @@ class Question extends CI_Controller {
 		}
 		$data['template']='backend/question/add';
 		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
-		$this->load->view('backend/layout/admin',$data);
+		$this->load->view('backend/layout/admin',isset($data)?$data:"");
 	}
 
 
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manager Update Question';
 		
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
@@ -311,12 +323,16 @@ class Question extends CI_Controller {
 		$data['template']='backend/question/edit';
 		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
 
-		$this->load->view('backend/layout/admin',$data);
+		$this->load->view('backend/layout/admin',isset($data)?$data:"");
 	}
 
 
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['question'] = $this->query_sql
 		->select_row('question','id,content,image,audio ',array('id' => $id),'');
 		$data['chooses']= $this->query_sql
@@ -374,23 +390,6 @@ class Question extends CI_Controller {
 			return $result['id'];
 		}
 	}
-	// private function add_long_question()
-	// {
-	// 	$long_question = array(
-	// 		'id'	   =>'',	
-	// 		'long_content'  => $this->input->post('long_question'),
-	// 			);
-	// 		$result = $this->query_sql->add('long_question',$long_question);			
-	// 		return $result['id'];
-	// }
-	// private function update_long_question($img = "", $audio = "",$id)
-	// {
-	// 	$long_question = array(
-	// 		'long_content'  => $this->input->post('long_question')			
-	// 			);
-	// 		$result = $this->query_sql->edit('question',$long_question,array('id'=>$id));			
-	// 		return $result;
-	// }
 	private function update_question($img = "", $audio = "",$id)
 	{
 		$long_question = $this->input->post("long_question");		
@@ -524,6 +523,13 @@ class Question extends CI_Controller {
 				);
 			$result = $this->query_sql->edit('choice',$chosese,array('id'=>$choose_id));
 			return $result;
+	}
+
+	public function check_login ()
+	{
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
 	}
 
 }

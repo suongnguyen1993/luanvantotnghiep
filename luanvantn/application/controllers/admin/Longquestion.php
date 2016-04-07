@@ -10,6 +10,10 @@ class Longquestion extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Long Question';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
@@ -37,10 +41,14 @@ class Longquestion extends CI_Controller {
 			->view('*',"long_question",($page-1)*$config['per_page'],$config['per_page']);
 		}
 		$data['template']='backend/longquestion/index';
-		$this->load->view('backend/layout/admin',$data);
+		$this->load->view('backend/layout/admin',isset($data)?$data:"");
 	}
 	public function add()
 	{	
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['long_question'] = $this->query_sql
 			->select_array("long_question","id,long_content","","","");
 		$data['title'] = 'Manage Add Long Question';
@@ -54,7 +62,7 @@ class Longquestion extends CI_Controller {
 						'id' => '',
 						'long_content' => $this->input->post('long_content')								
 						);
-				$flag = $this->query_sql->add('long_question',$data);				
+				$flag = $this->query_sql->add('long_question',isset($data)?$data:"");				
 				$this->session->set_flashdata('noice',1);	
 				redirect('admin/longquestion/index');
 				}
@@ -63,11 +71,15 @@ class Longquestion extends CI_Controller {
 		// end check
 		$data['template']='backend/longquestion/add';
 		$data['my_js']='backend/element/foot/my_js/ckeditor';
-		$this->load->view('backend/layout/admin',$data);
+		$this->load->view('backend/layout/admin',isset($data)?$data:"");
 		
 	}
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Update Long Question';	
 		$data['long_question']= $this->query_sql->select_row('long_question','long_content',array('id'=>$id),'');
 		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
@@ -87,10 +99,14 @@ class Longquestion extends CI_Controller {
 		}
 		$data['template']='backend/longquestion/edit';
 		$data['my_js']='backend/element/foot/my_js/ckeditor';
-		$this->load->view('backend/layout/admin',$data);
+		$this->load->view('backend/layout/admin',isset($data)?$data:"");
 	}
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['question'] = $this->query_sql->select_array('question','id, content,image,audio',array('id_long_question'=>$id),'', "");
 		foreach($data['question'] as $q)
 		{	
@@ -121,7 +137,12 @@ class Longquestion extends CI_Controller {
 	
 				redirect('admin/longquestion/index');
 
-		//$data['question'][] = $this->query_sql->select_array();
+	}
+	public function check_login ()
+	{
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
 	}
 
 }

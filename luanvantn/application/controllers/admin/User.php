@@ -10,6 +10,10 @@ class User extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage User';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
@@ -41,6 +45,10 @@ class User extends CI_Controller {
 	}
 	public function add()
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['user'] = $this->query_sql
 			->select_array("user","username","","","");
 			
@@ -83,6 +91,10 @@ class User extends CI_Controller {
 	}
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Update User';	
 		$data['user']= $this->query_sql->select_row('user','fullname, username, email, password',array('id'=>$id),'');
 		if($this->input->post()){
@@ -108,10 +120,22 @@ class User extends CI_Controller {
 	}
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$this->query_sql->del('user',array('id' => $id));
 		$this->session->set_flashdata('noice',3);
 				redirect('admin/user/index');
 	}
+
+	public function check_login ()
+	{
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
+	}
+
 
 }
 

@@ -20,7 +20,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   
-                  <span class="hidden-xs">Sing Out</span>
+                  <span class="hidden-xs"><?php echo $this->session->userdata('username'); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -37,7 +37,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<?php echo base_url() ?>admin/login/detroy_sess" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>

@@ -6,8 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/admin/signup-form/bootstrap/css/bootstrap.min.css">
 <style>
-@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
 *{margin:0; padding:0}
 body{background:#294072; font-family: 'Source Sans Pro', sans-serif}
 .form{width:400px; margin:0 auto; background:#1C2B4A; margin-top:150px}
@@ -40,6 +39,7 @@ ul li{height:40px; margin:15px 0; list-style:none}
 <body>
 <div class="form">
 <div class="header"><h2>Sign In</h2></div>
+<p align="center" style="color: red;"><?php echo isset($error)?$error:""; ?></p>
 <div class="login">
 <form form id="frm-login" method="post" action="">
 <ul>
@@ -50,18 +50,11 @@ ul li{height:40px; margin:15px 0; list-style:none}
 <li>
 <input type="submit" value="LOGIN" class="btn">
 </li>
-<li><div class="span"><span class="ch"><input type="checkbox" id="r"> <label for="r">Remember Me</label> </span> <span class="ch"><a href="#">Forgot Password?</a></span></div></li>
 </ul>
 </form>
-<div class="social">
-<a href="#"><div class="fb"><i class="fa fa-facebook-f"></i> &nbsp; Login With Facebook</div></a>
-<a href="#"><div class="tw"><i class="fa fa-twitter"></i> &nbsp;  Login With Twitter</div></a>
-</div>
+
 </div><br/>
-<div class="sign">
-<div class="need">Need new account ?</div>
-<div class="up"><a href="">Sign Up</a></div>
-</div>
+
 </div>
 </body>
 </html>

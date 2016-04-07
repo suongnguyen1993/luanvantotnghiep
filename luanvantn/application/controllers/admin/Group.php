@@ -10,6 +10,10 @@ class Group extends CI_Controller {
 
 	public function index($page = 1)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Group';
 		$data['error'] = $this->session->flashdata('noice');
 		$this->load->library('pagination');
@@ -31,6 +35,10 @@ class Group extends CI_Controller {
 	}
 	public function add()
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		// check form_validation
 		$data['title'] = 'Manage Add Group';
 			if($this->input->post()){
@@ -54,6 +62,10 @@ class Group extends CI_Controller {
 	}
 	public function update($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$data['title'] = 'Manage Update Group';
 		$data['group']= $this->query_sql->select_row('group','name, created',array('id'=>$id),'');
 		if($this->input->post()){
@@ -73,9 +85,19 @@ class Group extends CI_Controller {
 	}
 	public function delete($id)
 	{
+		if($this->check_login() == false)
+		{
+			redirect('admin/login');
+		}
 		$this->query_sql->del('group',array('id' => $id));
 		$this->session->set_flashdata('noice',3);
 				redirect('admin/group/index');
+	}
+	public function check_login ()
+	{
+		if($this->session->has_userdata('username'))
+			return true;
+		else return false;
 	}
 
 }
