@@ -46,7 +46,6 @@ class Login extends CI_Controller {
 			redirect("admin/login");
 		}
 	}
-
 }
 /* End of file Login.php */
 /* Location: ./application/controllers/admin/Login.php */
