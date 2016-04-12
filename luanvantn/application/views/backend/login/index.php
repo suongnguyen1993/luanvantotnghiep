@@ -2,7 +2,7 @@
 <html lang="en-us">
 <meta charset="utf-8" />
 <head>
-<title>Free HTML5 CSS3 Responsive Login Signup Form</title>
+<title><?php echo isset($title)?$title:'login'; ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/admin/signup-form/bootstrap/css/bootstrap.min.css">
 <style>

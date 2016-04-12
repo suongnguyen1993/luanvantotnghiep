@@ -37,8 +37,8 @@ class Login extends CI_Controller {
 	}
 	public function detroy_sess()
 	{
-		if($this->session->has_userdata('logged_in'))
-		{
+		if($this->session->has_userdata('username'))
+		{ 
 			$login  = array(
 		        'username'  => $username				
 				);
