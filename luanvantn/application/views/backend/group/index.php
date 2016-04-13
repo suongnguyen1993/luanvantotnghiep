@@ -67,7 +67,7 @@
      <?php echo $list_pagination ?>
    <script type="text/javascript">
      function del(id){
-        var msg = "Are you sure to delete this question ?";
+        var msg = "Are you sure to delete this group ?";
         var baseurl = "<?php echo base_url(); ?>";
         if(confirm(msg))
         {

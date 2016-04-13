@@ -30,6 +30,8 @@ class Question extends CI_Controller {
 		$data['question']= $this->query_sql
 		->view('id, content, image, audio, level, created,id_long_question',"question",($page-1)*$config['per_page'],$config['per_page'] );
 		//end pagination
+
+		
 		if($this->input->post())
 		{
 			$search = $this->input->post("search");
@@ -55,11 +57,13 @@ class Question extends CI_Controller {
 
 		$data ['long_question'] = $this->query_sql
 				->select_array ("long_question","id,long_content","","","");
-		// print_r($data['long_question']);
-		// die;
 
+		$data ['exam'] = $this->query_sql
+				->select_array ("exam","id,name","","","");
+		
 		if($this->input->post())
-		{
+		{ 
+		 
 
 			if($this->add_check_validation())
 			{	
@@ -90,6 +94,11 @@ class Question extends CI_Controller {
 						redirect('admin/question/add');
 					}
 					$question_id = $this->add_question($img_data['file_name'],$audio_data['file_name']);
+					$id_exam = $this->input->post('exam');
+						foreach ($id_exam as $ie)
+						{
+							$exam = $this->add_exam($question_id['id'],$ie);
+						}
 					
 				}	
 				else
@@ -111,6 +120,11 @@ class Question extends CI_Controller {
 							redirect('admin/question/add');
 						}
 						$question_id = $this->add_question($img_data['file_name'],"");
+						$id_exam = $this->input->post('exam');
+						foreach ($id_exam as $ie)
+						{
+							$exam = $this->add_exam($question_id['id'],$ie);
+						}
 						//////////////////////////////////////
 					}
 					else if($audio)
@@ -123,8 +137,21 @@ class Question extends CI_Controller {
 							redirect('admin/question/add');
 						}
 						$question_id = $this->add_question("",$audio_data['file_name']);
+						$id_exam = $this->input->post('exam');
+						foreach ($id_exam as $ie)
+						{
+							$exam = $this->add_exam($question_id['id'],$ie);
+						}
 					}
-					else $question_id = $this->add_question();
+					else
+					{ 
+						$question_id = $this->add_question();
+						$id_exam = $this->input->post('exam');
+						foreach ($id_exam as $ie)
+						{
+							$exam = $this->add_exam($question_id['id'],$ie);
+						}
+					}
 				}
 				
 				for ($i=1; $i<=$this->input->post('numberchoose');$i++)
@@ -162,12 +189,15 @@ class Question extends CI_Controller {
 		
 		$data['question'] = $this->query_sql
 		->select_row('question','id,content,image,audio,level,group_id,id_long_question',array('id' => $id),'');
+
+		$data ['exam'] = $this->query_sql
+				->select_array ("exam","id,name","","","");
 		
 		$data['chooses']= $this->query_sql
-		->select_array('choice','id,content,correct_answer',array('question_id' => $id),'','');
+								->select_array('choice','id,content,correct_answer',array('question_id' => $id),'','');
 		
-				$data ['long_question'] = $this->query_sql
-				->select_array ("long_question","id,long_content","","","");
+		$data ['long_question'] = $this->query_sql
+										->select_array ("long_question","id,long_content","","","");
 				$this->form_validation->set_rules('long_question','Long question','required'); 			
 
 		if($this->add_check_validation())
@@ -230,6 +260,7 @@ class Question extends CI_Controller {
 						}
 						//update
 						$question_id = $this->update_question($img_data['file_name'],$audio_data['file_name'],$id);
+						$exam = $this->update_exam($id,$this->input->post('exam'));
 						
 					}	
 					else
@@ -259,6 +290,7 @@ class Question extends CI_Controller {
 							}
 							//update
 							$question_id = $this->update_question($img_data['file_name'],"",$id);
+							$exam = $this->update_exam($id,$this->input->post('exam'));
 						}
 						if($audio)
 						{	
@@ -275,6 +307,7 @@ class Question extends CI_Controller {
 								unlink($unlink_audio);
 							}
 							$question_id = $this->update_question("",$audio_data['file_name'],$id);
+							$exam = $this->update_exam($id,$this->input->post('exam'));
 						}
 						else
 						{
@@ -289,6 +322,7 @@ class Question extends CI_Controller {
 									'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 									);	
 								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+								$exam = $this->update_exam($id,$this->input->post('exam'));
 
 							}
 							else
@@ -302,6 +336,7 @@ class Question extends CI_Controller {
 								'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 								);	
 								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+								$exam = $this->update_exam($id,$this->input->post('exam'));
 							}
 						}				
 					} //end add question
@@ -390,6 +425,16 @@ class Question extends CI_Controller {
 			return $result['id'];
 		}
 	}
+
+	private function add_exam($id_question = NULL , $id_exam = NULL)
+	{
+		$data = array(
+			'exam_id' 		=> $id_exam,
+			'question_id' 	=> $id_question
+			);
+		$result = $this->query_sql->add_exam('random_exam',$data);			
+		return $result;
+	}
 	private function update_question($img = "", $audio = "",$id)
 	{
 		$long_question = $this->input->post("long_question");		
@@ -423,6 +468,16 @@ class Question extends CI_Controller {
 			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
 			return $result;
 		}
+	}
+
+	private function update_exam($question_id = NULL , $exam_id = NULL,$old_id_exam)
+	{
+		$data = array(
+			'exam_id' 		=> $exam_id,
+			'question_id' 	=> $question_id
+			);
+		$result = $this->query_sql->edit('random_exam',$data,array('exam_id'=>$old_id_exam, 'question_id' 	=> $question_id));			
+		return $result;
 	}
 
 

@@ -43,9 +43,7 @@
                     <thead>
                       <tr>
                         <th>Question</th>
-                        <th>Level</th>
-                        <th>Image</th>
-                        <th>Audio</th>
+                        <th>Level</th> 
                         <th style="width: 150px">Created</th>
                         <th style="width: 50px">Action</th>
                       </tr>
@@ -60,9 +58,24 @@
                           echo substr($q['content'],0,60)."...";
                           } else echo $q['content'] ?></a>
                         </td>
-                        <td><?php echo $q['level'] ?></td>
-                        <td><?php echo $q['image'] ?></td>
-                        <td><?php echo $q['audio'] ?></td>
+                        <td>
+                        <?php switch ($q['level']) {
+                          case '1':
+                            echo "Easy";
+                            break;
+                          case '2':
+                            echo "Medium";
+                            break;
+                          case '3':
+                            echo "Difficult";
+                            break;
+                          
+                        }
+
+
+                         ?>
+                        </td>
+                        
                         <td><?php echo $q['created'] ?></td>
                         <td>
                         <a href="admin/question/update/<?php echo $q['id'] ?>"><i class="fa fa-wrench"></i></a>

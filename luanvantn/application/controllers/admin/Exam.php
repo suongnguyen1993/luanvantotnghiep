@@ -55,12 +55,13 @@ class Exam extends CI_Controller {
 		$data['error'] = $this->session->flashdata('error');
 		// check form_validation
 			if($this->input->post()){
-				$this->form_validation->set_rules('info','Info', 'required|min_length[6]');
+				$this->form_validation->set_rules('info','Info', 'required');
 				$this->form_validation->set_rules('time','Time','required');
-				$this->form_validation->set_rules('url','URL','required|valid_url');
+				//$this->form_validation->set_rules('url','URL','required');
 				if($this->form_validation->run()){
 					$data = array(
 							'info' => $this->input->post('info'), 
+							'name' => $this->input->post('name'), 
 							'time' => $this->input->post('time'),
 							'url'  => $this->input->post('url'),
 							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
@@ -91,6 +92,7 @@ class Exam extends CI_Controller {
 				if($this->form_validation->run()){
 		$data = array(
 				'info' => $this->input->post('info'), 
+				'name' => $this->input->post('name'), 
 				'time' => $this->input->post('time'),
 				'url'  => $this->input->post('url'),
 				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		

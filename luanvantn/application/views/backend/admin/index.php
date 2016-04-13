@@ -82,7 +82,7 @@
    <?php echo (isset($list_pagination))?$list_pagination:""; ?>
    <script type="text/javascript">
      function del(id){
-        var msg = "Are you sure to delete this question ?";
+        var msg = "Are you sure to delete this admin ?";
         var baseurl = "<?php echo base_url(); ?>";
         if(confirm(msg))
         {

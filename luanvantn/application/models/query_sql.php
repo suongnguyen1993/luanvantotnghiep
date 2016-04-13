@@ -25,6 +25,27 @@
 				);
 			}
 		}
+
+		function add_exam($table = '', $data = NULL){
+			$query = $this->db->insert($table, $data);
+			$flag = $this->db->affected_rows();
+			if($flag > 0){
+			
+				$max_id = $this->db->get($table)->row_array();
+				return array(
+					'type'		=> 'Successful',
+					'message'	=> 'Adding successful data!',
+						
+				);
+			}
+			else
+			{
+				return array(
+					'type'		=> 'Error',
+					'message'	=> 'Adding data failed!',
+				);
+			}
+		}
 		function edit($table = '', $data = NULL, $where = NULL){
 			$query = $this->db->where($where)->update($table, $data);
 			$flag = $this->db->affected_rows();
@@ -58,6 +79,15 @@
 					'message'	=> 'Deleting data failed!'
 				);
 			}
+		}
+		function select_random_exam($id_question = NULL , $id_exam = NULL)
+		{
+			 $this->db->select('exam_id,question_id')
+			          ->from('question AS a, exam AS b, random_exam AS C')
+			          ->where("c.exam_id = $id_exam")
+			          ->where("c.question_id = $id_question");
+			$result = $this->db->get()->row_array();
+			return $result;
 		}
 		function select_array($table = '', $data = NULL, $where = NULL, $order = '', $like = NULL){
 			$result = $this->db->select($data)->from($table);

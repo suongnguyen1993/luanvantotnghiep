@@ -3,10 +3,16 @@
   <form id="frm-admin" method="post" action="">
                     <div class="form-group">
                       <label for="info" class="control-label">
-                      Info:
+                      Name:
                       </label>                      
-                        <input type="text" class="form-control" name="info" id="info" placeholder="Info" value="<?php $this->input->post('info') ?>">                      
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php $this->input->post('name') ?>">                      
                     </div>
+                    <div class="form-group">  
+                      <h4>Infor:</h4>
+                      <textarea class="form-control" rows="5" placeholder=" Enter ..."
+                       name="info" id="info" value = ""><?php $this->input->post('info') ?></textarea>
+                    </div>
+
                     <div class="form-group">
                       <label for="time" class="control-label">
                       Time:

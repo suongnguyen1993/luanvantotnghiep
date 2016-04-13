@@ -38,6 +38,7 @@
                   </div>
                     <thead>
                       <tr>
+                        <th>Name</th>
                         <th width="150px">Info</th>
                         <th>Time</th>
                         <th>URL</th>                      
@@ -50,9 +51,12 @@
                       {
                      ?>
                       <tr>
-                        <td width="200px">
-                        <a href="admin/exam/update/<?php echo $u['id'] ?>"><?php if(strlen($u['info']) > 60 ){
-                          echo substr($u['info'],0,60)."...";
+                      <td >
+                        <a href="admin/exam/update/<?php echo $u['id'] ?>"><?php echo $u['name']?></a>
+                        </td>
+                        <td >
+                        <a href="admin/exam/update/<?php echo $u['id'] ?>"><?php if(strlen($u['info']) > 200 ){
+                          echo substr($u['info'],0,200)."...";
                           } else echo $u['info'] ?></a>
                         </td>
                       
@@ -80,7 +84,7 @@
    <?php echo (isset($list_pagination))?$list_pagination:""; ?>
    <script type="text/javascript">
      function del(id){
-        var msg = "Are you sure to delete this question ?";
+        var msg = "Are you sure to delete this exam?";
         var baseurl = "<?php echo base_url(); ?>";
         if(confirm(msg))
         {

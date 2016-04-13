@@ -1,9 +1,34 @@
-<div class=" form-group col-xs-9 col-sm-9 col-md-9 col-lg-9">	
+<div class=" form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">	
 <?php echo validation_errors();
 	echo isset($error)?$error:"";
 ?>
 	<form id="frm-admin" method="post" action="" enctype="multipart/form-data">
 	
+	<div class="form-group">	
+	<h4>Group</h4>
+		<select name="group" class="form-control">
+		<?php 
+		
+			foreach($group as $g)
+			{	
+		 ?>
+		<option value="<?php echo $g['id'] ?>" <?php echo ($question['group_id']==$g['id'])?'selected="selected"':""; ?>><?php echo $g['name']; ?></option>
+		<?php } ?>
+		</select>
+	</div>
+
+	<div class="form-group">
+                    <label>Multiple</label>
+                    <select class="form-control select2 select2-hidden-accessible" multiple="" name = 'exam' data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                     <?php foreach ($exam as $ex)
+                     
+                     { ?>
+                      <option value="<?php echo $ex['id'] ?>"><?php echo $ex['name'] ?></option>
+                    <?php } ?> 
+
+                    
+                  </div>
+
 	<div class="form-group">
                     <h4>Long question</h4>
 
@@ -22,18 +47,8 @@
 		<textarea class="form-control" rows="5" placeholder=" Enter ..."
 		 name="content" ><?php echo $question['content'] ?></textarea>
 	</div>
-	<div class="form-group">	
-	<h4>Group</h4>
-		<select name="group" class="form-control">
-		<?php 
-		
-			foreach($group as $g)
-			{	
-		 ?>
-		<option value="<?php echo $g['id'] ?>" <?php echo ($question['group_id']==$g['id'])?'selected="selected"':""; ?>><?php echo $g['name']; ?></option>
-		<?php } ?>
-		</select>
-	</div>
+
+	
 	
 	<h4> Level:</h4>
 	    <div class="radio">
