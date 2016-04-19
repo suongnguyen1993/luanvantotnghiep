@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Exam extends CI_Controller {
+class Content_exam extends CI_Controller {
 
 	public function __construct()
 	{
@@ -14,7 +14,7 @@ class Exam extends CI_Controller {
 		{
 			redirect('admin/login');
 		}
-		$data['title'] = 'Manage Exam';
+		$data['title'] = 'Manage Content_exam';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
 		{
@@ -127,5 +127,5 @@ class Exam extends CI_Controller {
 
 }
 
-/* End of file exam.php */
-/* Location: ./application/controllers/admin/exam.php */
+/* End of file Content_exam.php */
+/* Location: ./application/controllers/admin/Content_exam.php */

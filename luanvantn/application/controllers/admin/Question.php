@@ -63,7 +63,6 @@ class Question extends CI_Controller {
 		
 		if($this->input->post())
 		{ 
-		 
 
 			if($this->add_check_validation())
 			{	
@@ -94,11 +93,6 @@ class Question extends CI_Controller {
 						redirect('admin/question/add');
 					}
 					$question_id = $this->add_question($img_data['file_name'],$audio_data['file_name']);
-					$id_exam = $this->input->post('exam');
-						foreach ($id_exam as $ie)
-						{
-							$exam = $this->add_exam($question_id['id'],$ie);
-						}
 					
 				}	
 				else
@@ -120,12 +114,7 @@ class Question extends CI_Controller {
 							redirect('admin/question/add');
 						}
 						$question_id = $this->add_question($img_data['file_name'],"");
-						$id_exam = $this->input->post('exam');
-						foreach ($id_exam as $ie)
-						{
-							$exam = $this->add_exam($question_id['id'],$ie);
-						}
-						//////////////////////////////////////
+						
 					}
 					else if($audio)
 					{					
@@ -137,20 +126,12 @@ class Question extends CI_Controller {
 							redirect('admin/question/add');
 						}
 						$question_id = $this->add_question("",$audio_data['file_name']);
-						$id_exam = $this->input->post('exam');
-						foreach ($id_exam as $ie)
-						{
-							$exam = $this->add_exam($question_id['id'],$ie);
-						}
+						
 					}
 					else
 					{ 
 						$question_id = $this->add_question();
-						$id_exam = $this->input->post('exam');
-						foreach ($id_exam as $ie)
-						{
-							$exam = $this->add_exam($question_id['id'],$ie);
-						}
+						
 					}
 				}
 				
@@ -188,7 +169,7 @@ class Question extends CI_Controller {
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		
 		$data['question'] = $this->query_sql
-		->select_row('question','id,content,image,audio,level,group_id,id_long_question',array('id' => $id),'');
+		->select_row('question','id,content,image,audio,level,group_id,id_long_question,exam_id',array('id' => $id),'');
 
 		$data ['exam'] = $this->query_sql
 				->select_array ("exam","id,name","","","");
@@ -260,7 +241,6 @@ class Question extends CI_Controller {
 						}
 						//update
 						$question_id = $this->update_question($img_data['file_name'],$audio_data['file_name'],$id);
-						$exam = $this->update_exam($id,$this->input->post('exam'));
 						
 					}	
 					else
@@ -290,7 +270,6 @@ class Question extends CI_Controller {
 							}
 							//update
 							$question_id = $this->update_question($img_data['file_name'],"",$id);
-							$exam = $this->update_exam($id,$this->input->post('exam'));
 						}
 						if($audio)
 						{	
@@ -307,36 +286,65 @@ class Question extends CI_Controller {
 								unlink($unlink_audio);
 							}
 							$question_id = $this->update_question("",$audio_data['file_name'],$id);
-							$exam = $this->update_exam($id,$this->input->post('exam'));
 						}
 						else
 						{
 							$long_question = $this->input->post('long_question');
-							if($long_question != '-1')
+							$exam = $this->input->post('exam');
+							if($long_question != '-1' && $exam != '-1')
 							{
 								$update_data = array(	
 									'content'  => $this->input->post('content'),
 									'level'	   => $this->input->post('level'),
 									'group_id' => $this->input->post('group'),
 									'id_long_question' =>$long_question,
+									'exam_id' =>$exam,
 									'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 									);	
 								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
-								$exam = $this->update_exam($id,$this->input->post('exam'));
+
+							}
+							elseif($long_question != '-1')
+							{
+								$exam = NULL;
+								$update_data = array(	
+									'content'  => $this->input->post('content'),
+									'level'	   => $this->input->post('level'),
+									'group_id' => $this->input->post('group'),
+									'id_long_question' =>$long_question,
+									'exam_id' =>$exam,
+									'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+									);	
+								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
+
+							}
+							elseif($exam != '-1')
+							{
+								$long_question = NULL;
+								$update_data = array(	
+									'content'  => $this->input->post('content'),
+									'level'	   => $this->input->post('level'),
+									'group_id' => $this->input->post('group'),
+									'id_long_question' =>$long_question,
+									'exam_id' =>$exam,
+									'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+									);	
+								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
 
 							}
 							else
 							{
 								$long_question = NULL;
+								$exam = NULL;
 								$update_data = array(	
 								'content'  => $this->input->post('content'),
 								'level'	   => $this->input->post('level'),
 								'group_id' => $this->input->post('group'),
 								'id_long_question' =>$long_question,
+								'exam_id' =>$exam,
 								'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 								);	
 								$question_id = $this->query_sql->edit('question',$update_data,array('id'=>$id));
-								$exam = $this->update_exam($id,$this->input->post('exam'));
 							}
 						}				
 					} //end add question
@@ -370,6 +378,7 @@ class Question extends CI_Controller {
 		}
 		$data['question'] = $this->query_sql
 		->select_row('question','id,content,image,audio ',array('id' => $id),'');
+
 		$data['chooses']= $this->query_sql
 		->select_array('choice','id',array('question_id' => $id),'','');
 		foreach($data['chooses'] as $a)
@@ -388,13 +397,35 @@ class Question extends CI_Controller {
 
 	//--------------------------------------------------
 	/*
-		# add question 
-
-		@return max_id question
+		# thêm câu hỏi id, content, image, audio, level, id_long_question,group_id,created
+		# giá trị $img tên file hình được lấy từ file
+		# giá trị $audio tên file audio được lấy từ file
+		# if giá trị long_question != -1 thì thêm id_long_question 
+		# else không thêm  id_long_question vào câu hỏi
+		@return id của question vừa thêm vào
 	*/
 	private function add_question($img = "", $audio = "")
 	{
-		if($this->input->post('long_question') != "-1")
+
+		if($this->input->post('long_question') != "-1" && $this->input->post('exam') != "-1")
+		{ 
+			$long_question = $this->input->post('long_question');
+			$exam = $this->input->post('exam');
+			$question = array(
+			'id'	   =>'',	
+			'content'  => $this->input->post('content'),
+			'image'    => $img,
+			'audio'    => $audio,
+			'level'	   => $this->input->post('level'),
+			'id_long_question' => $long_question,
+			'exam_id' => $exam,
+			'group_id' => $this->input->post('group'),
+			'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+				);
+			$result = $this->query_sql->add('question',$question);			
+			return $result['id'];
+		}
+		else if($this->input->post('long_question') != "-1")
 		{ 
 			$long_question = $this->input->post('long_question');
 			$question = array(
@@ -404,6 +435,22 @@ class Question extends CI_Controller {
 			'audio'    => $audio,
 			'level'	   => $this->input->post('level'),
 			'id_long_question' => $long_question,
+			'group_id' => $this->input->post('group'),
+			'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+				);
+			$result = $this->query_sql->add('question',$question);			
+			return $result['id'];
+		}
+		else if($this->input->post('exam') != "-1")
+		{ 
+			$exam = $this->input->post('exam');
+			$question = array(
+			'id'	   =>'',	
+			'content'  => $this->input->post('content'),
+			'image'    => $img,
+			'audio'    => $audio,
+			'level'	   => $this->input->post('level'),
+			'exam_id' => $exam,
 			'group_id' => $this->input->post('group'),
 			'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 				);
@@ -426,19 +473,11 @@ class Question extends CI_Controller {
 		}
 	}
 
-	private function add_exam($id_question = NULL , $id_exam = NULL)
-	{
-		$data = array(
-			'exam_id' 		=> $id_exam,
-			'question_id' 	=> $id_question
-			);
-		$result = $this->query_sql->add_exam('random_exam',$data);			
-		return $result;
-	}
 	private function update_question($img = "", $audio = "",$id)
 	{
-		$long_question = $this->input->post("long_question");		
-		if($this->input->post("long_question")!='-1')
+		$long_question = $this->input->post("long_question");
+		$exam = $this->input->post("exam");		
+		if($this->input->post("long_question")!='-1' &&  $this->input->post("exam") != '-1' )
 		{
 			
 			$question = array(
@@ -447,21 +486,56 @@ class Question extends CI_Controller {
 				'audio'    => $audio,
 				'level'	   => $this->input->post('level'),
 				'id_long_question' => $long_question,
+				'exam_id' => $exam,
 				'group_id' => $this->input->post('group'),
 				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 					);
 			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
 			return $result;
 		}
-		else
+		elseif($this->input->post("long_question")!='-1')
 		{
-			$long_question = NULL;
+			$exam = NULL;
 			$question = array(
 				'content'  => $this->input->post('content'),
 				'image'    => $img,
 				'audio'    => $audio,
 				'level'	   => $this->input->post('level'),
 				'id_long_question' => $long_question,
+				'exam_id' => $exam,
+				'group_id' => $this->input->post('group'),
+				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+					);
+			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
+			return $result;
+		}
+		elseif($this->input->post("exam") != '-1' )
+		{
+			$long_question = NULL;
+				$question = array(
+				'content'  => $this->input->post('content'),
+				'image'    => $img,
+				'audio'    => $audio,
+				'level'	   => $this->input->post('level'),
+				'id_long_question' => $long_question,
+				'exam_id' => $exam,
+				'group_id' => $this->input->post('group'),
+				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
+					);
+			$result = $this->query_sql->edit('question',$question,array('id'=>$id));
+			return $result;		
+		}
+		else
+		{
+			$long_question = NULL;
+			$exam = NULL;
+			$question = array(
+				'content'  => $this->input->post('content'),
+				'image'    => $img,
+				'audio'    => $audio,
+				'level'	   => $this->input->post('level'),
+				'id_long_question' => $long_question,
+				'exam_id' => $exam,
 				'group_id' => $this->input->post('group'),
 				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)
 					);
@@ -470,34 +544,14 @@ class Question extends CI_Controller {
 		}
 	}
 
-	private function update_exam($question_id = NULL , $exam_id = NULL,$old_id_exam)
-	{
-		$data = array(
-			'exam_id' 		=> $exam_id,
-			'question_id' 	=> $question_id
-			);
-		$result = $this->query_sql->edit('random_exam',$data,array('exam_id'=>$old_id_exam, 'question_id' 	=> $question_id));			
-		return $result;
-	}
-
-
-	/*
-		#check validattion for add question
-		#check required,trim for content question
-		#check required for choosecorrect choose
-		#check required,trim for content choose A,B,C,D
-
-		@return form_validation->run() = true or false
-	*/
 	private function add_check_validation()
 	{
 		$this->form_validation->set_rules('content','Question','trim|required');
-		$this->form_validation->set_rules('level','Level','required|numeric|max_length[3]');
+		
 		$this->form_validation->set_rules('choosecorrect','Correct answer','required');
 		$this->form_validation->set_rules('choosecontent1','Choose A','trim|required');
 		$this->form_validation->set_rules('choosecontent2','Choose B','trim|required');
 		$this->form_validation->set_rules('choosecontent3','Choose C','trim|required');
-
 
 		if($this->input->post("numberchoose") == 4)
 		{
@@ -505,13 +559,7 @@ class Question extends CI_Controller {
 		}
 		return $this->form_validation->run();
 	}
-	/*
-		#create_dir a dir for image file go to uploads/listen_photo/
-		#if not exist create_dir is created_dir with link uploads/listen_photo/
-		#confif for type 'jpg|png|jpeg|gif' and  max_size
 
-		@return file name of image
-	*/
 	private function add_img()
 	{
 			$album_dir = './uploads/listen_photo/';
@@ -526,14 +574,6 @@ class Question extends CI_Controller {
 			$image_data = $this->upload->data();
 			return $image_data;
 	}
-	/*
-		#create_dir a dir for audio file go to uploads/listen_photo/
-		#if not exist create_dir is created_dir with link uploads/listen_photo/
-		#confif for type 'jpg|png|jpeg|gif' and  max_size
-
-		@return file name of audio
-
-	*/
 	private function add_audio()
 	{
 			$album_dir = './uploads/audio_files/';
@@ -548,16 +588,16 @@ class Question extends CI_Controller {
 			return $audio_data;
 	}
 	/*
-		# add choose of question with 
-		# $question_id is id of question
-		# $value is value of name for input choosecontent$value
-		# $choose_corect input 1 or 0 to input correct_answer in DB
+		# thêm giá trị cho cột choice id = "", content , question_id,
+		# biến $question_id là id của question của choice
+		# $valua là cột lấy giá trị thứ tự của textbox content của choice
+		vd: $this->input->post("choosecontent$value") => $this->input->post("choosecontent1").
+		# correct_answer là lấy giá trị câu đúng của choice (giá trị 1 hoặc 0)
 
-		@return data array of choose
+		@return giá trị thêm choice
 	*/
 	private function add_chosese($question_id,$value,$correct_answer)
 	{
-		//$value = $this->input->post("choosecontent$value");
 		$chosese = array(
 			'id'	   			=>'',	
 			'content'  			=> $this->input->post("choosecontent$value"), 
