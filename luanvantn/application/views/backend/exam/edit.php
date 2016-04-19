@@ -11,7 +11,7 @@
                     <div class="form-group">  
                       <h4>Infor:</h4>
                       <textarea class="form-control" rows="5" placeholder=" Enter ..."
-                       name="info" id="info" value = ""><?php echo $exam['infor'] ?></textarea>
+                       name="info" id="info" value = ""><?php echo $exam['info'] ?></textarea>
                     </div>
                     <div class="form-group">
                       <label for="time" class="control-label">

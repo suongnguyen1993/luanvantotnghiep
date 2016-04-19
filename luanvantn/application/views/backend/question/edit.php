@@ -16,19 +16,20 @@
 		<?php } ?>
 		</select>
 	</div>
-
 	<div class="form-group">
-                    <label>Multiple</label>
-                    <select class="form-control select2 select2-hidden-accessible" multiple="" name = 'exam' data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                     <?php foreach ($exam as $ex)
-                     
-                     { ?>
-                      <option value="<?php echo $ex['id'] ?>"><?php echo $ex['name'] ?></option>
-                    <?php } ?> 
-
-                    
-                  </div>
-
+	<h4>Exam</h4>
+		<select name="exam" class="form-control">
+		<option value="-1">Select exam </option>}
+		option
+		<?php 
+		
+			foreach($exam as $ex)
+			{	
+		 ?>
+		<option value="<?php echo $ex['id'] ?>" <?php echo ($question['exam_id']==$ex['id'])?'selected="selected"':""; ?>><?php echo $ex['name']; ?></option>
+		<?php } ?>
+		</select>
+	</div>
 	<div class="form-group">
                     <h4>Long question</h4>
 
@@ -36,7 +37,13 @@
                     <select class="form-control select2" name="long_question" style="width: 100%;">
                       <option value="-1">Select Long question</option>
 					<?php foreach ($long_question as $L_Q){ ?>
-                      <option value="<?php echo $L_Q['id'] ?>" <?php echo ($question['id_long_question'] == $L_Q['id'])?'selected="selected"':""; ?>><?php echo $L_Q['long_content'] ?></option>
+                      <option value="<?php echo $L_Q['id'] ?>" <?php echo ($question['id_long_question'] == $L_Q['id'])?'selected="selected"':""; ?>>
+                      <?php if(strlen($L_Q['long_content']) > 100 ){
+                          echo substr($L_Q['long_content'],0,100);
+                          } else echo $L_Q['long_content'] ?></a>
+
+
+                      </option>
                     <?php } ?>  
                     </select>
                   </div><!-- /.form-group -->               

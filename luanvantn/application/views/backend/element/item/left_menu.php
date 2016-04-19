@@ -8,6 +8,20 @@
             <li class="header text-center" style="font-size:large;">Controller Admin</li>
               
             </li>
+
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-share"></i> <span>Manage Exam</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>admin/exam/index"><i class="fa fa-circle-o"></i>Exam</a></li>
+           
+                <li><a href="<?php echo base_url(); ?>admin/content_exam/index"><i class="fa fa-circle-o"></i>Content exam</a></li>
+              </ul>
+            </li>
+
+
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-share"></i> <span>Manage Long Question</span>
@@ -37,15 +51,7 @@
               </ul>
             </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-share"></i> <span>Manage Exam</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>admin/exam/index"><i class="fa fa-circle-o"></i>Exam</a></li>
-              </ul>
-            </li>
+            
 
             <li class="treeview">
               <a href="#">

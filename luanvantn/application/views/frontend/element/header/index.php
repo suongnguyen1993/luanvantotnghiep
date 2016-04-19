@@ -31,16 +31,18 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li <?php echo (isset ($current)&& $current == 'home')? 'class="active"':NULL; ?>><a href="index.php">Home</a></li>
-                        <li class="dropdown"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown"><a href="practice/abc">abc <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li ><a <?php echo (isset ($current)&& $current == 'about' )? 'class="active"':NULL; ?> href="user/pages/about">About</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'about2')? 'class="active"':NULL; ?> href="user/pages/about2">About 2</a></li>
-                                <li ><a  <?php echo (isset ($current)&& $current == 'services')? 'class="active"':NULL; ?> href="user/pages/services">Services</a></li>
-                                <li><a  <?php echo (isset ($current)&& $current == 'pricing')? 'class="active"':NULL; ?> href="user/pages/pricing">Pricing</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'contact')? 'class="active"':NULL; ?>href="user/pages/contact">Contact us</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'contact2')? 'class="active"':NULL; ?> href="user/pages/contact2">Contact us 2</a></li>
-                                <li><a  <?php echo (isset ($current)&& $current == 'error')? 'class="active"':NULL; ?> href="user/pages/error">404 error</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'coming')? 'class="active"':NULL; ?> href="user/pages/coming">Coming Soon</a></li>
+                            <?php foreach ($group as $g)
+                            {                             
+                            ?>
+                                
+                            
+
+                                <li ><a <?php echo (isset ($current)&& $current == 'about' )? 'class="active"':NULL; ?> href="practice/abc/<?php echo $g['id'] ?>"><?php echo $g['name'] ?></a></li>
+
+                                <?php } ?>
+                                
                             </ul>
                         </li>                    
                         <li class="dropdown"><a href="#">Blog <i class="fa fa-angle-down"></i></a>
