@@ -14,7 +14,7 @@ class Content_exam extends CI_Controller {
 		{
 			redirect('admin/login');
 		}
-		$data['title'] = 'Manage Content_exam';
+		$data['title'] = 'Manage Content exam';
 		$data['error'] = $this->session->flashdata('noice');
 		if($this->input->post())
 		{
@@ -40,42 +40,8 @@ class Content_exam extends CI_Controller {
 			$data['exam']= $this->query_sql
 			->view('*',"exam",($page-1)*$config['per_page'],$config['per_page']);
 		}
-		$data['template']='backend/exam/index';
+		$data['template']='backend/content_exam/index';
 		$this->load->view('backend/layout/admin',$data);
-	}
-	public function add()
-	{
-		if($this->check_login() == false)
-		{
-			redirect('admin/login');
-		}
-		$data['exam'] = $this->query_sql
-			->select_array("exam","*","","","");			
-		$data['title'] = 'Manage Add exam';
-		$data['error'] = $this->session->flashdata('error');
-		// check form_validation
-			if($this->input->post()){
-				$this->form_validation->set_rules('info','Info', 'required');
-				$this->form_validation->set_rules('time','Time','required');
-				//$this->form_validation->set_rules('url','URL','required');
-				if($this->form_validation->run()){
-					$data = array(
-							'info' => $this->input->post('info'), 
-							'name' => $this->input->post('name'), 
-							'time' => $this->input->post('time'),
-							'url'  => $this->input->post('url'),
-							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
-									);
-				$flag = $this->query_sql->add('exam',$data);				
-				$this->session->set_flashdata('noice',1);				
-				redirect('admin/exam/index');
-				}
-				
-			}
-		// end check
-		$data['template']='backend/exam/add';
-		$this->load->view('backend/layout/admin',$data);
-		
 	}
 	public function update($id)
 	{
@@ -83,29 +49,36 @@ class Content_exam extends CI_Controller {
 		{
 			redirect('admin/login');
 		}
-		$data['title'] = 'Manage Update exam';	
-		$data['exam']= $this->query_sql->select_row('exam','id,name, info, time, url, updated',array('id'=>$id),'');
-		if($this->input->post()){
-			$this->form_validation->set_rules('info','Info', 'required|min_length[6]');
-				$this->form_validation->set_rules('time','Time','required');
-				$this->form_validation->set_rules('url','URL','required|valid_url');
-				if($this->form_validation->run()){
-		$data = array(
-				'info' => $this->input->post('info'), 
-				'name' => $this->input->post('name'), 
-				'time' => $this->input->post('time'),
-				'url'  => $this->input->post('url'),
-				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
-						);
-		$flag = $this->query_sql->edit('exam',$data,array('id' => $id));
-		$this->session->set_flashdata('flag', $flag);
-		$this->session->set_flashdata('noice',2);
-				redirect('admin/exam/index');
-			}
+		
+
+		$data['exam'] =$this->query_sql->select_row('exam','*',array ('id'=>$id),'') ;
+		$name_exam = $data['exam']['name'];
+		$data['title'] = "Manage Content exam $name_exam";
+		$data['question_part1'] = $this->part1($id);
+		$count1 = $this->query_sql->total_where('question',array ('group_id' => 1, 'exam_id'=>$id)) ;
+		if( $count1 >= 10)
+		{
+			$data['show1'] = 'style="display: none;"';
 		}
-		$data['template']='backend/exam/edit';
+		$data['question_part2'] = $this->part2($id);
+		$count2 = $this->query_sql->total_where('question',array ('group_id' => 2, 'exam_id'=>$id)) ;
+		if( $count2 >= 30)
+		{
+			$data['show2'] = 'style="display: none;"';
+		}
+		$data['question_part3'] = $this->part3($id);
+		
+		$data['question_part4'] = $this->part4($id);
+		$data['question_part5'] = $this->part5($id);
+		$data['question_part6'] = $this->part6($id);
+		$data['question_part7'] = $this->part7($id);
+
+		$data['template']='backend/content_exam/edit';
 		$this->load->view('backend/layout/admin',$data);
+
 	}
+
+
 	public function delete($id)
 	{
 		if($this->check_login() == false)
@@ -124,6 +97,44 @@ class Content_exam extends CI_Controller {
 			return true;
 		else return false;
 	}
+	//-------------------------------------------
+
+	private function part1($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 1, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part2($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 2, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part3($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 3, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part4($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 4, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part5($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 5, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part6($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 6, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+	private function part7($id)
+	{
+		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 7, 'exam_id'=>$id),'',"") ;
+		return $result;
+	}
+
 
 }
 

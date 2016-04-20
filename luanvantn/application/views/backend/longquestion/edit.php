@@ -43,7 +43,7 @@
                       <tr>
                       
                         <td width="440px">
-                        <?php echo $q['content'] ?>
+                        <a href="admin/question/update/<?php echo $q['id'] ?>"><?php echo $q['content'] ?></a>
                         </td>
                         
                         <td>

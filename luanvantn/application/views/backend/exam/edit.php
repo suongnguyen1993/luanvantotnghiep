@@ -19,12 +19,6 @@
                       </label>                      
                         <input type="text" class="form-control" name="time" id="time" placeholder="dd/mm/yyy" value="<?php echo $exam['time'] ?>">                      
                     </div>
-                    <div class="form-group">
-                      <label for="url" class="control-label">
-                      URL:
-                      </label>                      
-                        <input type="text" class="form-control" name="url" id="url" placeholder="URL" value="<?php echo $exam['url'] ?>">                      
-                    </div>
                     <div class="form-group text-right">
                       <button type="submit" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
                       <button type="reset" class="btn btn-success btn-flat reset"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset</button>

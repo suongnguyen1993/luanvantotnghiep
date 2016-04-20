@@ -40,8 +40,7 @@
                       <tr>
                         <th>Name</th>
                         <th width="150px">Info</th>
-                        <th>Time</th>
-                        <th>URL</th>                      
+                        <th>Time</th>                    
                         <th style="width: 150px">Created</th>
                         <th style="width: 50px">Action</th>
                       </tr>
@@ -62,11 +61,6 @@
                       
                         <td>
                         <a href="admin/exam/update/<?php echo $u['id'] ?>"><?php echo $u['time'] ?></a>
-                        </td>
-                        <td width="200px">
-                        <a href="admin/exam/update/<?php echo $u['id'] ?>"><?php if(strlen($u['url']) > 20 ){
-                          echo substr($u['url'],0,20)."...";
-                          } else echo $u['url'] ?></a>
                         </td>
                         
                         <td><?php echo $u['created']; ?></td>

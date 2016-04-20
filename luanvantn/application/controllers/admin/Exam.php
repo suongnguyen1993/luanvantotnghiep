@@ -57,13 +57,11 @@ class Exam extends CI_Controller {
 			if($this->input->post()){
 				$this->form_validation->set_rules('info','Info', 'required');
 				$this->form_validation->set_rules('time','Time','required');
-				//$this->form_validation->set_rules('url','URL','required');
 				if($this->form_validation->run()){
 					$data = array(
 							'info' => $this->input->post('info'), 
 							'name' => $this->input->post('name'), 
 							'time' => $this->input->post('time'),
-							'url'  => $this->input->post('url'),
 							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 									);
 				$flag = $this->query_sql->add('exam',$data);				
@@ -86,15 +84,13 @@ class Exam extends CI_Controller {
 		$data['title'] = 'Manage Update exam';	
 		$data['exam']= $this->query_sql->select_row('exam','id,name, info, time, url, updated',array('id'=>$id),'');
 		if($this->input->post()){
-			$this->form_validation->set_rules('info','Info', 'required|min_length[6]');
+			$this->form_validation->set_rules('info','Info', 'required');
 				$this->form_validation->set_rules('time','Time','required');
-				$this->form_validation->set_rules('url','URL','required|valid_url');
 				if($this->form_validation->run()){
 		$data = array(
 				'info' => $this->input->post('info'), 
 				'name' => $this->input->post('name'), 
 				'time' => $this->input->post('time'),
-				'url'  => $this->input->post('url'),
 				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 						);
 		$flag = $this->query_sql->edit('exam',$data,array('id' => $id));

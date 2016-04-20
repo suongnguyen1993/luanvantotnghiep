@@ -28,6 +28,7 @@
 
 	<div class="form-group">	
 			<h4>Exam</h4>
+			
 			<select name="exam" class="form-control">
 			<option value="-1">Select exam</option>}
 			option
@@ -35,7 +36,10 @@
 				foreach($exam as $ex)
 				{
 			 ?>
-			<option value="<?php echo $ex['id'] ?>"><?php echo $ex['name']; ?></option>
+			<option value="<?php echo $ex['id'] ?>" <?php echo (isset($id_exam) &&
+			$id_exam == $ex['id'])?'selected="selected"':""; ?> >
+			<?php echo $ex['name']; ?>
+			</option>
 			<?php } ?>
 			</select>
 	</div>

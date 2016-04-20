@@ -29,9 +29,7 @@ class Question extends CI_Controller {
 		$data['list_pagination'] = $this->pagination->create_links();
 		$data['question']= $this->query_sql
 		->view('id, content, image, audio, level, created,id_long_question',"question",($page-1)*$config['per_page'],$config['per_page'] );
-		//end pagination
 
-		
 		if($this->input->post())
 		{
 			$search = $this->input->post("search");
@@ -45,12 +43,17 @@ class Question extends CI_Controller {
 	}
 
 
-	public function add()
+	public function add($id_exam = NULL)
 	{
 		if($this->check_login() == false)
 		{
 			redirect('admin/login');
 		}
+		if($id_exam != NULL)
+		{
+			$data['id_exam'] = $id_exam;
+		}
+		
 		$data['title'] = 'Manager Add Question';
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['error'] = $this->session->flashdata('error');
