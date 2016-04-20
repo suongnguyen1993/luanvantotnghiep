@@ -16,6 +16,14 @@
   <strong>Delete success!</strong>
 </div>
 <?php }?>
+
+<?php if(isset($error) && $error==4){ ?>
+<div class="alert alert-danger alert-dismissable" text = "center">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <h4 align="center">Can not delete this exam because it have question in the exam!</h4>
+ </div>
+<?php }?>
+
 <section class="content">
           <div class="row">
             <div class="col-xs-12">
