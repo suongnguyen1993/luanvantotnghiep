@@ -66,8 +66,7 @@ class Content_exam extends CI_Controller {
 		{
 			$data['show2'] = 'style="display: none;"';
 		}
-		$data['question_part3'] = $this->part3($id);
-		
+		$data['question_part3'] = $this->part3($id);	
 		$data['question_part4'] = $this->part4($id);
 		$data['question_part5'] = $this->part5($id);
 		$data['question_part6'] = $this->part6($id);
