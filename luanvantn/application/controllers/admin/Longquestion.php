@@ -51,20 +51,43 @@ class Longquestion extends CI_Controller {
 		}
 		$data['long_question'] = $this->query_sql
 			->select_array("long_question","id,long_content","","","");
+		$data ['exam'] = $this->query_sql
+			->select_array ("exam","id,name","","","");
 		$data['title'] = 'Manage Add Long Question';
 		$data['error'] = $this->session->flashdata('error');
 		// check form_validation
 			if($this->input->post()){
 				$this->form_validation->set_rules('long_content','Long question', 'required');
-				if($this->form_validation->run()){
-					
-					$data = array(
-						'id' => '',
-						'long_content' => $this->input->post('long_content')								
-						);
-				$flag = $this->query_sql->add('long_question',isset($data)?$data:"");				
-				$this->session->set_flashdata('noice',1);	
-				redirect('admin/longquestion/index');
+				if($this->form_validation->run())
+				{
+
+					$exam = $this->input->post('exam');
+					if($exam != '-1')
+					{					
+						$data = array(
+							'id' 			=> '',
+							'long_content' 	=> $this->input->post('long_content'),
+							'exam_id'		=> $exam
+
+							);
+						$flag = $this->query_sql->add('long_question',isset($data)?$data:"");
+									
+						$this->session->set_flashdata('noice',1);	
+						redirect('admin/longquestion/index');
+					}
+					else
+					{ 	$exam = NULL;
+						$data = array(
+							'id' 			=> '',
+							'long_content' 	=> $this->input->post('long_content'),
+							'exam_id'		=> $exam
+
+							);
+						$flag = $this->query_sql->add('long_question',isset($data)?$data:"");
+									
+						$this->session->set_flashdata('noice',1);	
+						redirect('admin/longquestion/index');
+					}
 				}
 				
 			}
@@ -81,21 +104,41 @@ class Longquestion extends CI_Controller {
 			redirect('admin/login');
 		}
 		$data['title'] = 'Manage Update Long Question';	
-		$data['long_question']= $this->query_sql->select_row('long_question','long_content',array('id'=>$id),'');
+		$data['long_question']= $this->query_sql->select_row('long_question','long_content, exam_id',array('id'=>$id),'');
 		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
+		$data ['exam'] = $this->query_sql
+			->select_array ("exam","id,name","","","");
+
 		
 		if($this->input->post()){
 			$this->form_validation->set_rules('long_content','Long question', 'required');			
-			if($this->form_validation->run()){
-				$data = array(
-						'long_content' => $this->input->post('long_content') 
-							
-								);
-				$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
-				$this->session->set_flashdata('noice',2
-							 );
-						redirect('admin/longquestion/index');
-					}
+			if($this->form_validation->run())
+			{
+				$exam = $this->input->post('exam');
+				if($exam != '-1')
+				{
+					$data = array(
+							'long_content' => $this->input->post('long_content'),
+							'exam_id' => $exam
+							);
+					$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
+					$this->session->set_flashdata('noice',2
+								 );
+					redirect('admin/longquestion/index');
+				}
+				else
+				{
+					$exam = NULL;
+					$data = array(
+							'long_content' => $this->input->post('long_content'),
+							'exam_id' => $exam
+							);
+					$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
+					$this->session->set_flashdata('noice',2
+								 );
+					redirect('admin/longquestion/index');
+				}
+			}
 		}
 		$data['template']='backend/longquestion/edit';
 		$data['my_js']='backend/element/foot/my_js/ckeditor';

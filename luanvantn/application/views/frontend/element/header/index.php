@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li <?php echo (isset ($current)&& $current == 'home')? 'class="active"':NULL; ?>><a href="index.php">Home</a></li>
-                        <li class="dropdown"><a href="practice/abc">abc <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown"><a href="practice/abc">practice <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                             <?php foreach ($group as $g)
                             {                             
@@ -45,14 +45,15 @@
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown"><a href="#">Blog <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown"><a href="#">Test <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li ><a <?php echo (isset ($current)&& $current == 'blog')? 'class=" active"':NULL; ?> href="user/blog/blog">Blog Default</a></li>
-                                <li><a  <?php echo (isset ($current)&& $current == 'blog2')? 'class=" active"':NULL; ?> href="user/blog/blog2">Timeline Blog</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'blog1')? 'class=" active"':NULL; ?> href="user/blog/blog1">2 Columns + Right Sidebar</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'blog3')? 'class=" active"':NULL; ?> href="user/blog/blog3">1 Column + Left Sidebar</a></li>
-                                <li ><a <?php echo (isset ($current)&& $current == 'blog4')? 'class=" active"':NULL; ?> href="user/blog/blog4">Blog Masonary</a></li>
-                                <li><a  <?php echo (isset ($current)&& $current == 'blogdetails')? 'class=" active"':NULL; ?> href="user/blog/blogdetails">Blog Details</a></li>
+                                <li >
+                                <a <?php echo (isset ($current)&& $current == 'blog')? 'class=" active"':NULL; ?> href="test/test">Test trình độ toeic</a>
+                                </li>
+                                <li>
+                                <a  <?php echo (isset ($current)&& $current == 'blog2')? 'class=" active"':NULL; ?> href="user/blog/blog2">Đề thi</a>
+                                </li>
+                                
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#">Portfolio <i class="fa fa-angle-down"></i></a>

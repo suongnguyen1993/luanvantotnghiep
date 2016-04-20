@@ -1,7 +1,20 @@
 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
   <?php echo validation_errors()?>
   <form id="frm-admin" method="post" action="">
-                    
+          <div class="form-group">
+          <h4>Exam</h4>
+            <select name="exam" class="form-control">
+            <option value="-1">Select exam </option>}
+            option
+            <?php 
+            
+              foreach($exam as $ex)
+              { 
+             ?>
+            <option value="<?php echo $ex['id'] ?>" <?php echo ($long_question['exam_id']==$ex['id'])?'selected="selected"':""; ?>><?php echo $ex['name']; ?></option>
+            <?php } ?>
+            </select>
+          </div>          
             <div class="box box-info">
                  <div class="box-header">
                  <h3 class="box-title">Long Question</h3>                  
