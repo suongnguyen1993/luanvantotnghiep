@@ -78,19 +78,6 @@ class Content_exam extends CI_Controller {
 
 	}
 
-
-	public function delete($id)
-	{
-		if($this->check_login() == false)
-		{
-			redirect('admin/login');
-		}
-		$this->query_sql->del('exam',array('id' => $id));
-		$this->session->set_flashdata('flag', $flag);
-		$this->session->set_flashdata('noice',3);
-				redirect('admin/exam/index');
-	}
-
 		public function check_login ()
 	{
 		if($this->session->has_userdata('username'))
