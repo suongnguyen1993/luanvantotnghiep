@@ -54,23 +54,52 @@ class Exam extends CI_Controller {
 		$data['title'] = 'Manage Add exam';
 		$data['error'] = $this->session->flashdata('error');
 		// check form_validation
-			if($this->input->post()){
+			if($this->input->post())
+			{
+				$this->form_validation->set_rules('name','Name', 'required');
 				$this->form_validation->set_rules('info','Info', 'required');
 				$this->form_validation->set_rules('time','Time','required');
-				if($this->form_validation->run()){
-					$data = array(
+				if($this->form_validation->run())
+				{	
+					$audio = $_FILES["audio_file"]["name"];
+					if($audio)
+					{
+						$audio_data = $this->add_audio();
+						$type_audio = array(".mp3",".MP3");
+						if(!in_array($audio_data['file_ext'],$type_audio))
+						{
+							$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
+							redirect("admin/exam/add");
+						}
+						else
+						{
+							$data = array(
+							'id' => "",
 							'info' => $this->input->post('info'), 
 							'name' => $this->input->post('name'), 
 							'time' => $this->input->post('time'),
+							'audio' => $audio_data['file_name'],
 							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 									);
-				$flag = $this->query_sql->add('exam',$data);				
-				$this->session->set_flashdata('noice',1);				
-				redirect('admin/exam/index');
+							$flag = $this->query_sql->add('exam',$data);
+							
+							$this->session->set_flashdata('flag', $flag);
+							$this->session->set_flashdata('noice',2);
+							redirect('admin/exam/index');
+						}
+					}	
+					else 
+					{
+						$this->session->set_flashdata('error', "The audio file field is required.");
+						$data['error'] = 'The audio file field is required.';
+						//redirect('admin/exam/add');
+					}
+													
 				}
 				
 			}
 		// end check
+		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
 		$data['template']='backend/exam/add';
 		$this->load->view('backend/layout/admin',$data);
 		
@@ -82,23 +111,54 @@ class Exam extends CI_Controller {
 			redirect('admin/login');
 		}
 		$data['title'] = 'Manage Update exam';	
-		$data['exam']= $this->query_sql->select_row('exam','id,name, info, time, url, updated',array('id'=>$id),'');
-		if($this->input->post()){
+		$data['exam']= $this->query_sql->select_row('exam','id,name, info, time, audio, updated',array('id'=>$id),'');
+		if($this->input->post())
+		{
 			$this->form_validation->set_rules('info','Info', 'required');
-				$this->form_validation->set_rules('time','Time','required');
-				if($this->form_validation->run()){
-		$data = array(
-				'info' => $this->input->post('info'), 
-				'name' => $this->input->post('name'), 
-				'time' => $this->input->post('time'),
-				'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
-						);
-		$flag = $this->query_sql->edit('exam',$data,array('id' => $id));
-		$this->session->set_flashdata('flag', $flag);
-		$this->session->set_flashdata('noice',2);
-				redirect('admin/exam/index');
+			$this->form_validation->set_rules('time','Time','required');
+			if($this->form_validation->run())
+			{
+				$audio = $_FILES["audio_file"]["name"];
+				if($audio != "")
+				{
+					$audio_data = $this->add_audio();
+					$type_audio = array(".mp3",".MP3");
+					if(!in_array($audio_data['file_ext'],$type_audio))
+					{
+						$this->session->set_flashdata('error', "The filetype of audio you are attempting to upload is not allowed."); 
+						redirect("admin/exam/update/$id");
+					}
+					else
+					{
+						$data = array(
+						'info' => $this->input->post('info'), 
+						'name' => $this->input->post('name'), 
+						'time' => $this->input->post('time'),
+						'audio' => $audio_data['file_name'],
+						'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
+								);
+						$flag = $this->query_sql->edit('exam',$data,array('id' => $id));
+						$this->session->set_flashdata('flag', $flag);
+						$this->session->set_flashdata('noice',2);
+						redirect('admin/exam/index');
+					}
+				}
+				else
+				{
+					$data = array(
+					'info' => $this->input->post('info'), 
+					'name' => $this->input->post('name'), 
+					'time' => $this->input->post('time'),
+					'updated'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
+							);
+					$flag = $this->query_sql->edit('exam',$data,array('id' => $id));
+					$this->session->set_flashdata('flag', $flag);
+					$this->session->set_flashdata('noice',2);
+					redirect('admin/exam/index');
+				}
 			}
 		}
+		$data['my_js']='backend/element/foot/my_js/add_edit_question_js';
 		$data['template']='backend/exam/edit';
 		$this->load->view('backend/layout/admin',$data);
 	}
@@ -108,10 +168,21 @@ class Exam extends CI_Controller {
 		{
 			redirect('admin/login');
 		}
-		$this->query_sql->del('exam',array('id' => $id));
-		$this->session->set_flashdata('flag', $flag);
-		$this->session->set_flashdata('noice',3);
-				redirect('admin/exam/index');
+		$countquestion = $this->query_sql->total_where('question',array('exam_id'=>$id));
+		if($countquestion != 0 )
+		{
+			$this->session->set_flashdata('noice',4);
+			redirect('admin/exam/index');
+		}
+		else
+		{
+			$this->query_sql->del('exam',array('id' => $id));
+			$audio = "uploads/test_audio/".$data['question']['audio'];		
+			unlink($audio);
+			$this->session->set_flashdata('flag', $flag);
+			$this->session->set_flashdata('noice',3);
+			redirect('admin/exam/index');
+		}
 	}
 
 		public function check_login ()
@@ -119,6 +190,20 @@ class Exam extends CI_Controller {
 		if($this->session->has_userdata('username'))
 			return true;
 		else return false;
+	}
+
+	private function add_audio()
+	{
+			$album_dir = './uploads/test_audio/';
+			if(!is_dir($album_dir)){ create_dir($album_dir); } 
+			$config['upload_path']	= $album_dir;
+			$config['allowed_types'] = 'mp3|MP3';
+
+			$this->load->library('upload', $config); 
+			$this->upload->initialize($config); 
+			$audio = $this->upload->do_upload("audio_file");
+			$audio_data =$this->upload->data();
+			return $audio_data;
 	}
 
 }
