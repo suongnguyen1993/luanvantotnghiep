@@ -149,8 +149,7 @@
                     <thead>
                        <tr>
                         <th>question</th>
-                        <th width="150px">level</th>
-                        <th style="width: 150px">Created</th>
+                        
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -159,25 +158,12 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/question/update/<?php echo $part3['id'] ?>"><?php if(strlen($part3['content']) > 200 ){
-                          echo substr($part3['content'],0,200)."...";
-                          } else echo $part3['content'] ?></a>
+                          <a href="admin/longquestion/update/<?php echo $part3['id'] ?>"><?php if(strlen($part3['long_content']) > 200 ){
+                          echo substr($part3['long_content'],0,200)."...";
+                          } else echo $part3['long_content'] ?></a>
                         </td>
-                        <td >
-                          <a href="admin/question/update/<?php echo $part3['id'] ?>"> <?php switch ($part3['level']) {
-                          case '3':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
-                        </td>          
-                        <td><?php echo $part3['created']?></td>
+                                
+                        
                         <td>
                           <a href="admin/question/update/<?php echo $part3['id'] ?>"<i class="fa fa-wrench"></i></a>
                           <a onclick="del(<?php echo $part3['id'] ?>)"><i class="fa fa-trash"></i></a>

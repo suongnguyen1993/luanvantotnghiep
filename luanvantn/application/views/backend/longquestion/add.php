@@ -2,7 +2,19 @@
 <?php echo validation_errors();
       echo isset($error)?$error:"";
 ?>
-  <form id="frm-admin" method="post" action="">
+  <form id="frm-admin" method="post" action="" enctype="multipart/form-data">
+
+                    <div class="form-group">  
+                        <h4>Group</h4>
+                        <select name="group" class="form-control">
+                        <?php 
+                          foreach($group as $g)
+                          {
+                         ?>
+                        <option value="<?php echo $g['id'] ?>"><?php echo $g['name']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
                      <div class="form-group">  
                         <h4>Exam</h4>
                         
@@ -31,7 +43,13 @@
                           <textarea id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_content') ?></textarea>
                       </div>   
                       </div> 
-                     
+                     <div class="form-group">
+                        <h4 for="audio_file">Audio:  </h4>   
+                        <input type="file" name="audio_file" id="audio_file">
+                        <div style="margin-top: 10px;">
+                        <audio controls id="prevAudio" src=""></audio>
+                        </div>
+                      </div>
           
                     <div class="form-group text-right">
                       <button type="submit" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>

@@ -82,7 +82,7 @@ class Question extends CI_Controller {
 						redirect('admin/question/add');
 					}
 					
-					if($img_data['file_size']>5120)
+					else if($img_data['file_size']>5120)
 					{
 						$this->session->set_flashdata('error', "The sizemax of image you are attempting to upload is not allowed."); 
 						redirect('admin/question/add');

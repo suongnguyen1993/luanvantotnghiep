@@ -90,9 +90,19 @@ class Exam extends CI_Controller {
 					}	
 					else 
 					{
-						$this->session->set_flashdata('error', "The audio file field is required.");
-						$data['error'] = 'The audio file field is required.';
-						//redirect('admin/exam/add');
+						$data = array(
+							'id' => "",
+							'info' => $this->input->post('info'), 
+							'name' => $this->input->post('name'), 
+							'time' => $this->input->post('time'),
+							//'audio' => $audio_data['file_name'],
+							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
+									);
+							$flag = $this->query_sql->add('exam',$data);
+							
+							$this->session->set_flashdata('flag', $flag);
+							$this->session->set_flashdata('noice',2);
+							redirect('admin/exam/index');
 					}
 													
 				}
@@ -130,6 +140,11 @@ class Exam extends CI_Controller {
 					}
 					else
 					{
+						if($data['exam']['audio']!="")
+							{
+								$unlink_audio = "uploads/audio_files/".$data['exam']['audio'];	
+								unlink($unlink_audio);
+							}
 						$data = array(
 						'info' => $this->input->post('info'), 
 						'name' => $this->input->post('name'), 
@@ -168,6 +183,7 @@ class Exam extends CI_Controller {
 		{
 			redirect('admin/login');
 		}
+		$data['exam'] = $this->query_sql->select_row('exam','id,name, info, time, audio, updated',array('id'=>$id),'');
 		$countquestion = $this->query_sql->total_where('question',array('exam_id'=>$id));
 		if($countquestion != 0 )
 		{
@@ -177,7 +193,7 @@ class Exam extends CI_Controller {
 		else
 		{
 			$this->query_sql->del('exam',array('id' => $id));
-			$audio = "uploads/test_audio/".$data['question']['audio'];		
+			$audio = "uploads/test_audio/".$data['exam']['audio'];		
 			unlink($audio);
 			$this->session->set_flashdata('flag', $flag);
 			$this->session->set_flashdata('noice',3);

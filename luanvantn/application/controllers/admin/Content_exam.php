@@ -97,7 +97,7 @@ class Content_exam extends CI_Controller {
 	}
 	private function part3($id)
 	{
-		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 3, 'exam_id'=>$id),'',"") ;
+		 $result=$this->query_sql->select_array('long_question','*',array ('group_id' => 3, 'exam_id'=>$id),'',"") ;
 		return $result;
 	}
 	private function part4($id)

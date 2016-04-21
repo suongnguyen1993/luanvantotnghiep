@@ -10,3 +10,33 @@
         $(".textarea").wysihtml5();
       });
 </script>
+
+<script type="text/javascript"> 
+    $(function(){
+      
+      function readURL(input, obj) {
+
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $(obj).attr('src', e.target.result);
+                  $(obj).show();
+              }
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+
+      
+
+      $("#image").change(function(){
+          readURL(this, '#prevImage');
+      });
+
+      $("#audio_file").change(function(){
+          readURL(this, '#prevAudio');
+      });
+      
+    });
+</script>
