@@ -61,13 +61,24 @@ class Content_exam extends CI_Controller {
 			$data['show1'] = 'style="display: none;"';
 		}
 		$data['question_part2'] = $this->part2($id);
-		$count2 = $this->query_sql->total_where('question',array ('group_id' => 2, 'exam_id'=>$id)) ;
+		$count2 = $this->query_sql->total_where('question',array ('group_id' => 2, 'exam_id'=>$id));
 		if( $count2 >= 30)
 		{
 			$data['show2'] = 'style="display: none;"';
 		}
-		$data['question_part3'] = $this->part3($id);	
+		
+		$data['question_part3'] = $this->part3($id);
+		$count3 = $this->query_sql->total_where('long_question',array ('group_id' => 3, 'exam_id'=>$id));
+		if( $count3 >= 10)
+		{
+			$data['show3'] = 'style="display: none;"';
+		}	
 		$data['question_part4'] = $this->part4($id);
+		$count4 = $this->query_sql->total_where('long_question',array ('group_id' => 4, 'exam_id'=>$id));
+		if( $count4 >= 10)
+		{
+			$data['show4'] = 'style="display: none;"';
+		}	
 		$data['question_part5'] = $this->part5($id);
 		$data['question_part6'] = $this->part6($id);
 		$data['question_part7'] = $this->part7($id);
@@ -102,7 +113,7 @@ class Content_exam extends CI_Controller {
 	}
 	private function part4($id)
 	{
-		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 4, 'exam_id'=>$id),'',"") ;
+		 $result=$this->query_sql->select_array('long_question','*',array ('group_id' => 4, 'exam_id'=>$id),'',"") ;
 		return $result;
 	}
 	private function part5($id)

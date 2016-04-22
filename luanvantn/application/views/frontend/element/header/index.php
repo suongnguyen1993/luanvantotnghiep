@@ -45,13 +45,13 @@
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown"><a href="#">Test <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'testtoiec' || isset ($current)&& $current == 'testexam')?'active':NULL ?> "  ><a href="test/test" >Test <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'blog')? 'class=" active"':NULL; ?> href="test/test">Test trình độ toeic</a>
+                                <a <?php echo (isset ($current)&& $current == 'testtoiec')? 'class=" active"':NULL; ?> href="test/test">Test trình độ toeic</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'blog2')? 'class=" active"':NULL; ?> href="user/blog/blog2">Đề thi</a>
+                                <a  <?php echo (isset ($current)&& $current == 'testexam')? 'class=" active"':NULL; ?> href="user/blog/blog2">Đề thi</a>
                                 </li>
                                 
                             </ul>

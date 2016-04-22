@@ -26,26 +26,6 @@
 			}
 		}
 
-		function add_exam($table = '', $data = NULL){
-			$query = $this->db->insert($table, $data);
-			$flag = $this->db->affected_rows();
-			if($flag > 0){
-			
-				$max_id = $this->db->get($table)->row_array();
-				return array(
-					'type'		=> 'Successful',
-					'message'	=> 'Adding successful data!',
-						
-				);
-			}
-			else
-			{
-				return array(
-					'type'		=> 'Error',
-					'message'	=> 'Adding data failed!',
-				);
-			}
-		}
 		function edit($table = '', $data = NULL, $where = NULL){
 			$query = $this->db->where($where)->update($table, $data);
 			$flag = $this->db->affected_rows();
@@ -80,34 +60,62 @@
 				);
 			}
 		}
-		public function getQuesionChoice($where = "" ,$vt=-1,$limit=-1)
-	{
-		$query = $this->db->select('*');
-		if($where!='')
-		{
-			$result = $this->db->where($where);
-		}
-		if($vt>=0 && $limit > 0)
-		{
-			$query = $this->db->get('question', $limit, $vt);
-		}
-		$query = $this->db->get('question');
-		$ch=$query->result_array();
-		for($i=0;$i<count($ch);$i++)
-		{
-			$tl=$this->getAnswer($ch[$i]['id']);
-			$ch[$i]['choice']=$tl;
-			
-		}
+		public function getLongQuestion($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			$query = $this->db->get('long_question');
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+			}
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getQuesionChoice(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
 
-		return $ch;
-	}
-	public function getAnswer($id)
-	{
-		$query = $this->db->select('id,content,correct_answer,question_id')->where('question_id',$id)->get('choice');
-		return $query->result_array();
-	}
-		function select_array($table = '', $data = NULL, $where = NULL, $order = '', $like = NULL){
+
+		}
+			public function getQuesionChoice($where = "" ,$vt=-1,$limit=-1)
+
+		{
+			$query = $this->db->select('*');
+			
+			
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			$query = $this->db->get('question');
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('question', $limit, $vt);
+			}
+			
+			$ch=$query->result_array();
+			for($i=0;$i<count($ch);$i++)
+			{
+				$tl=$this->getAnswer($ch[$i]['id']);
+				$ch[$i]['choice']=$tl;
+				
+			}
+
+			return $ch;
+		}
+		public function getAnswer($id)
+		{
+			$query = $this->db->select('id,content,correct_answer,question_id')->where('question_id',$id)->get('choice');
+			return $query->result_array();
+		}
+		public function select_array($table = '', $data = NULL, $where = NULL, $order = '', $like = NULL){
 			$result = $this->db->select($data)->from($table);
 			if($where!=''){
 				$result = $this->db->where($where);

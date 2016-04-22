@@ -144,7 +144,7 @@
                   <div class="col-lg-6">
                   <h3>Part 3</h3>
                 </div>
-                <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+                <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show3)?$show3:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
                                  </div>
                     <thead>
                        <tr>
@@ -185,13 +185,11 @@
                     <div class="col-lg-6">
                     <h3>Part 4</h3>
                    </div>
-                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show4)?$show4:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
                  </div>
                     <thead>
                        <tr>
                         <th>question</th>
-                        <th width="150px">level</th>
-                        <th style="width: 150px">Created</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -200,25 +198,10 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/question/update/<?php echo $part4['id'] ?>"><?php if(strlen($part4['content']) > 200 ){
-                          echo substr($part4['content'],0,200)."...";
-                          } else echo $part4['content'] ?></a>
-                        </td>
-                        <td >
-                          <a href="admin/question/update/<?php echo $part4['id'] ?>"> <?php switch ($part4['level']) {
-                          case '4':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
-                        </td>          
-                        <td><?php echo $part4['created']?></td>
+                          <a href="admin/question/update/<?php echo $part4['id'] ?>"><?php if(strlen($part4['long_content']) > 200 ){
+                          echo substr($part4['long_content'],0,200)."...";
+                          } else echo $part4['long_content'] ?></a>
+                        </td>         
                         <td>
                           <a href="admin/question/update/<?php echo $part4['id'] ?>"<i class="fa fa-wrench"></i></a>
                           <a onclick="del(<?php echo $part4['id'] ?>)"><i class="fa fa-trash"></i></a>
@@ -261,7 +244,7 @@
                         </td>
                         <td >
                           <a href="admin/question/update/<?php echo $part5['id'] ?>"> <?php switch ($part5['level']) {
-                          case '5':
+                          case '1':
                             echo "Easy";
                             break;
                           case '2':
@@ -316,7 +299,7 @@
                         </td>
                         <td >
                           <a href="admin/question/update/<?php echo $part6['id'] ?>"> <?php switch ($part6['level']) {
-                          case '6':
+                          case '1':
                             echo "Easy";
                             break;
                           case '2':
