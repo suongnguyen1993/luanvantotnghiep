@@ -27,7 +27,7 @@ class Longquestion extends CI_Controller {
 			
 			$this->load->library('pagination');
 			$config = $this->query_sql->_pagination();
-			$config['base_url'] = base_url().'admin/long_question/index/';
+			$config['base_url'] = base_url().'admin/longquestion/index/';
 			$config['total_rows'] = $this->query_sql->total('long_question');
 			$config['uri_segment'] = 4;
 			$total_page = ceil($config['total_rows']/$config['per_page']);

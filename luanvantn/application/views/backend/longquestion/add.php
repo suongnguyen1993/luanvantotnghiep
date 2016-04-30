@@ -40,7 +40,7 @@
                         
                       </div>
                       <div class="box-body pad">
-                          <textarea id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_content') ?></textarea>
+                          <textarea id="editor" id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_content') ?></textarea>
                       </div>   
                       </div> 
                      <div class="form-group">

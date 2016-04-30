@@ -67,11 +67,20 @@
 			{
 				$result = $this->db->where($where);
 			}
-			$query = $this->db->get('long_question');
+			
+			
 			if($vt>=0 && $limit > 0)
 			{
 				$query = $this->db->get('long_question', $limit, $vt);
+				
 			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+
 			$long_question =$query->result_array();
 			for($i=0;$i<count($long_question);$i++)
 			{
@@ -81,24 +90,62 @@
 				 
 			}
 			return $long_question;
-
-
 		}
-			public function getQuesionChoice($where = "" ,$vt=-1,$limit=-1)
+		public function getQuesionChoice($where = "" ,$vt=-1,$limit=-1)
 
 		{
 			$query = $this->db->select('*');
-			
-			
+
 			if($where!='')
 			{
 				$result = $this->db->where($where);
+
 			}
-			$query = $this->db->get('question');
+			
+			
 			if($vt>=0 && $limit > 0)
 			{
 				$query = $this->db->get('question', $limit, $vt);
 			}
+			else
+			{
+				$query = $this->db->get('question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+			
+			$ch=$query->result_array();
+			for($i=0;$i<count($ch);$i++)
+			{
+				$tl=$this->getRanAnswer($ch[$i]['id']);
+				$ch[$i]['choice']=$tl;
+				
+			}
+			
+			return $ch;
+		}
+		public function getQuesionChoiceNotRandChoice($where = "" ,$vt=-1,$limit=-1)
+
+		{
+			$query = $this->db->select('*');
+
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('question', $limit, $vt);
+			}
+			else
+			{
+				$query = $this->db->get('question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
 			
 			$ch=$query->result_array();
 			for($i=0;$i<count($ch);$i++)
@@ -107,12 +154,152 @@
 				$ch[$i]['choice']=$tl;
 				
 			}
-
+			
 			return $ch;
 		}
+
+		public function getLongQuestionRandom($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*')->order_by('id','RANDOM');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+				
+			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getQuesionChoice(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
+		}
+
+		public function getLongQuestionRandomQuestion($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+				
+			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getQuesionChoiceRandom(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
+
+
+		}
+
+		public function getRandLongQuestion_Question($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*')->order_by('id','RANDOM');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+				
+			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getQuesionChoiceRandom(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
+
+
+		}
+
+		public function getQuesionChoiceRandom($where = "" ,$vt=-1,$limit=-1)
+
+		{
+			$query = $this->db->select('*')->order_by('id','RANDOM');
+
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('question', $limit, $vt);
+			}
+			else
+			{
+				$query = $this->db->get('question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+			
+			$ch=$query->result_array();
+			for($i=0;$i<count($ch);$i++)
+			{
+				$tl=$this->getRanAnswer($ch[$i]['id']);
+				$ch[$i]['choice']=$tl;
+				
+			}
+			
+			return $ch;
+		}
+
 		public function getAnswer($id)
 		{
 			$query = $this->db->select('id,content,correct_answer,question_id')->where('question_id',$id)->get('choice');
+			return $query->result_array();
+		}
+		public function getRanAnswer($id)
+		{
+			$query = $this->db->select('id,content,correct_answer,question_id')->where('question_id',$id)->order_by('id',"RANDOM")->get('choice');
 			return $query->result_array();
 		}
 		public function select_array($table = '', $data = NULL, $where = NULL, $order = '', $like = NULL){
@@ -161,39 +348,6 @@
 		function view_where($select, $table, $where, $start, $limit){
 			return $this->db->select($select)->from($table)->order_by('id desc')->where($where)->limit($limit, $start)->get()->result_array();
 		}
-		function _pagination()
-		{
-			$config['full_tag_open'] = '<ul class="pagination">';
-			$config['full_tag_close'] = '</ul>';
-			$config['first_link'] = '&laquo; First';
-			$config['first_tag_open'] = '<li>';
-			$config['first_tag_close'] = '</li>';
-			
-			$config['last_link'] = 'Last &raquo;';
-			$config['last_tag_open'] = '<li>';
-			$config['last_tag_close'] = '</li>';
-			
-			$config['next_link'] = 'Next &raquo;';
-			$config['next_tag_open'] = '<li class="paginate_button next">';
-			$config['next_tag_close'] = '</li>';
-			
-			$config['prev_link'] = '&laquo; Previous';
-			$config['prev_tag_open'] = '<li class="paginate_button previous">';
-			$config['prev_tag_close'] = '</li>';
-			
-			$config['cur_tag_open'] = '<li class="paginate_button active"><a class="number current">';
-			$config['cur_tag_close'] = '</a></li>';
-			$config['num_tag_open'] = '<li>';
-			$config['num_tag_close'] = '</li>';
-			
-			$config['num_links'] = 5;
-			$config['uri_segment'] = 3;
-			
-			$config['use_page_numbers'] = TRUE;
-			$config['per_page'] = 10;
-			return $config;
-		}
-		
 		function check_maxid($table = ''){
 			$results = $this->db->select_max('id')->from($table)->get()->row_array();
 			$data = $results['id'] + 1;

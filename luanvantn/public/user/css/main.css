@@ -2723,3 +2723,10 @@ span.stButton_gradient,
   border-radius: 100%;
   margin: 10px 0;
 }
+
+/**/
+._long_content{
+  border: double;
+  padding: 8px;
+  font-weight: bold;
+}

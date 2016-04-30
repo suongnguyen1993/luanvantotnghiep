@@ -32,7 +32,7 @@
                  <h3 class="box-title">Long Question</h3>                  
                 </div>
                 <div class="box-body pad">
-                    <textarea id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $long_question['long_content'] ?></textarea>
+                    <textarea id="editor" id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $long_question['long_content'] ?></textarea>
                 </div>
             </div>
 

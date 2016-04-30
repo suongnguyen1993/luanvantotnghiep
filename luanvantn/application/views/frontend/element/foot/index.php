@@ -8,3 +8,5 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>/public/user/js/wow.min.js"></script>
 	<!--main -->
     <script type="text/javascript" src="<?php echo base_url(); ?>/public/user/js/main.js"></script>
+
+    

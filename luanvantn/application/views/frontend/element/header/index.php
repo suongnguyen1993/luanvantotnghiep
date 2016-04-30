@@ -8,6 +8,8 @@
                             <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                             <li><a href=""><i class="fa fa-dribbble"></i></a></li>
                             <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="">Đăng Ký</a></li>
+                            <li><a href="">Đăng Nhập</a></li>
                         </ul>
                     </div> 
                 </div>
@@ -45,13 +47,13 @@
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown <?php echo (isset ($current)&& $current == 'testtoiec' || isset ($current)&& $current == 'testexam')?'active':NULL ?> "  ><a href="test/test" >Test <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest')?'active':NULL ?> "  ><a href="test/test" >Test <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'testtoiec')? 'class=" active"':NULL; ?> href="test/test">Test trình độ toeic</a>
+                                <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> href="test/test">Full Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'testexam')? 'class=" active"':NULL; ?> href="user/blog/blog2">Đề thi</a>
+                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> href="user/blog/blog2">Mini Test</a>
                                 </li>
                                 
                             </ul>
