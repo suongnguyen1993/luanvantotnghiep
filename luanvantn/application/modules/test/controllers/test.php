@@ -12,7 +12,7 @@ class Test extends CI_Controller {
 	{
 		$data['group']['current'] = "fulltest" ;
 		$data['group']['current1'] = "test" ;
-		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
+		$data['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
 		//$data['answer']=select_row("choice",'id,correct_answer',array('id'=>$id),'');
 		

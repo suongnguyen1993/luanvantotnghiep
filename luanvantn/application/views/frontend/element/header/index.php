@@ -8,8 +8,8 @@
                             <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                             <li><a href=""><i class="fa fa-dribbble"></i></a></li>
                             <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="">Đăng Ký</a></li>
-                            <li><a href="">Đăng Nhập</a></li>
+                            <li><a href="dangky/index">Đăng Ký</a></li>
+                            <li><a href="login/index">Đăng Nhập</a></li>
                         </ul>
                     </div> 
                 </div>

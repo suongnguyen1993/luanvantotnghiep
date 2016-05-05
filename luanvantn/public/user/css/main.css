@@ -2724,9 +2724,15 @@ span.stButton_gradient,
   margin: 10px 0;
 }
 
-/**/
+/*my css*/
 ._long_content{
   border: double;
   padding: 8px;
   font-weight: bold;
+}
+.error{
+  color: red;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
 }
