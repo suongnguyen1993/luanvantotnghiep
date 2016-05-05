@@ -123,12 +123,12 @@ class Content_exam extends CI_Controller {
 	}
 	private function part6($id)
 	{
-		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 6, 'exam_id'=>$id),'',"") ;
+		 $result=$this->query_sql->select_array('long_question','*',array ('group_id' => 6, 'exam_id'=>$id),'',"") ;
 		return $result;
 	}
 	private function part7($id)
 	{
-		 $result=$this->query_sql->select_array('question','*',array ('group_id' => 7, 'exam_id'=>$id),'',"") ;
+		 $result=$this->query_sql->select_array('long_question','*',array ('group_id' => 7, 'exam_id'=>$id),'',"") ;
 		return $result;
 	}
 

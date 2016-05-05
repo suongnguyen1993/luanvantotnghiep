@@ -14,6 +14,7 @@ class Test extends CI_Controller {
 		$data['group']['current1'] = "test" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
+		//$data['answer']=select_row("choice",'id,correct_answer',array('id'=>$id),'');
 		
 		//hien thị các part 
 		$data['part1'] = $this->part1();
@@ -28,15 +29,15 @@ class Test extends CI_Controller {
 		//xu ly ket qua tra ve
 		if($this->input->post())
 		{
-			$this->addShortUserChoice('part1', $data);
-			$this->addShortUserChoice('part2', $data);
-			$this->addLongUserChoice('part3', $data);
-			$this->addLongUserChoice('part4', $data);
-			$this->addShortUserChoice('part5', $data);
-			$this->addLongUserChoice('part6', $data);
-			$this->addLongUserChoice('part7', $data);
-
+			$part1 = $this->addShortUserChoice('part1', $data);
+			$part2 = $this->addShortUserChoice('part2', $data);
+			$part3 = $this->addLongUserChoice('part3', $data);
+			$part4 = $this->addLongUserChoice('part4', $data);
+			$part5 = $this->addShortUserChoice('part5', $data);
+			$part6 = $this->addLongUserChoice('part6', $data);
+			$part7 = $this->addLongUserChoice('part7', $data);
 		}
+
 		$data['template'] = 'testtoeic';
 		$data['title'] ='kiểm tra thử';
 		$data['my_js'] ='frontend/element/foot/my_js/toeic_js';
@@ -55,6 +56,7 @@ class Test extends CI_Controller {
 					$data[$part][$i]['user_choice'] = 0;
 				}		
 			}
+			return $postPart;
 	}
 
 	private function addLongUserChoice($part, &$data)
@@ -72,43 +74,44 @@ class Test extends CI_Controller {
 					}		
 				}
 			}
+		return $postPart;
 	}
 
 	private function part1 ($id = NULL)
 	{
-		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>1), 0, 10);
+		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>1), 0, 2);
 
 		return $result;
 	}
 	private function part2($id = NULL)
 	{
-		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>2), 0, 40);
+		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>2), 0, 2);
 
 		return $result;
 	}
 	private function part3($id = NULL)
 	{
-		$result = $this->query_sql->getLongQuestion(array('group_id'=>3,'exam_id'=>18), 0, 10);
+		$result = $this->query_sql->getLongQuestion(array('group_id'=>3,'exam_id'=>18), 0, 2);
 		return $result;
 	}
 	private function part4($id = NULL)
 	{
-		$result = $this->query_sql->getLongQuestion(array('group_id'=>4,'exam_id'=>18), 0, 10);
+		$result = $this->query_sql->getLongQuestion(array('group_id'=>4,'exam_id'=>18), 0,2);
 		return $result;
 	}
 	private function part5($id = NULL)
 	{
-		$result = $this->query_sql->getQuesionChoiceRandom(array('group_id'=>5,'exam_id'=>18), 0, 40);
+		$result = $this->query_sql->getQuesionChoiceRandom(array('group_id'=>5,'exam_id'=>18), 0, 2);
 		return $result;
 	}
 	private function part6($id = NULL)
 	{
-		$result = $this->query_sql->getLongQuestionRandom(array('group_id'=>6,'exam_id'=>18), 0, 4);
+		$result = $this->query_sql->getLongQuestionRandom(array('group_id'=>6,'exam_id'=>18), 0,2);
 		return $result;
 	}
 	private function part7($id = NULL)
 	{
-		$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'exam_id'=>18), 0, 13);
+		$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'exam_id'=>18), 0, 2);
 		return $result;
 	}
 	private function diemnghe($caudung)
@@ -329,7 +332,108 @@ class Test extends CI_Controller {
 	}
 
 
+/*print_r($part5);
+			$diemnghe = 0;
+			$diemdoc = 0;
+			foreach($part1 as $id)
+			{
 
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemnghe +=1;
+				}
+			}
+			foreach($part2 as $id)
+			{
+
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemnghe +=1;
+				}
+			}
+			foreach ($part3 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemnghe +=1;
+					}
+				}
+			}
+			foreach ($part4 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemnghe +=1;
+					}
+				}
+			}
+			print_r($this->diemnghe($diemnghe));
+
+			foreach($part5 as $id)
+			{
+
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemdoc +=1;
+				}
+			}
+			foreach ($part6 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemdoc +=1;
+					}
+				}
+			}
+			foreach ($part7 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemdoc +=1;
+					}
+				}
+			}
+			print_r($diemdoc);
+
+*/
+		//print_r($part5);	
 		
 		
 

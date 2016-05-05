@@ -166,7 +166,7 @@
                         
                         <td>
                           <a href="admin/question/update/<?php echo $part3['id'] ?>"<i class="fa fa-wrench"></i></a>
-                          <a onclick="del(<?php echo $part3['id'] ?>)"><i class="fa fa-trash"></i></a>
+                          <a onclick="long_del(<?php echo $part3['id'] ?>)"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr> 
                     <?php } ?> 
@@ -198,13 +198,13 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/question/update/<?php echo $part4['id'] ?>"><?php if(strlen($part4['long_content']) > 200 ){
+                          <a href="admin/longquestion/update/<?php echo $part4['id'] ?>"><?php if(strlen($part4['long_content']) > 200 ){
                           echo substr($part4['long_content'],0,200)."...";
                           } else echo $part4['long_content'] ?></a>
                         </td>         
                         <td>
-                          <a href="admin/question/update/<?php echo $part4['id'] ?>"<i class="fa fa-wrench"></i></a>
-                          <a onclick="del(<?php echo $part4['id'] ?>)"><i class="fa fa-trash"></i></a>
+                          <a href="admin/longquestion/update/<?php echo $part4['id'] ?>"<i class="fa fa-wrench"></i></a>
+                          <a onclick="long_del(<?php echo $part4['id'] ?>)"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr> 
                     <?php } ?>      
@@ -282,9 +282,7 @@
                  </div>
                     <thead>
                       <tr>
-                        <th>question</th>
-                        <th width="150px">level</th>
-                        <th style="width: 150px">Created</th>
+                        <th>Long question</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -293,28 +291,13 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/question/update/<?php echo $part6['id'] ?>"><?php if(strlen($part6['content']) > 200 ){
-                          echo substr($part6['content'],0,200)."...";
-                          } else echo $part6['content'] ?></a>
-                        </td>
-                        <td >
-                          <a href="admin/question/update/<?php echo $part6['id'] ?>"> <?php switch ($part6['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
-                        </td>          
-                        <td><?php echo $part6['created']?></td>
+                          <a href="admin/longquestion/update/<?php echo $part6['id'] ?>"><?php if(strlen($part6['long_content']) > 200 ){
+                          echo substr($part6['long_content'],0,200)."...";
+                          } else echo $part6['long_content'] ?></a>
+                        </td>   
                         <td>
                           <a href="admin/question/update/<?php echo $part6['id'] ?>"<i class="fa fa-wrench"></i></a>
-                          <a onclick="del(<?php echo $part6['id'] ?>)"><i class="fa fa-trash"></i></a>
+                          <a onclick="long_del(<?php echo $part6['id'] ?>)"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr> 
                     <?php } ?>       
@@ -335,9 +318,7 @@
                  </div>
                     <thead>
                        <tr>
-                        <th>question</th>
-                        <th width="150px">level</th>
-                        <th style="width: 150px">Created</th>
+                        <th>Long question</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -346,28 +327,13 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/question/update/<?php echo $part7['id'] ?>"><?php if(strlen($part7['content']) > 200 ){
-                          echo substr($part7['content'],0,200)."...";
-                          } else echo $part7['content'] ?></a>
+                          <a href="admin/longquestion/update/<?php echo $part7['id'] ?>"><?php if(strlen($part7['long_content']) > 200 ){
+                          echo substr($part7['long_content'],0,200)."...";
+                          } else echo $part7['long_content'] ?></a>
                         </td>
-                        <td >
-                          <a href="admin/question/update/<?php echo $part7['id'] ?>"> <?php switch ($part7['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
-                        </td>          
-                        <td><?php echo $part7['created']?></td>
                         <td>
                           <a href="admin/question/update/<?php echo $part7['id'] ?>"<i class="fa fa-wrench"></i></a>
-                          <a onclick="del(<?php echo $part7['id'] ?>)"><i class="fa fa-trash"></i></a>
+                          <a onclick="long_del(<?php echo $part7['id'] ?>)"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr> 
                     <?php } ?>    
@@ -383,6 +349,14 @@
         if(confirm(msg))
         {
             window.location = baseurl + "admin/question/delete/" + id;
+        }
+     }
+     function long_del(id){
+        var msg = "Are you sure to delete this long question?";
+        var baseurl = "<?php echo base_url(); ?>";
+        if(confirm(msg))
+        {
+            window.location = baseurl + "admin/longquestion/delete/" + id;
         }
      }
    </script>

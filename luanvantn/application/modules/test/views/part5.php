@@ -1,6 +1,5 @@
-<div class="single-blog two-column">
-                            <h1 align="center"><b> part 5</b></h1>
-                            <?php $dem = 100; ?>
+<h1 align="center"><b> part 5</b></h1>
+                            <?php $dem = 0; ?>
                             <?php foreach($part5 as $index => $p1) { $dem += 1; 
                                 $userChoose = -1;
                                 if(isset($p1['user_choice']))
@@ -8,9 +7,11 @@
                                     $userChoose=$p1['user_choice'];
                                 }
                             ?>
-                                <?php echo"<b>$dem.</b>" ?><b><?php ; echo $p1['content'] ?></b><br>
-                                   
-                             <?php if($userChoose == -1) {?>
+
+                                <b><?php echo $dem .'.';echo $p1['content'] ?></b>
+                                
+
+                                <?php if($userChoose == -1) {?>
 
                                 <div class="post-content overflow">
                                     
@@ -42,7 +43,7 @@
                                             <?php echo $thutu; ?>
                                             <input type="radio" name="part5[<?php echo $index; ?>]" 
                                                 value="<?php echo $choice1['id'] ?>">
-                                                <?php echo $choice1['content'] ?>
+                                                <?php  echo $choice1['content'] ?>
                                
                                         </label>
                                     <br>
@@ -104,7 +105,7 @@
                                         ?>
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" name="part1[<?php echo $index; ?>]" 
+                                            <input type="radio" name="part5[<?php echo $index; ?>]" 
                                                     <?php echo $checked; ?>
                                                    disabled value="<?php echo $choice1['id'] ?>">
                                             <?php  echo $choice1['content'] ?>
@@ -118,7 +119,7 @@
                                         ?>
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" name="part1[<?php echo $index; ?>]" 
+                                            <input type="radio" name="part5[<?php echo $index; ?>]" 
                                                    disabled value="<?php echo $choice1['id'] ?>">
                                                 
                                             <?php  echo $choice1['content'] ?>
@@ -131,3 +132,4 @@
                                 <?php } ?>
 
                             <?php } ?>
+                            <!-- end part 1 -->
