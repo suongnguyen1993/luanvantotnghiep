@@ -2,9 +2,9 @@
             <div class="row">
                 <div class="main-slider">
                     <div class="slide-text">
-                        <h1>We Are Creative Nerds</h1>
+                        <h1>Chào bạn đến với Toeic4u</h1>
                         <p>Boudin doner frankfurter pig. Cow shank bresaola pork loin tri-tip tongue venison pork belly meatloaf short loin landjaeger biltong beef ribs shankle chicken andouille.</p>
-                        <a href="#" class="btn btn-common">SIGN UP</a>
+                        <a href="<?php echo base_url(); ?>dangky" class="btn btn-common">SIGN UP</a>
                     </div>
                     <img src="<?php echo base_url(); ?>/public/user/images/home/slider/hill.png" class="slider-hill" alt="slider image">
                     <img src="<?php echo base_url(); ?>/public/user/images/home/slider/house.png" class="slider-house" alt="slider image">

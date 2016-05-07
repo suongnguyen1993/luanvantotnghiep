@@ -8,12 +8,12 @@
   */
 
   @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
-  @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);*/
   @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
-
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,vietnamese);
   body {
     background: #fff;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 14px;
     line-height: 22px;
@@ -53,7 +53,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
   }
 
@@ -1215,13 +1215,51 @@ ul.elements li > i{
 /*****************************
 Portfolio with right sidebar
 *****************************/
+.closeToFinish{
+  color: red !important;
+}
 
+.blog-sidebar{
+  position: relative;
+}
+
+.fixed-clock{
+    position: fixed;
+    top: 5px;
+    width: 19.5%;
+}
+.diem{
+    color: #f27b00;
+    text-align: center;
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.mau{
+  color:green;
+
+}
+.trinhdo{
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+
+}
 .sidebar h3 {
-  color: #404040;
-  margin-top: 0;
-  border-bottom: 3px solid #ececec;
-  margin-bottom: 6px;
-  padding-bottom: 8px;
+    color: #404040;
+    margin-top: 0;
+    border-bottom: 3px solid #ececec;
+    margin-bottom: 6px;
+    padding-bottom: 8px;
+    font-size: 35px;
+    text-align: center;
+    color: gray;
+}
+#clock{
+    font-size: 35px;
+    margin-top: 15px;
+    text-align: center;
+    color: gray;
 }
 
 .sidebar-item{

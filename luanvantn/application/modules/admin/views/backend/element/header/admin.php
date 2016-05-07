@@ -24,18 +24,8 @@
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <li class="user-header">
-                    
-                    <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
-                    </p>
-                  </li>
-                  
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
+            
                     <div class="pull-right">
                       <a href="<?php echo base_url() ?>admin/login/detroy_sess" class="btn btn-default btn-flat">Sign out</a>
                     </div>
@@ -43,6 +33,6 @@
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
-              
+              </ul>
           </div>
         </nav>

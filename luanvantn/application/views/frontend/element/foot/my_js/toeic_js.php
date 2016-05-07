@@ -2,14 +2,65 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
-
+        // đồng hồ đếm ngược 2h
         function get2hoursFromNow(){
-          return new Date(new Date().valueOf() + 2 * 60 * 60 * 1000);
+          //return new Date(new Date().valueOf() + 2 * 60 * 60 * 1000);
+          return new Date(new Date().valueOf() +  15 * 1000);
         }
 
-        $('div#clock').countdown(get2hoursFromNow(), function(event){
-          $(this).html(event.strftime('%H:%M:%S'));
-          
+        if(!__submit)
+        {
+          $('div#clock').countdown(get2hoursFromNow(), function(event){
+            $miliSecond = event.finalDate.getTime()-event.timeStamp;
+            if($miliSecond > 60000)
+            {
+              $(this).html(event.strftime('%H:%M'));  
+            }
+            else
+            {
+              if($miliSecond > 10000)
+              {
+                $(this).html(event.strftime('%H:%M:%S'));
+              }
+              else
+              {
+                $(this).html(event.strftime('%H:%M:%S')).addClass('closeToFinish');
+              }
+               
+            }
+            
+            if(event.type=='finish')
+            {
+                $('#form-fulltest').submit();
+            }
+          });
+        }
+        //end đếm ngược
+
+
+        //lấy vị trí y của đồng hồ
+        var offsetYOfClock = $('#fix-clock').offset().top||0;
+
+        //bắt sự kiện thanh trượt
+        $(window).scroll(function(){
+            if(offsetYOfClock > window.scrollY)
+            {
+              $('#fix-clock').removeClass('fixed-clock');                
+            }
+            else
+            {
+              $('#fix-clock').addClass('fixed-clock');
+            }
         });
+        //end sự kiện thanh trượt
+
       });
+
+      //Sau khi submit, se hien bang Modal thong bao ra
+      if(__submit)
+      {
+        $(window).load(function(){
+          $('#myModal').modal('show');
+        });
+      }
     </script>

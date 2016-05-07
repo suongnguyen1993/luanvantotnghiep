@@ -8,20 +8,20 @@
                         <h2>Testimonial</h2>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="<?php echo base_url(); ?>/public/user/images/home/profile1.png" alt=""></a>
+                                <a href="#"><img with = '81px' height = '81px' src="<?php echo base_url(); ?>/public/user/images/avar1.png" alt=""></a>
                             </div>
                             <div class="media-body">
-                                <blockquote>Nisi commodo bresaola, leberkas venison eiusmod bacon occaecat labore tail.</blockquote>
-                                <h3><a href="#">- Jhon Kalis</a></h3>
+                                <blockquote>Hi, I'm Suong. Welcome to my website</blockquote>
+                                <h3><a href="#">- Suong Nguyen TS</a></h3>
                             </div>
                          </div>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="<?php echo base_url(); ?>/public/user/images/home/profile2.png" alt=""></a>
+                                <a href="#"><img with = '81px' height = '81px' src="<?php echo base_url(); ?>/public/user/images/avar2.png" alt=""></a>
                             </div>
                             <div class="media-body">
-                                <blockquote>Capicola nisi flank sed minim sunt aliqua rump pancetta leberkas venison eiusmod.</blockquote>
-                                <h3><a href="">- Abraham Josef</a></h3>
+                                <blockquote>Hi, I'm Cam. Injoy my website</blockquote>
+                                <h3><a href="">- Sully Yang</a></h3>
                             </div>
                         </div>   
                     </div> 
@@ -30,17 +30,15 @@
                     <div class="contact-info bottom">
                         <h2>Contacts</h2>
                         <address>
-                        E-mail: <a href="mailto:someone@example.com">email@email.com</a> <br> 
-                        Phone: +1 (123) 456 7890 <br> 
-                        Fax: +1 (123) 456 7891 <br> 
+                        E-mail: <a href="mailto:amy.suong93@gmail.com">amy.suong93@gmail.com</a> <br> 
+                        Phone: 19001090 <br> 
                         </address>
 
                         <h2>Address</h2>
                         <address>
-                        Unit C2, St.Vincent's Trading Est., <br> 
-                        Feeder Road, <br> 
-                        Bristol, BS2 0UY <br> 
-                        United Kingdom <br> 
+                        SaiGon Technology University<br> 
+                        180 Cao Lo street, <br> 
+                        HCM city, Viet Nam<br> 
                         </address>
                     </div>
                 </div>
@@ -66,7 +64,7 @@
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">
                         <p>&copy; Your Company 2016. All Rights Reserved.</p>
-                        <p>Crafted by <a target="_blank" href="http://designscrazed.org/">Allie</a></p>
+                        <p>Crafted by <a target="_blank" href=".">SuongNguyenTS</a></p>
                     </div>
                 </div>
             </div>

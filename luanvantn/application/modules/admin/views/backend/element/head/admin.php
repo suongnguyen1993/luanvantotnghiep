@@ -1,5 +1,8 @@
-<base href="<?php echo base_url();?>">
-    <meta charset="utf-8">
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <base href="<?php echo base_url();?>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin | <?php echo (isset($title))?$title:"" ?></title>
     <!-- Tell the browser to be responsive to screen width -->

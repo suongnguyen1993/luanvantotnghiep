@@ -50,7 +50,7 @@ class Login extends CI_Controller {
 		        'username'  => $username				
 				);
 			$this->session->unset_userdata('username');
-			redirect("admin/login");
+			redirect("index");
 		}
 	}
 

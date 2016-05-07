@@ -21,14 +21,19 @@ class Test extends CI_Controller {
 		$data['part2'] = $this->part2();
 		$data['part3'] = $this->part3();
 		$data['part4'] = $this->part4();
-		$data['part5'] = $this->part5();
-		$data['part6'] = $this->part6();
-		$data['part7'] = $this->part7();
+
 		
 		//end hien thi part
 		//xu ly ket qua tra ve
+		
+		//POST
 		if($this->input->post())
 		{
+			$data['submit'] = 1; 
+			$data['part5'] = $this->session->userdata('part5');
+			$data['part6'] = $this->session->userdata('part6');
+			$data['part7'] = $this->session->userdata('part7');
+
 			$part1 = $this->addShortUserChoice('part1', $data);
 			$part2 = $this->addShortUserChoice('part2', $data);
 			$part3 = $this->addLongUserChoice('part3', $data);
@@ -36,6 +41,36 @@ class Test extends CI_Controller {
 			$part5 = $this->addShortUserChoice('part5', $data);
 			$part6 = $this->addLongUserChoice('part6', $data);
 			$part7 = $this->addLongUserChoice('part7', $data);
+
+			//tinh cau dung
+			$tongsocaudung = 0;
+
+			$socaudungnghe = $this->socaudungnghe($part1,$part2,$part3,$part4);
+			$socaudungdoc = $this->socaudungdoc($part5,$part6,$part7);
+			$tongsocaudung = $socaudungnghe + $socaudungdoc;
+			$data['tongsocaudung'] = $tongsocaudung;
+
+			$tongdiem = 0;
+			$diemnghe = $this->diemnghe($socaudungnghe);
+			$diemdoc = $this->diemdoc($socaudungdoc);
+			$tongdiem = $diemnghe + $diemdoc ;
+			$data['tongdiem'] = $tongdiem;
+		}
+		//GET
+		else
+		{
+			$data['part5'] = $this->part5();
+			$data['part6'] = $this->part6();
+			$data['part7'] = $this->part7();
+
+			$array = array(
+				'part5' => $data['part5'],
+				'part6' => $data['part6'],
+				'part7' => $data['part7']
+
+			);
+			
+			$this->session->set_userdata( $array );
 		}
 
 		$data['template'] = 'testtoeic';
@@ -113,6 +148,110 @@ class Test extends CI_Controller {
 	{
 		$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'exam_id'=>18), 0, 2);
 		return $result;
+	}
+
+	private function socaudungnghe($part1,$part2,$part3,$part4)
+	{
+		$diemnghe = 0;
+		foreach($part1 as $id)
+		{
+
+			$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+			
+			if($id!=0)
+			{
+				if($answer['correct_answer'] == 1)
+					$diemnghe +=1;
+			}
+		}
+		foreach($part2 as $id)
+		{
+
+			$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+			
+			if($id!=0)
+			{
+				if($answer['correct_answer'] == 1)
+					$diemnghe +=1;
+			}
+		}
+		foreach ($part3 as $q) 
+		{
+
+			foreach($q as $id)
+			{
+
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemnghe +=1;
+				}
+			}
+		}
+		foreach ($part4 as $q) 
+		{
+
+			foreach($q as $id)
+			{
+
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemnghe +=1;
+				}
+			}
+		}
+		return $diemnghe;
+	}
+	private function socaudungdoc($part5,$part6,$part7)
+	{
+		$diemdoc = 0;
+		foreach($part5 as $id)
+			{
+
+				$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+				
+				if($id!=0)
+				{
+					if($answer['correct_answer'] == 1)
+						$diemdoc +=1;
+				}
+			}
+			foreach ($part6 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemdoc +=1;
+					}
+				}
+			}
+			foreach ($part7 as $q) 
+			{
+
+				foreach($q as $id)
+				{
+
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					
+					if($id!=0)
+					{
+						if($answer['correct_answer'] == 1)
+							$diemdoc +=1;
+					}
+				}
+			}
+			return $diemdoc;
 	}
 	private function diemnghe($caudung)
 	{
@@ -330,7 +469,6 @@ class Test extends CI_Controller {
 		}
 		return $diem;
 	}
-
 
 /*print_r($part5);
 			$diemnghe = 0;
