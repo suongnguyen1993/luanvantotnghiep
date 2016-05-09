@@ -2,9 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dangky extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('facebook');
+	}
 
 	public function index()
 	{
+		$data['error'] = $this->session->flashdata('message');
+		$data['facebook_login_url']=$this->facebook->get_login_url();
 		$data['title']= 'Đăng Ký';
 		$data['template'] = 'dangky';
 		$data['group'] =$this->query_sql->select_array("group", "id,name", "",'','');

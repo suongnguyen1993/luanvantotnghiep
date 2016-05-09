@@ -8,8 +8,8 @@
                             <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                             <li><a href=""><i class="fa fa-dribbble"></i></a></li>
                             <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="login/index"><?php echo ($this->session->has_userdata('username'))?$this->session->userdata('username'):"Đăng Nhập"; ?></a></li>
-                            <li><a href="<?php echo ($this->session->has_userdata('username'))?'login/detroy_sess':'dangky/index'  ?>"><?php echo ($this->session->has_userdata('username'))?"Đăng X uất":"Đăng Ký"; ?></a></li>
+                            <li><a href="<?php echo ($this->session->has_userdata('username'))?'index':'login' ?>"><?php echo ($this->session->has_userdata('username'))?$this->session->userdata('username'):"Đăng Nhập"; ?></a></li>
+                            <li><a href="<?php echo ($this->session->has_userdata('username'))?'login/detroy_sess':'dangky/index'  ?>"><?php echo ($this->session->has_userdata('username'))?"Đăng Xuất":"Đăng Ký"; ?></a></li>
                         </ul>
                     </div> 
                 </div>

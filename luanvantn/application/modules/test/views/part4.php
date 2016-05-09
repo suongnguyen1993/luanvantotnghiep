@@ -129,7 +129,7 @@
                                                    $class = 'style="color: green"' ;
                                                 }
                                         ?>
-                                        <label <?php echo $class; ?>>
+                                        <label class = 'color_content' <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
                                             <input type="radio" disabled
                                                     value="<?php echo $choice1['id'] ?>">

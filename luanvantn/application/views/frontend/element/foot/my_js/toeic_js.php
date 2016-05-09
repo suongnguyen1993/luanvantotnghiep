@@ -4,8 +4,8 @@
       $(document).ready(function(){
         // đồng hồ đếm ngược 2h
         function get2hoursFromNow(){
-          //return new Date(new Date().valueOf() + 2 * 60 * 60 * 1000);
-          return new Date(new Date().valueOf() +  15 * 1000);
+          return new Date(new Date().valueOf() + 2 * 60 * 60 * 1000);
+          //return new Date(new Date().valueOf() +  15 * 1000);
         }
 
         if(!__submit)

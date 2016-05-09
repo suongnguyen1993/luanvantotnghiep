@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Xong</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Hoàn tất</button>
       </div>
     </div>
   </div>

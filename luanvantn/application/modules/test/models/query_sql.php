@@ -341,9 +341,30 @@
 		function total_where($table,$where){
 			return $this->db->from($table)->where($where)->count_all_results();
 		}
-		function view($select="", $table="", $start=NULL, $limit=NULL){
+		function getRandomExam(){
 
-			return $this->db->select($select)->from($table)->order_by('id desc')->limit($limit, $start)->get()->result_array();
+			$query = $this->db
+			->query("SELECT ex.id 
+
+					FROM `exam` ex  
+
+					WHERE exists(select * from question where exam_id = ex.id)
+
+					ORDER BY Rand()
+
+					Limit 1");
+
+  			$row = $query->row();
+
+  			return $row->id;
+  			/*print_r($row->id);
+  			die;
+
+			return $this->db->select($select)
+			->from($table)
+			->order_by('id','RANDOM')
+			->limit($limit, $start)
+			->get()->result_array();*/
 		}
 		function view_where($select, $table, $where, $start, $limit){
 			return $this->db->select($select)->from($table)->order_by('id desc')->where($where)->limit($limit, $start)->get()->result_array();
