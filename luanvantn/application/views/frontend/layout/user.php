@@ -4,7 +4,6 @@
   <?php $this->load->view('frontend/element/head/index'); ?>
 </head>
 <body >
-	
 		<header id="header">      
 			<?php $this->load->view('frontend/element/header/index',isset($group)?$group:""); ?>
 		</header>

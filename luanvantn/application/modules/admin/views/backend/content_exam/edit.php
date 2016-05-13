@@ -319,6 +319,7 @@
                     <thead>
                        <tr>
                         <th>Long question</th>
+                        <th>Number Question</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -330,6 +331,9 @@
                           <a href="admin/longquestion/update/<?php echo $part7['id'] ?>"><?php if(strlen($part7['long_content']) > 200 ){
                           echo substr($part7['long_content'],0,200)."...";
                           } else echo $part7['long_content'] ?></a>
+                        </td>
+                        <td>
+                           <a href="admin/longquestion/update/<?php echo $part7['id'] ?>"><?php echo $part7['number_question'] ?></a>
                         </td>
                         <td>
                           <a href="admin/question/update/<?php echo $part7['id'] ?>"<i class="fa fa-wrench"></i></a>

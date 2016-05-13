@@ -51,7 +51,7 @@ class Longquestion extends CI_Controller {
 		}
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['long_question'] = $this->query_sql
-			->select_array("long_question","id,long_content,long_audio,group_id,exam_id","","","");
+			->select_array("long_question","id,long_content,long_audio,group_id,exam_id,number_question","","","");
 		$data ['exam'] = $this->query_sql
 			->select_array ("exam","id,name","","","");
 		$data['title'] = 'Manage Add Long Question';
@@ -82,8 +82,9 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
-									'group_id' 	=> $this->input->post('group'),
-									'long_audio' => $audio_data['file_name'],			
+									'group_id' 		=> $this->input->post('group'),
+									'number_question'=> $this->input->post('number_question'),
+									'long_audio' 	=> $audio_data['file_name'],  			
 									'exam_id'		=> $exam
 									);
 								$flag = $this->query_sql->add('long_question',isset($data)?$data:"");
@@ -96,8 +97,9 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
-									'group_id' 	=> $this->input->post('group'),			
-									'long_audio' => $audio_data['file_name'],			
+									'group_id' 		=> $this->input->post('group'),	
+									'number_question'=> $this->input->post('number_question'),		
+									'long_audio' 	=> $audio_data['file_name'],			
 									'exam_id'		=> $exam
 									);
 								$flag = $this->query_sql->add('long_question',isset($data)?$data:"");
@@ -115,7 +117,8 @@ class Longquestion extends CI_Controller {
 							$data = array(
 								'id' 			=> '',
 								'long_content' 	=> $this->input->post('long_content'),
-								'group_id' 	=> $this->input->post('group'),			
+								'number_question'=> $this->input->post('number_question'),
+								'group_id' 		=> $this->input->post('group'),			
 								'exam_id'		=> $exam
 								);
 							$flag = $this->query_sql->add('long_question',isset($data)?$data:"");										
@@ -127,6 +130,7 @@ class Longquestion extends CI_Controller {
 							$data = array(
 								'id' 			=> '',
 								'long_content' 	=> $this->input->post('long_content'),
+								'number_question'=> $this->input->post('number_question'),
 								'group_id' 	=> $this->input->post('group'),			
 								'exam_id'		=> $exam
 								);
@@ -152,7 +156,7 @@ class Longquestion extends CI_Controller {
 		}
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['title'] = 'Manage Update Long Question';	
-		$data['long_question']= $this->query_sql->select_row('long_question','long_content,long_audio, exam_id,group_id',array('id'=>$id),'');
+		$data['long_question']= $this->query_sql->select_row('long_question','long_content,long_audio, exam_id,group_id,number_question',array('id'=>$id),'');
 		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
 		$data ['exam'] = $this->query_sql
 			->select_array ("exam","id,name","","","");
@@ -187,6 +191,7 @@ class Longquestion extends CI_Controller {
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
 									'group_id' 	=> $this->input->post('group'),
+									'number_question'=> $this->input->post('number_question'),
 									'long_audio' => $audio_data['file_name'],			
 									'exam_id'		=> $exam
 									);
@@ -199,7 +204,8 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
-									'group_id' 	=> $this->input->post('group'),			
+									'group_id' 	=> $this->input->post('group'),
+									'number_question'=> $this->input->post('number_question'),			
 									'long_audio' => $audio_data['file_name'],			
 									'exam_id'		=> $exam
 									);
@@ -216,7 +222,8 @@ class Longquestion extends CI_Controller {
 						{
 							$data = array(
 									'long_content' => $this->input->post('long_content'),
-									'group_id' 	=> $this->input->post('group'),			
+									'group_id' 	=> $this->input->post('group'),	
+									'number_question'=> $this->input->post('number_question'),		
 									'exam_id' => $exam
 									);
 							$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
@@ -228,7 +235,8 @@ class Longquestion extends CI_Controller {
 							$exam = NULL;
 							$data = array(
 									'long_content' => $this->input->post('long_content'),
-									'group_id' 	=> $this->input->post('group'),			
+									'group_id' 	=> $this->input->post('group'),	
+									'number_question'=> $this->input->post('number_question'),		
 									'exam_id' => $exam
 									);
 							$flag = $this->query_sql->edit('long_question',$data,array('id' => $id));
@@ -291,7 +299,7 @@ class Longquestion extends CI_Controller {
 	}
 	public function check_login ()
 	{
-		if($this->session->has_userdata('username'))
+		if($this->session->has_userdata('admin'))
 			return true;
 		else return false;
 	}

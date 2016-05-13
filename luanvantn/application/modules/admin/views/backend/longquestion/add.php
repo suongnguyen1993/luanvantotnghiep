@@ -42,6 +42,12 @@
                       <div class="box-body pad">
                           <textarea id="editor" id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_content') ?></textarea>
                       </div>   
+                      </div>
+                      <div class="form-group">
+                      <h4>Number Question:</h4>
+                          <div class="input-group">
+                            <input name="number_question" type="number" min="0" class="form-control" value=""><?php echo $this->input->post('number_question') ?>
+                          </div>
                       </div> 
                      <div class="form-group">
                         <h4 for="audio_file">Audio:  </h4>   

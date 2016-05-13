@@ -625,7 +625,7 @@ class Question extends CI_Controller {
 
 	public function check_login ()
 	{
-		if($this->session->has_userdata('username'))
+		if($this->session->has_userdata('admin'))
 			return true;
 		else return false;
 	}

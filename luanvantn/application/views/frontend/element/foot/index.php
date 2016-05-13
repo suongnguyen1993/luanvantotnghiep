@@ -71,6 +71,22 @@
 		document.ondblclick=dich;
 	</script>
 
+	<script type="text/javascript">
+        function check_longin(e){
+            if (e)
+            {
+                window.location = 'test/dauvao/mini_test';
+
+            }
+            else
+            {
+                alert('Bạn phải đăng nhập trước khi làm bài');
+                window.location = 'login/login';
+            }
+        }
+
+    </script>
+
 	<span id="translation" class="hint-table hint-popover below " style="top: 20px; left: 62px;"><div class="inner "><div class="content"><table><thead>
 		<tr></tr></thead><tbody>
 

@@ -11,6 +11,7 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$data['error'] = $this->session->flashdata('message');
+		
 		$data['facebook_login_url']=$this->facebook->get_login_url();
 		$data['title'] = 'Đăng Nhập';
 		$data['template'] = 'login';
@@ -22,11 +23,12 @@ class Login extends CI_Controller {
 			{
 				$username = $this->input->post('username');
 				$password = md5($this->input->post('password'));
-				$user = $this->query_sql->select_row("user","fullname,username,password,",array('username'=>$username,'password'=>$password),"");
+				$user = $this->query_sql->select_row("user","fullname,username,password,id,fb_id",array('username'=>$username,'password'=>$password),"");
 				if(!empty($user))
 				{
 					$login  = array(
-			        'username'  => $username
+			        'username'  => $username,
+			        'id'		=> $user['id']
 					);
 					$this->session->set_userdata($login);	
 					redirect("index");		
@@ -42,10 +44,7 @@ class Login extends CI_Controller {
 	{
 		if($this->session->has_userdata('username'))
 		{ 
-			$login  = array(
-		        'username'  => $username				
-				);
-			$this->session->unset_userdata('username');
+			$this->session->sess_destroy();
 			redirect("index");
 		}
 	}
@@ -59,25 +58,24 @@ class Login extends CI_Controller {
 
 	public function handle_facebook_response(){
 		$fb_data=$this->facebook->validate();
-		// print_r($fb_data);
-		// print_r($fb_data['id']);
-		// print_r($fb_data['name']);
-		// die;
-
 	//array to store data in database
 		if(isset($fb_data))
 		{
-			$user = $this->query_sql->select_row("user","fullname,username,fb_id",array('fb_id'=>$fb_data['id']),"");
+			$user = $this->query_sql->select_row("user","fullname,username,fb_id,id",array('fb_id'=>$fb_data['id']),"");
 			if(!empty($user))
 			{
-				$session_data=array('username'=>$fb_data['name']);
+				$session_data=array(
+					'username'=>$fb_data['name'],
+					'id'	  =>$user['id']
+					);
 				$this->session->set_userdata($session_data);
 				redirect("index"); 	
 			}
 			else
 			{
 				$user=array(
-					'fullname'=>$fb_data['name'],
+					'id'	  => "",
+					'fullname'=>$fb_data['name'],	
 					'username'=>$fb_data['id'],
 					'password'=> 0,
 					'fb_id'	  =>$fb_data['id']
@@ -90,9 +88,13 @@ class Login extends CI_Controller {
 				}
 				else
 				{
-					$session_data=array('username'=>$fb_data['name']);				
+					$a = $this->query_sql->select_row("user","fullname,username,fb_id,id",array('fb_id'=>$fb_data['id']),"");
+					$session_data=array(
+						'username'=>$fb_data['name'],
+						'id'	  =>$a['id']	  	
+						);				
 					$this->session->set_userdata($session_data);
-					redirect(base_url("index"));
+					redirect("index");
 				}
 			}
 		}

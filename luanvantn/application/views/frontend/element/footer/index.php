@@ -5,7 +5,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="testimonial bottom">
-                        <h2>Testimonial</h2>
+                        <h2>ADMIN</h2>
                         <div class="media">
                             <div class="pull-left">
                                 <a href="#"><img with = '81px' height = '81px' src="<?php echo base_url(); ?>/public/user/images/avar1.png" alt=""></a>
@@ -28,13 +28,13 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="contact-info bottom">
-                        <h2>Contacts</h2>
+                        <h2>LIÊN HỆ</h2>
                         <address>
                         E-mail: <a href="mailto:amy.suong93@gmail.com">amy.suong93@gmail.com</a> <br> 
-                        Phone: 19001090 <br> 
+                        Điện thoại: 19001090 <br> 
                         </address>
 
-                        <h2>Address</h2>
+                        <h2>ĐỊA CHỈ</h2>
                         <address>
                         SaiGon Technology University<br> 
                         180 Cao Lo street, <br> 
@@ -44,16 +44,16 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="contact-form bottom">
-                        <h2>Send a message</h2>
+                        <h2>GỬI MAIL CHO CHÚNG TÔI</h2>
                         <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="Tiêu đề">
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="Email Id">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Lời Nhắn"></textarea>
                             </div>                        
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-submit" value="Submit">

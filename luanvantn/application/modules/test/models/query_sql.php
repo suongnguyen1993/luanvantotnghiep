@@ -9,20 +9,11 @@
 			$query = $this->db->insert($table, $data);
 			$flag = $this->db->affected_rows();
 			if($flag > 0){
-				$this->db->select_max('id');
-				$max_id = $this->db->get($table)->row_array();
-				return array(
-					'type'		=> 'Successful',
-					'message'	=> 'Adding successful data!',
-					'id'		=> $max_id		
-				);
+				return 1;
 			}
 			else
 			{
-				return array(
-					'type'		=> 'Error',
-					'message'	=> 'Adding data failed!',
-				);
+				return 0;
 			}
 		}
 
@@ -124,6 +115,41 @@
 			
 			return $ch;
 		}
+
+		public function getRandomQuesion_ChoiceNotRandChoice($where = "" ,$vt=-1,$limit=-1)
+
+		{
+			$query = $this->db->select('*')->order_by('id','RANDOM');
+
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('question', $limit, $vt);
+			}
+			else
+			{
+				$query = $this->db->get('question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+			
+			$ch=$query->result_array();
+			for($i=0;$i<count($ch);$i++)
+			{
+				$tl=$this->getAnswer($ch[$i]['id']);
+				$ch[$i]['choice']=$tl;
+				
+			}
+			
+			return $ch;
+		}
+
 		public function getQuesionChoiceNotRandChoice($where = "" ,$vt=-1,$limit=-1)
 
 		{
@@ -157,7 +183,37 @@
 			
 			return $ch;
 		}
+		public function getRandomLong_QuestionRandom($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*')->order_by('id','RANDOM');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+				
+			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
 
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getQuesionChoiceRandom(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
+		}
 		public function getLongQuestionRandom($where = "" ,$vt=-1,$limit=-1)
 		{	
 			$query = $this->db->select('*')->order_by('id','RANDOM');
@@ -344,7 +400,7 @@
 		function getRandomExam(){
 
 			$query = $this->db
-			->query("SELECT ex.id 
+			->query("SELECT ex.id, ex.audio
 
 					FROM `exam` ex  
 
@@ -354,9 +410,9 @@
 
 					Limit 1");
 
-  			$row = $query->row();
+  			$row = $query->row_array();
 
-  			return $row->id;
+  			return $row;
   			/*print_r($row->id);
   			die;
 
