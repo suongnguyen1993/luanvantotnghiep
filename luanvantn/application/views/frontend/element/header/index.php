@@ -57,16 +57,16 @@
                         </li>                    
                         <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li onclick="check_longin(<?php $a = $this->session->has_userdata('username') ?>)" >
+                                <li onclick="check_longin('test/dauvao')" >
                                 <a <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> >
                                 Kiểm tra đầu vào
                                 </a>
                                 </li>
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> href="test/full_test/full_test">Full Test</a>
+                                <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> href="test/full_test">Full Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> href="test/mini_test/mini_test">Mini Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> href="test/mini_test">Mini Test</a>
                                 </li>
                                 
                             </ul>
@@ -74,10 +74,10 @@
                          <li class="dropdown <?php echo (isset ($current)&& $current == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a href="test/full_test" >Ôn Tập<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'ReviewQuestion')? 'class=" active"':NULL; ?> href="test/dau_vao">Ôn Câu Hỏi</a>
+                                <a <?php echo (isset ($current)&& $current == 'ReviewQuestion')? 'class=" active"':NULL; ?> href="#">Ôn Câu Hỏi</a>
                                 </li>
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'vocabulory')? 'class=" active"':NULL; ?> href="test/full_test/full_test">Ôn Từ Vựng</a>
+                                <a <?php echo (isset ($current)&& $current == 'vocabulory')? 'class=" active"':NULL; ?> href="#">Ôn Từ Vựng</a>
                                 </li>
                                                                 
                             </ul>

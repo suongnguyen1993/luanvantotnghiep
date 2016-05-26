@@ -1,66 +1,63 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mini_test extends CI_Controller {
+class Fix_test extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	public function index()
+	public function index ($id = null)
 	{
-		$data['group']['current'] = "minitest" ;
+		$data['group']['current'] = "fulltest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
 
+
+		if($this->input->post())
+		{
+			$maDeThi = $this->session->userdata('maDeThi'); 
+		}
+		else
+		{
+			if($id != NULL)
+			{
+				$maDeThi = $id;
+			}
+			else
+			{
+				$dethi = $this->query_sql->getRandomExam();
+				$maDeThi = $dethi['id'];
+				$data["audio_exam"] = $dethi['audio'] ;
+			}
+		}
+		
+		//hien thị các part 
+		$data['part1'] = $this->part1($maDeThi,0,10);
+		$data['part2'] = $this->part2($maDeThi,0,40);
+		$data['part3'] = $this->part3($maDeThi,0,10);
+		$data['part4'] = $this->part4($maDeThi,0,10);
+		
+		//end hien thi part
+		//xu ly ket qua tra ve
+		
 		//POST
 		if($this->input->post())
 		{
-
 			$data['submit'] = 1; 
-			$data['part1'] = $this->session->userdata('part1');
-			$data['part2'] = $this->session->userdata('part2');
-			$data['part3'] = $this->session->userdata('part3');
-			$data['part4'] = $this->session->userdata('part4');
 			$data['part5'] = $this->session->userdata('part5');
 			$data['part6'] = $this->session->userdata('part6');
 			$data['part7'] = $this->session->userdata('part7');
 
-			//post ket qua tra ve id choice
 			$part1 = $this->addShortUserChoice('part1', $data);
+
 			$part2 = $this->addShortUserChoice('part2', $data);
 			$part3 = $this->addLongUserChoice('part3', $data);
 			$part4 = $this->addLongUserChoice('part4', $data);
 			$part5 = $this->addShortUserChoice('part5', $data);
 			$part6 = $this->addLongUserChoice('part6', $data);
-			//$part7 = $this->addLongUserChoice('part7', $data);
-			$part7 = $this->addLongUserChoice7('part7', $data);
-
-			//neu user tra loi sai thi add vao on cau hoi
-			if($this->session->has_userdata('username'))
-			{
-				$id_user = $this->session->userdata('id');
-				//xac dinh nguoi dung chon cau sai
-				$false_answer = array();
-				$this->short_false_answer($data['part1'],$false_answer);
-				$this->short_false_answer($data['part2'],$false_answer);
-				$this->long_false_answer($data['part3'],$false_answer);
-				$this->long_false_answer($data['part4'],$false_answer);
-				$this->short_false_answer($data['part5'],$false_answer);
-				$this->long_false_answer($data['part6'],$false_answer);
-				$this->long_false_answer($data['part7'],$false_answer);
-
-				//luu cau sai
-				foreach ($false_answer as  $value) {
-					$false_statements = array(
-						'id' 		=> "",
-						'user_id'	=> $id_user,
-						'question_id' => $value
-						);
-					 $this->query_sql->add('false_statements',$false_statements);
-				}
-			}
+			$part7 = $this->addLongUserChoice('part7', $data);
 
 			//tinh cau dung
 			$tongsocaudung = 0;
@@ -80,74 +77,25 @@ class Mini_test extends CI_Controller {
 		//GET
 		else
 		{
-			$data['part1'] = $this->part1(0,5);
-			$data['part2'] = $this->part2(0,20);
-			$data['part3'] = $this->part3(0,5);
-			$data['part4'] = $this->part4(0,5);
-			$data['part5'] = $this->part5(0,20);
-			$data['part6'] = $this->part6(0,4);
-			$data['part7'] = $this->part7();
-			// print_r($data['part7']);
-			// die;
+			
+			$data['part5'] = $this->part5($maDeThi,0,40);
+			$data['part6'] = $this->part6($maDeThi,0,4);
+			$data['part7'] = $this->part7($maDeThi);
 
 			$array = array(
-				'part1' => $data['part1'],
-				'part2' => $data['part2'],
-				'part3' => $data['part3'],
-				'part4' => $data['part4'],
 				'part5' => $data['part5'],
 				'part6' => $data['part6'],
-				'part7' => $data['part7']
+				'part7' => $data['part7'],
+				'maDeThi' => $maDeThi,
 			);
 			
 			$this->session->set_userdata( $array );
 		}
-		$data['template'] = 'mini_test/testtoeic';
+		$data['template'] = 'fix_test/testtoeic';
 		$data['title'] ='kiểm tra thử';
-		$data['my_js'] ='frontend/element/foot/my_js/mini_test_js';
+		$data['my_js'] ='frontend/element/foot/my_js/toeic_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}
-	private function short_false_answer(&$data = "",&$false_answer = array())
-	{
-		foreach ($data as $p1)
-		 {
-			if($p1['user_choice'] == 0)
-			{
-				$false_answer[] = $p1['id'];
-			}
-			else
-			{
-				$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
-				if($a['correct_answer'] == 0)
-				{
-					$false_answer[] = $p1['id'];
-				}
-			}
-		}
-		return $false_answer;
-	}
-	private function long_false_answer(&$data = "",&$false_answer = array())
-	{
-		foreach ($data as $p2 ) 
-		{			
-			foreach ($p2['question'] as $p1)
-			{
-				if($p1['user_choice'] == 0)
-				{
-					$false_answer[] = $p1['id'];
-				}
-				else
-				{
-					$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
-					if($a['correct_answer'] == 0)
-					{
-						$false_answer[] = $p1['id'];
-					}
-				}
-			}
-		}
-	}
-
 
 	private function addShortUserChoice($part, &$data)
 	{
@@ -190,79 +138,45 @@ class Mini_test extends CI_Controller {
 			}
 		return $postPart;
 	}
-	private function addLongUserChoice7($part, &$data)
-	{
-		$postPart = isset($this->input->post()[$part])?$this->input->post()[$part]:0;
-		if(!$postPart)
-		{
-			return array();
-		}
-		foreach($data[$part] as $part7I => $part7V)
-		{
-			foreach ($part7V as $part3I => $part3V) {
-				foreach ($part3V['question'] as $i => $record) {
-					if(isset($postPart[$part3I][$i]))
-					{
-						$data[$part][$part7I][$part3I]['question'][$i]['user_choice'] = $postPart[$part3I][$i];	
-					}
-					else
-					{
-						$data[$part][$part7I][$part3I]['question'][$i]['user_choice'] = 0;
-					}		
-				}
-			}
-		}
-		return $postPart;
-	}
 
-	private function part1 ($start = "", $limit = "")
+	private function part1 ($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getRandomQuesion_ChoiceNotRandChoice(array('group_id'=>1),$start, $limit);
+		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>1,'exam_id'=>$id_exam),$start, $limit);
 
 		return $result;
 	}
-	private function part2($start = "", $limit = "")
+	private function part2($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getRandomQuesion_ChoiceNotRandChoice(array('group_id'=>2),$start, $limit);
+		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>2,'exam_id'=> $id_exam),$start, $limit);
 
 		return $result;
 	}
-	private function part3($start = "", $limit = "")
+	private function part3($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getRandomLong_QuestionRandom(array('group_id'=>3), $start, $limit);
+		$result = $this->query_sql->getLongQuestion(array('group_id'=>3,'exam_id'=>$id_exam), $start, $limit);
 		return $result;
 	}
-	private function part4($start = "", $limit = "")
+	private function part4($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getRandomLong_QuestionRandom(array('group_id'=>4), $start,$limit);
+		$result = $this->query_sql->getLongQuestion(array('group_id'=>4,'exam_id'=>$id_exam), $start,$limit);
 		return $result;
 	}
-	private function part5($start = "", $limit = "")
+	private function part5($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getQuesionChoiceRandom(array('group_id'=>5), $start, $limit);
+		$result = $this->query_sql->getQuesionChoiceRandom(array('group_id'=>5,'exam_id'=> $id_exam), $start, $limit);
 		return $result;
 	}
-	private function part6($start = "", $limit = "")
+	private function part6($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getLongQuestionRandom(array('group_id'=>6), $start,$limit);
+		$result = $this->query_sql->getLongQuestionRandom(array('group_id'=>6,'exam_id'=>$id_exam), $start,$limit);
 		return $result;
 	}
-	// private function part7($start = "", $limit = "")
-	// {
-
-	// 	$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7), $start, $limit);
-	// 	return $result;
-	// }
-	private function part7($start = "", $limit = "")
+	private function part7($id_exam = NULL,$start = "", $limit = "")
 	{
-		
-		$a[] = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'number_question'=>2),0,1);
-		$a[] = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'number_question'=>3),0,1);
-		$a[] = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'number_question'=>4),0,2);
-		
-		return $a;
+		$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'exam_id'=>$id_exam), $start, $limit);
+		return $result;
+	
 	}
-
 
 	private function socaudungnghe($part1,$part2,$part3,$part4)
 	{
@@ -341,7 +255,7 @@ class Mini_test extends CI_Controller {
 				foreach($q as $id)
 				{
 
-					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
+					$answer = $this->query_sql->select_row("choice","correct_answer",array('id'=>$id),'');
 					
 					if($id!=0)
 					{
@@ -485,7 +399,7 @@ class Mini_test extends CI_Controller {
 		}
 		return $diem;
 	}
-	
+
 }
 
 /* End of file test.php */

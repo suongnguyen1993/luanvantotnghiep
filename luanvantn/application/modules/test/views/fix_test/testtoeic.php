@@ -18,29 +18,28 @@
                     <audio autoplay="on">
                         <source src="uploads/test_audio/<?php echo isset($audio_exam)?$audio_exam:"" ?>">
                      </audio>
-                 
                          <div class="col-md-12 col-sm-12">
                             <form id="form-fulltest" action="" method="post" accept-charset="utf-8">
                                 <!-- part 1 -->
-                                <?php $this->load->view('dauvao/part1', $part1); ?>
+                                <?php $this->load->view('full_test/part1', $part1); ?>
 
                                 <!-- part 2 -->
-                                <?php $this->load->view('dauvao/part2', $part2); ?>
+                                <?php $this->load->view('full_test/part2', $part2); ?>
 
                                 <!-- part 3 -->
-                                <?php $this->load->view('dauvao/part3', $part3); ?>
+                                <?php $this->load->view('full_test/part3', $part3); ?>
 
                                 <!-- part 4 -->
-                                <?php $this->load->view('dauvao/part4', $part4); ?>
+                                <?php $this->load->view('full_test/part4', $part4); ?>
 
                                 <!-- part 5 -->
-                                <?php $this->load->view('dauvao/part5', $part5); ?>
+                                <?php $this->load->view('full_test/part5', $part5); ?>
                                 
                                 <!-- part 6 -->
-                                <?php $this->load->view('dauvao/part6', $part6); ?>
+                                <?php $this->load->view('full_test/part6', $part6); ?>
 
                                 <!-- part 7 -->
-                                <?php $this->load->view('dauvao/part7', $part7); ?>
+                                <?php $this->load->view('full_test/part7', $part7); ?>
                             
                                 <input type="submit" name="chamdiem" value="Chấm điểm" class="btn btn-sm btn-primary">
     

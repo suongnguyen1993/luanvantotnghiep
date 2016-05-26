@@ -1,42 +1,22 @@
-<div class="single-blog two-column">
-                            <h1 align="center"><b> part 6</b></h1>
-                            <?php $dem = 140;
-                            
-                            foreach ($part6 as $pIndex => $p2)
-                            {
-                                $long_content = $p2['long_content'];
-
-                                $n=$dem +1;
-                                $i=strpos($long_content,"___");
-
-                                while($i!==false)
+<h1 align="center"><b> part 5</b></h1>
+                            <?php $dem = 100; ?>
+                            <?php foreach($part5 as $index => $p1) { $dem += 1; 
+                                $userChoose = -1;
+                                if(isset($p1['user_choice']))
                                 {
-                                    
-                                    $long_content=substr_replace($long_content," (".$n++.") ",$i,3);
-                                    $i=strpos($long_content,"___");
+                                    $userChoose=$p1['user_choice'];
                                 }
-                               
-                                 foreach($p2['question'] as $index => $p1)
-                                { 
-                            
-                                    $dem += 1; 
-                                    $userChoose = -1;
-                                    if(isset($p1['user_choice']))
-                                    {
-                                        $userChoose=$p1['user_choice'];
-                                    }
-                            
-                                    if($userChoose == -1) {?>
+                            ?>
 
-                                    <div class="post-content overflow">
+                                <b><?php echo $dem .'.';echo $p1['content'] ?></b>
+                                
 
-                                    <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $long_content; ?></section>
+                                <?php if($userChoose == -1) {?>
+
+                                <div class="post-content overflow">
                                     
-                                    <?php } ?>
-                                     <b><?php echo $dem.'.'; ?></b><br>
                                     <?php $dem1 = 0; 
-                                    foreach ($p1['choice']  as $choice1)
+                                    foreach ($p1['choice'] as $choice1)
                                     { 
                                             $dem1 += 1;
                                             switch ($dem1) {
@@ -56,14 +36,14 @@
                                             }
                                             $correct_answer1 = $choice1["correct_answer"];
                                     ?>
-                                     
-                                    <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]"
+                                        
+                                        <input type="radio" name="part5[<?php echo $index; ?>]"
                                             value="0" hidden checked = 'checked'>
                                         <label>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]" 
+                                            <input type="radio" name="part5[<?php echo $index; ?>]" 
                                                 value="<?php echo $choice1['id'] ?>">
-                                                  <?php  echo $choice1['content'] ?>
+                                                <?php  echo $choice1['content'] ?>
                                
                                         </label>
                                     <br>
@@ -74,15 +54,8 @@
                                 <?php } else { ?>
 
                                     <div class="post-content overflow">
-                                    
-                                    <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $p2['long_content']; ?></section>
-                                    <?php } ?>
-                                    
-                                    <b><?php echo $dem.'.'  ?></b><br>
-                                    <?php 
-                                    
-                                    $dem1 = 0; 
+                            
+                                    <?php $dem1 = 0; 
                                     foreach ($p1['choice'] as $choice1)
                                     { 
                                             $dem1 += 1;
@@ -105,27 +78,26 @@
                                     ?>
                                         <?php
                                         $class = '';
-                                        if($userChoose == $choice1['id']){
-                                            $checked = 'checked';
-                                            if($correct_answer1 == 1)
-                                            {
-                                               $class = 'style="color: green"' ;
-                                            }
-                                            else
-                                            {
-                                                $class = 'style="color: red"' ;
-                                            }         
+                                        if($userChoose == $choice1['id']){ 
+                                                $checked = 'checked';
+                                                if($correct_answer1 == 1)
+                                                {
+                                                   $class = 'style="color: green"' ;
+                                                }
+                                                else
+                                                {
+                                                    $class = 'style="color: red"' ;
+                                                }         
                                              
                                         ?>
-
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" disabled
+                                            <input type="radio" name="part5[<?php echo $index; ?>]" 
                                                     <?php echo $checked; ?>
-                                                    value="<?php echo $choice1['id'] ?>">
+                                                   disabled value="<?php echo $choice1['id'] ?>">
                                             <?php  echo $choice1['content'] ?>
                                         </label>
-
+                                        
                                         <?php } else { 
                                                 if($correct_answer1 == 1)
                                                 {
@@ -134,8 +106,8 @@
                                         ?>
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" disabled
-                                                    value="<?php echo $choice1['id'] ?>">
+                                            <input type="radio" name="part5[<?php echo $index; ?>]" 
+                                                   disabled value="<?php echo $choice1['id'] ?>">
                                                 
                                             <?php  echo $choice1['content'] ?>
                                         </label>
@@ -144,9 +116,7 @@
                                     
                                     <?php } /*CLOSE foreach choice*/ ?>                               
                                 </div>
-                              <?php } ?>
-                            <?php }/*end question*/ ?>
-                            <hr>
-                            <?php }/*end long_question*/ ?>
-</div>
-                            <!-- end part 3 -->
+                                <?php } ?>
+
+                            <?php } ?>
+                            <!-- end part 1 -->

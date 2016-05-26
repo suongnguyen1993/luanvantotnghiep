@@ -1,20 +1,9 @@
 <div class="single-blog two-column">
-                            <h1 align="center"><b> part 6</b></h1>
-                            <?php $dem = 140;
+                            <h1 align="center"><b> part 3</b></h1>
+                            <?php $dem = 40;
                             
-                            foreach ($part6 as $pIndex => $p2)
+                            foreach ($part3 as $pIndex => $p2)
                             {
-                                $long_content = $p2['long_content'];
-
-                                $n=$dem +1;
-                                $i=strpos($long_content,"___");
-
-                                while($i!==false)
-                                {
-                                    
-                                    $long_content=substr_replace($long_content," (".$n++.") ",$i,3);
-                                    $i=strpos($long_content,"___");
-                                }
                                
                                  foreach($p2['question'] as $index => $p1)
                                 { 
@@ -29,12 +18,7 @@
                                     if($userChoose == -1) {?>
 
                                     <div class="post-content overflow">
-
-                                    <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $long_content; ?></section>
-                                    
-                                    <?php } ?>
-                                     <b><?php echo $dem.'.'; ?></b><br>
+                                    <b><?php echo $dem .'.';echo $p1["content"] ?></b><br>
                                     <?php $dem1 = 0; 
                                     foreach ($p1['choice']  as $choice1)
                                     { 
@@ -56,12 +40,12 @@
                                             }
                                             $correct_answer1 = $choice1["correct_answer"];
                                     ?>
-                                     
-                                    <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]"
+                                       
+                                    <input type="radio" name="part3[<?php echo $pIndex; ?>][<?php echo $index; ?>]"
                                             value="0" hidden checked = 'checked'>
                                         <label>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]" 
+                                            <input type="radio" name="part3[<?php echo $pIndex; ?>][<?php echo $index; ?>]" 
                                                 value="<?php echo $choice1['id'] ?>">
                                                   <?php  echo $choice1['content'] ?>
                                
@@ -78,8 +62,8 @@
                                     <?php if($index == 0) { ?>
                                     <section class="_long_content"><?php echo $p2['long_content']; ?></section>
                                     <?php } ?>
-                                    
-                                    <b><?php echo $dem.'.'  ?></b><br>
+                                    <b><?php echo $dem.".";  echo$p1['content']; ?></b><br>
+                                    <?php  ?>
                                     <?php 
                                     
                                     $dem1 = 0; 

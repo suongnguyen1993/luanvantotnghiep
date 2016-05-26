@@ -4,6 +4,17 @@
                             
                             foreach ($part6 as $pIndex => $p2)
                             {
+                                $long_content = $p2['long_content'];
+
+                                $n=$dem +1;
+                                $i=strpos($long_content,"___");
+
+                                while($i!==false)
+                                {
+                                    
+                                    $long_content=substr_replace($long_content," (".$n++.") ",$i,3);
+                                    $i=strpos($long_content,"___");
+                                }
                                
                                  foreach($p2['question'] as $index => $p1)
                                 { 
@@ -20,7 +31,7 @@
                                     <div class="post-content overflow">
 
                                     <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $p2['long_content']; ?></section>
+                                    <section class="_long_content"><?php echo $long_content; ?></section>
                                     
                                     <?php } ?>
                                      <b><?php echo $dem.'.'; ?></b><br>

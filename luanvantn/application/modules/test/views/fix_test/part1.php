@@ -1,88 +1,25 @@
-<div class="single-blog two-column">
-                            <h1 align="center"><b> part 6</b></h1>
-                            <?php $dem = 140;
-                            
-                            foreach ($part6 as $pIndex => $p2)
-                            {
-                                $long_content = $p2['long_content'];
-
-                                $n=$dem +1;
-                                $i=strpos($long_content,"___");
-
-                                while($i!==false)
+<h1 align="center"><b> part 1</b></h1>
+                            <?php $dem = 0; ?>
+                            <?php foreach($part1 as $index => $p1) { $dem += 1; 
+                                $userChoose = -1;
+                                if(isset($p1['user_choice']))
                                 {
-                                    
-                                    $long_content=substr_replace($long_content," (".$n++.") ",$i,3);
-                                    $i=strpos($long_content,"___");
+                                    $userChoose=$p1['user_choice'];
                                 }
-                               
-                                 foreach($p2['question'] as $index => $p1)
-                                { 
-                            
-                                    $dem += 1; 
-                                    $userChoose = -1;
-                                    if(isset($p1['user_choice']))
-                                    {
-                                        $userChoose=$p1['user_choice'];
-                                    }
-                            
-                                    if($userChoose == -1) {?>
+                            ?>
 
-                                    <div class="post-content overflow">
-
-                                    <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $long_content; ?></section>
-                                    
-                                    <?php } ?>
-                                     <b><?php echo $dem.'.'; ?></b><br>
-                                    <?php $dem1 = 0; 
-                                    foreach ($p1['choice']  as $choice1)
-                                    { 
-                                            $dem1 += 1;
-                                            switch ($dem1) {
-                                                case '1':
-                                                    $thutu = "A.";
-                                                    break;
-                                                 case '2':
-                                                    $thutu = "B.";
-                                                    break;
-                                                case '3':
-                                                    $thutu = "C.";
-                                                    break;
-                                                case '4':
-                                                    $thutu = "D.";
-                                                    break;
-
-                                            }
-                                            $correct_answer1 = $choice1["correct_answer"];
-                                    ?>
-                                     
-                                    <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]"
-                                            value="0" hidden checked = 'checked'>
-                                        <label>
-                                            <?php echo $thutu; ?>
-                                            <input type="radio" name="part6[<?php echo $pIndex; ?>][<?php echo $index; ?>]" 
-                                                value="<?php echo $choice1['id'] ?>">
-                                                  <?php  echo $choice1['content'] ?>
-                               
-                                        </label>
-                                    <br>
-                                    
-                                    <?php } /*CLOSE foreach choice*/ ?>                               
+                                <b><?php echo $dem .'.'; ?></b>
+                                <div class="post-thumb">
+                                    <img src="uploads/listen_photo/<?php echo $p1['image'] ?>"     class="img-responsive" 
+                                         alt="" 
+                                         style = " height: 500px; width: 500px">
                                 </div>
 
-                                <?php } else { ?>
+                                <?php if($userChoose == -1) {?>
 
-                                    <div class="post-content overflow">
+                                <div class="post-content overflow">
                                     
-                                    <?php if($index == 0) { ?>
-                                    <section class="_long_content"><?php echo $p2['long_content']; ?></section>
-                                    <?php } ?>
-                                    
-                                    <b><?php echo $dem.'.'  ?></b><br>
-                                    <?php 
-                                    
-                                    $dem1 = 0; 
+                                    <?php $dem1 = 0; 
                                     foreach ($p1['choice'] as $choice1)
                                     { 
                                             $dem1 += 1;
@@ -103,29 +40,67 @@
                                             }
                                             $correct_answer1 = $choice1["correct_answer"];
                                     ?>
-                                        <?php
-                                        $class = '';
-                                        if($userChoose == $choice1['id']){
-                                            $checked = 'checked';
-                                            if($correct_answer1 == 1)
-                                            {
-                                               $class = 'style="color: green"' ;
+                                        
+                                        <input type="radio" name="part1[<?php echo $index; ?>]"
+                                            value="0" hidden checked = 'checked'>
+                                        <label>
+                                            <?php echo $thutu; ?>
+                                            <input type="radio" name="part1[<?php echo $index; ?>]" 
+                                                value="<?php echo $choice1['id'] ?>">
+                               
+                                        </label>
+                                    <br>
+                                    
+                                    <?php } /*CLOSE foreach choice*/ ?>                               
+                                </div>
+
+                                <?php } else { ?>
+
+                                    <div class="post-content overflow">
+                            
+                                    <?php $dem1 = 0; 
+                                    foreach ($p1['choice'] as $choice1)
+                                    { 
+                                            $dem1 += 1;
+                                            switch ($dem1) {
+                                                case '1':
+                                                    $thutu = "A.";
+                                                    break;
+                                                 case '2':
+                                                    $thutu = "B.";
+                                                    break;
+                                                case '3':
+                                                    $thutu = "C.";
+                                                    break;
+                                                case '4':
+                                                    $thutu = "D.";
+                                                    break;
+
                                             }
-                                            else
-                                            {
-                                                $class = 'style="color: red"' ;
-                                            }         
+                                            $correct_answer1 = $choice1["correct_answer"];
+                                    ?>
+                                      <?php
+                                        $class = '';
+                                        if($userChoose == $choice1['id']){ 
+                                                $checked = 'checked';
+                                                if($correct_answer1 == 1)
+                                                {
+                                                   $class = 'style="color: green"' ;
+                                                }
+                                                else
+                                                {
+                                                    $class = 'style="color: red"' ;
+                                                }         
                                              
                                         ?>
-
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" disabled
+                                            <input type="radio" name="part1[<?php echo $index; ?>]" 
                                                     <?php echo $checked; ?>
-                                                    value="<?php echo $choice1['id'] ?>">
+                                                   disabled value="<?php echo $choice1['id'] ?>">
                                             <?php  echo $choice1['content'] ?>
                                         </label>
-
+                                        
                                         <?php } else { 
                                                 if($correct_answer1 == 1)
                                                 {
@@ -134,8 +109,8 @@
                                         ?>
                                         <label <?php echo $class; ?>>
                                             <?php echo $thutu; ?>
-                                            <input type="radio" disabled
-                                                    value="<?php echo $choice1['id'] ?>">
+                                            <input type="radio" name="part1[<?php echo $index; ?>]" 
+                                                   disabled value="<?php echo $choice1['id'] ?>">
                                                 
                                             <?php  echo $choice1['content'] ?>
                                         </label>
@@ -144,9 +119,7 @@
                                     
                                     <?php } /*CLOSE foreach choice*/ ?>                               
                                 </div>
-                              <?php } ?>
-                            <?php }/*end question*/ ?>
-                            <hr>
-                            <?php }/*end long_question*/ ?>
-</div>
-                            <!-- end part 3 -->
+                                <?php } ?>
+
+                            <?php } ?>
+                            <!-- end part 1 -->

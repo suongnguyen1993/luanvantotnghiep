@@ -18,8 +18,6 @@ class Index extends CI_Controller {
 		$this->load->view('frontend/layout/home',$data);
 	}
 
-	
-
 }
 
 /* End of file admin.php */

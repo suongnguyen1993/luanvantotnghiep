@@ -8,7 +8,7 @@ class Full_test extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function full_test()
+	public function index()
 	{
 		$data['group']['current'] = "fulltest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');

@@ -11,8 +11,8 @@
                                     <div class="portfolio-thumb">
                                         <img src="<?php echo base_url(); ?>/public/user/images/portfolio/1.jpg" class="img-responsive" alt=""></a>
                                     </div>
-                                    <a href="#">
-                                        <div class="portfolio-view">
+                                    <a href="test/full_test">
+                                        <div  class="portfolio-view">
                                             <ul class="nav nav-pills">
                                                 <li><h1 style="color: #fff">Full Test</h1></li>
                                             </ul>
@@ -32,7 +32,7 @@
                                     <div class="portfolio-thumb">
                                         <img src="<?php echo base_url(); ?>/public/user/images/portfolio/1.jpg" class="img-responsive" alt="">
                                     </div>
-                                    <a href="#">
+                                    <a href="test/mini_test">
                                         <div class="portfolio-view">
                                             <ul class="nav nav-pills">
                                                 <li><h1 style="color: #fff">Mini Test</h1></li>
@@ -52,8 +52,8 @@
                                     <div class="portfolio-thumb">
                                         <img src="<?php echo base_url(); ?>/public/user/images/portfolio/1.jpg" class="img-responsive" alt="">
                                     </div>
-                                    <a>
-                                        <div onclick="check_longin(<?php $a = $this->session->has_userdata('username') ?>)" class="portfolio-view">
+                                    <a href="test/dauvao"> 
+                                        <div class="portfolio-view">
                                              <ul class="nav nav-pills">
                                                 <li><h1 style="color: #fff">Kiểm Tra Đầu Vào</h1></li>
                                             </ul>
@@ -71,19 +71,4 @@
         </div>
 
     </section>
-    <!-- <script type="text/javascript">
-        function check_longin(e){
-            if (e)
-            {
-                window.location = 'test/dauvao/mini_test';
-    
-            }
-            else
-            {
-                alert('Bạn phải đăng nhập trước khi làm bài');
-                window.location = 'login/login';
-            }
-        }
-    
-    </script> -->
-    <!--/#projects-->
+   
