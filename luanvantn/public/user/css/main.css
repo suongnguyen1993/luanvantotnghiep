@@ -2855,4 +2855,10 @@ span.stButton_gradient,
     margin-top: -14px;
     font-size: 30px;
     color: #87B5F3;
+    padding-bottom: 5px;
+}
+
+.hint-table .toolbar{
+   margin-top: 15px;
+  text-align: right; 
 }

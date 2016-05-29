@@ -10,33 +10,35 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>/public/user/js/main.js"></script>
     <!-- dich nghia tu vựng -->
     <script language="javascript">
+    	var clickingSaved = false;
+
+    	var selectedText = '';
+    	var translatedText = '';
+    	
+
 		function dich(e)
 		{
+			if(clickingSaved) return;
+
+
 			$('#translation').hide();
 			s=getSelectionText();
-			if(s!="")
+			if(s != "")
 			{
-			 //alert(s);
-			 //var s=document.getElementById("txt").value;
-			 
+
 			 $.ajax({
-					url: 'http://www.frengly.com/',		
-					data: {
-						src: 'en',
-						dest: 'vi',
-						text: s,
-						outformat: 'json',
-						email: 'amy.suong93@gmail.com',
-						password: "suongnguyen93"
-					},			    	    	    
+					url: '/luanvantotnghiep/luanvantn/translate/translate/index/'+s,		
+					data: {},			    	    	    
 					success: function(data){
-						if(data.translation!=undefined)
+						if(data!=undefined)
 						{
-							var s = getSelectionCoords();
-							$('#translated').text(data.translation);
+							selectedText = s;
+							translatedText = data;
+							var ss = getSelectionCoords();
+							$('#translated').text(data);
 							$('#translation').css({
-								    top: s.y	+"px",
-	    							left: s.x	+"px",
+								    top: ss.y	+"px",
+	    							left: ss.x	+"px",
 	    							display: "block"
 							});
 						}	    
@@ -67,14 +69,43 @@
 		    	   };
 		}
 
-		document.onmouseup =dich;
-		document.ondblclick=dich;
+		$(document).ready(function(){
+			$('#btnSaved').click(function(){
+    			
+    			if(selectedText != "" && translatedText !="")
+    			{
+    				clickingSaved = true;
+    				url = '';
+	    			$.get(url,function(result){
+						if(result == 1)
+						{
+							alert('Luu thanh cong');
+						}
+						else
+						{
+							alert('Luu that bai');
+						}
+						clickingSaved = false;	
+					});
+    			}
+    
+
+    			
+    		});
+    		document.onmouseup =dich;
+			document.ondblclick=dich;
+		});
+
+		
 	</script>
 
 	<span id="translation" class="hint-table hint-popover below " style="top: 20px; left: 62px;"><div class="inner "><div class="content"><table><thead>
 		<tr></tr></thead><tbody>
 
-		<tr><td id="translated"></td></tr></tbody></table></div></div></span>
+		<tr><td id="translated"></td></tr></tbody></table>
+
+		<div id="saved" class="toolbar"><button id="btnSaved" type="button" class="btn btn-sx btn-primary">Luu</button></div>
+		</div></div></span>
 	
 	<script type="text/javascript" >
 		$('.check_login').click(function(){
