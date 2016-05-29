@@ -15,7 +15,7 @@
              
                 <div class="col-md-9 col-sm-7">
                     <div class="row">
-                    <audio autoplay="on">
+                    <audio id="audio_exam">
                         <source src="uploads/test_audio/<?php echo isset($audio_exam)?$audio_exam:"" ?>">
                      </audio>
                          <div class="col-md-12 col-sm-12">
@@ -78,6 +78,23 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Hoàn tất</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="ready" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" align="center" id="myModalLabel">Bạn đã sẵn sàng chưa?</h3>
+      </div>
+      <div class="modal-footer">
+        <button id="turnbackBtn" type="button" class="btn btn-primary" data-dismiss="modal">Quay lại</button>
+        <button id="okBtn" type="button" class="btn btn-primary" data-dismiss="modal">Sẵn sàng</button>
       </div>
     </div>
   </div>

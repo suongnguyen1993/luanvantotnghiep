@@ -15,7 +15,7 @@
              
                 <div class="col-md-9 col-sm-7">
                     <div class="row">
-                    <audio autoplay="on">
+                    <audio id="audio_exam">
                         <source src="uploads/test_audio/<?php echo isset($audio_exam)?$audio_exam:"" ?>">
                      </audio>
                          <div class="col-md-12 col-sm-12">

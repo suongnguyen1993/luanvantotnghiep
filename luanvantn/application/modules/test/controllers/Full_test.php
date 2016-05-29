@@ -6,6 +6,7 @@ class Full_test extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('Mytest');
 	}
 
 	public function index()
@@ -62,10 +63,48 @@ class Full_test extends CI_Controller {
 
 			//tinh diem
 			$tongdiem = 0;
-			$diemnghe = $this->diemnghe_fulltest($socaudungnghe);
-			$diemdoc = $this->diemdoc_fulltest($socaudungdoc);
+			$diemnghe = $this->mytest->diemnghe_fulltest($socaudungnghe);
+			$diemdoc = $this->mytest->diemdoc_fulltest($socaudungdoc);
 			$tongdiem = $diemnghe + $diemdoc ;
 			$data['tongdiem'] = $tongdiem;
+
+			//neu user tra loi sai thi add vao on cau hoi
+			if($this->session->has_userdata('username'))
+			{
+				$id_user = $this->session->userdata('id');
+				//xac dinh nguoi dung chon cau sai
+				$short_false_answer = array();
+				$long_false_answer = array();
+				$this->short_false_answer($data['part1'],$short_false_answer);
+				$this->short_false_answer($data['part2'],$short_false_answer);
+				$this->long_false_answer($data['part3'],$long_false_answer);
+				$this->long_false_answer($data['part4'],$long_false_answer);
+				$this->short_false_answer($data['part5'],$short_false_answer);
+				$this->long_false_answer($data['part6'],$long_false_answer);
+				$this->long_false_answer($data['part7'],$long_false_answer);
+
+				$xl_trung = array();
+
+				$XL_long_false_answer = $this->XL_long_false_answer($long_false_answer,$xl_trung); 
+				
+				//luu cau sai
+				foreach ($short_false_answer as  $value) {
+					$false_statements = array(
+						'id' 		=> "",
+						'user_id'	=> $id_user,
+						'question_id' => $value
+						);
+					 $this->query_sql->add('false_statements',$false_statements);
+				}
+				foreach ($XL_long_false_answer as  $value) {
+					$false_statements = array(
+						'id' 		=> "",
+						'user_id'	=> $id_user,
+						'long_question_id' => $value
+						);
+					 $this->query_sql->add('false_statements',$false_statements);
+				}
+			}
 		}
 		//GET
 		else
@@ -85,9 +124,63 @@ class Full_test extends CI_Controller {
 			$this->session->set_userdata( $array );
 		}
 		$data['template'] = 'full_test/testtoeic';
-		$data['title'] ='kiểm tra thử';
+		$data['title'] ='Kiểm Tra Full Test Câu Hỏi Ngẫu Nhiên';
 		$data['my_js'] ='frontend/element/foot/my_js/toeic_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
+	}
+
+	private function short_false_answer(&$data = "",&$false_answer = array())
+	{
+		foreach ($data as $p1)
+		 {
+			if($p1['user_choice'] == 0)
+			{
+				$false_answer[] = $p1['id'];
+			}
+			else
+			{
+				$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
+				if($a['correct_answer'] == 0)
+				{
+					$false_answer[] = $p1['id'];
+				}
+			}
+		}
+		return $false_answer;
+	}
+	private function long_false_answer(&$data = "",&$false_answer = array())
+	{
+		foreach ($data as $p2 ) 
+		{			
+			foreach ($p2['question'] as $p1)
+			{
+
+				if($p1['user_choice'] == 0)
+				{
+					$false_answer[] = $p1['id'];
+				}
+				else
+				{
+					$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
+					if($a['correct_answer'] == 0)
+					{
+						$false_answer[] = $p1['id'];
+					}
+				}
+			}
+		}
+	}
+
+	private function XL_long_false_answer($arr,&$XL_array)
+	{
+		$arrayUnique = array();
+		foreach ($arr as  $value) {
+			$arrayUnique[$value] = 1;	
+		}
+		foreach ($arrayUnique as $k => $v) {
+			$XL_array[] = $k;
+		}
+		return $XL_array;
 	}
 
 	private function addShortUserChoice($part, &$data)
@@ -170,7 +263,7 @@ class Full_test extends CI_Controller {
 		return $result;
 	}
 
-	private function socaudungnghe($part1,$part2,$part3,$part4)
+	public function socaudungnghe($part1,$part2,$part3,$part4)
 	{
 		$diemnghe = 0;
 		foreach($part1 as $id)
@@ -227,7 +320,7 @@ class Full_test extends CI_Controller {
 		}
 		return $diemnghe;
 	}
-	private function socaudungdoc($part5,$part6,$part7)
+	public function socaudungdoc($part5,$part6,$part7)
 	{
 		$diemdoc = 0;
 		foreach($part5 as $id)
@@ -272,224 +365,7 @@ class Full_test extends CI_Controller {
 				}
 			}
 			return $diemdoc;
-	}
-	private function diemnghe_fulltest($caudung)
-	{
-		switch($caudung)
-		{
-			case 0: $diem =5; break;
-			case 1: $diem =5; break;
-			case 2: $diem =5; break;
-			case 3: $diem =5; break;
-			case 4: $diem =5; break;
-			case 5: $diem =5; break;
-			case 6: $diem =5; break;
-			case 7: $diem =5; break;
-			case 8: $diem =5; break;
-			case 9: $diem =5; break;
-			case 10: $diem =5; break;
-			case 11: $diem =5; break;
-			case 12: $diem =5; break;
-			case 13: $diem =5; break;
-			case 14: $diem =5; break;
-			case 15: $diem =5; break;
-			case 16: $diem =10; break;
-			case 17: $diem =15; break;
-			case 18: $diem =20; break;
-			case 19: $diem =25; break;
-			case 20: $diem =30; break;
-			case 21: $diem =35; break;
-			case 22: $diem =40; break;
-			case 23: $diem =45; break;
-			case 24: $diem =50; break;
-			case 25: $diem =60; break;
-			case 26: $diem =65; break;
-			case 27: $diem =70; break;
-			case 28: $diem =80; break;
-			case 29: $diem =85; break;
-			case 30: $diem =90; break;
-			case 31: $diem =95; break;
-			case 32: $diem =100; break;
-			case 33: $diem =110; break;
-			case 34: $diem =115; break;
-			case 35: $diem =120; break;
-			case 36: $diem =125; break;
-			case 37: $diem =130; break;
-			case 38: $diem =140; break;
-			case 39: $diem =145; break;
-			case 40: $diem =150; break;
-			case 41: $diem =160; break;
-			case 42: $diem =165; break;
-			case 43: $diem =170; break;
-			case 44: $diem =175; break;
-			case 45: $diem =180; break;
-			case 46: $diem =190; break;
-			case 47: $diem =195; break;
-			case 48: $diem =200; break;
-			case 49: $diem =210; break;
-			case 50: $diem =215; break;
-			case 51: $diem =220; break;
-			case 52: $diem =225; break;
-			case 53: $diem =230; break;
-			case 54: $diem =235; break;
-			case 55: $diem =240; break;
-			case 56: $diem =250; break;
-			case 57: $diem =255; break;
-			case 58: $diem =260; break;
-			case 59: $diem =265; break;
-			case 60: $diem =270; break;
-			case 61: $diem =280; break;
-			case 62: $diem =285; break;
-			case 63: $diem =290; break;
-			case 64: $diem =300; break;
-			case 65: $diem =305; break;
-			case 66: $diem =310; break;
-			case 67: $diem =320; break;
-			case 68: $diem =325; break;
-			case 69: $diem =330; break;
-			case 70: $diem =335; break;
-			case 71: $diem =340; break;
-			case 72: $diem =350; break;
-			case 73: $diem =355; break;
-			case 74: $diem =360; break;
-			case 75: $diem =365; break;
-			case 76: $diem =370; break;
-			case 77: $diem =380; break;
-			case 78: $diem =385; break;
-			case 79: $diem =390; break;
-			case 80: $diem =395; break;
-			case 81: $diem =400; break;
-			case 82: $diem =405; break;
-			case 83: $diem =410; break;
-			case 84: $diem =415; break;
-			case 85: $diem =420; break;
-			case 86: $diem =425; break;
-			case 87: $diem =430; break;
-			case 88: $diem =435; break;
-			case 89: $diem =445; break;
-			case 90: $diem =450; break;
-			case 91: $diem =455; break;
-			case 92: $diem =465; break;
-			case 93: $diem =470; break;
-			case 94: $diem =480; break;
-			case 95: $diem =485; break;
-			case 96: $diem =490; break;
-			case 97: $diem =495; break;
-			case 98: $diem =495; break;
-			case 99: $diem =495; break;
-			case 100: $diem =495; break;
-		}		
-		return $diem;
-	}
-	private function diemdoc_fulltest($caudung)
-	{
-		switch($caudung)
-		{
-			case 0: $diem = 5; break;
-			case 1: $diem = 5; break;
-			case 2: $diem = 5; break;
-			case 3: $diem = 5; break;
-			case 4: $diem = 5; break;
-			case 5: $diem = 5; break;
-			case 6: $diem = 5; break;
-			case 7: $diem = 10; break;
-			case 8: $diem = 15; break;
-			case 9: $diem = 20; break;
-			case 10: $diem = 25; break;
-			case 11: $diem = 30; break;
-			case 12: $diem = 35; break;
-			case 13: $diem = 40; break;
-			case 14: $diem = 45; break;
-			case 15: $diem = 50; break;
-			case 16: $diem = 55; break;
-			case 17: $diem = 60; break;
-			case 18: $diem = 65; break;
-			case 19: $diem = 70; break;
-			case 20: $diem = 75; break;
-			case 21: $diem = 80; break;
-			case 22: $diem = 85; break;
-			case 23: $diem = 90; break;
-			case 24: $diem = 95; break;
-			case 25: $diem = 100; break;
-			case 26: $diem = 110; break;
-			case 27: $diem = 115; break;
-			case 28: $diem = 120; break;
-			case 29: $diem = 125; break;
-			case 30: $diem = 130; break;
-			case 31: $diem = 135; break;
-			case 32: $diem = 140; break;
-			case 33: $diem = 145; break;
-			case 34: $diem = 150; break;
-			case 35: $diem = 160; break;
-			case 36: $diem = 165; break;
-			case 37: $diem = 170; break;
-			case 38: $diem = 175; break;
-			case 39: $diem = 180; break;
-			case 40: $diem = 185; break;
-			case 41: $diem = 190; break;
-			case 42: $diem = 195; break;
-			case 43: $diem = 200; break;
-			case 44: $diem = 210; break;
-			case 45: $diem = 215; break;
-			case 46: $diem = 220; break;
-			case 47: $diem = 230; break;
-			case 48: $diem = 240; break;
-			case 49: $diem = 245; break;
-			case 50: $diem = 250; break;
-			case 51: $diem = 255; break;
-			case 52: $diem = 260; break;
-			case 53: $diem = 270; break;
-			case 54: $diem = 275; break;
-			case 55: $diem = 280; break;
-			case 56: $diem = 290; break;
-			case 57: $diem = 295; break;
-			case 58: $diem = 300; break;
-			case 59: $diem = 310; break;
-			case 60: $diem = 315; break;
-			case 61: $diem = 320; break;
-			case 62: $diem = 325; break;
-			case 63: $diem = 330; break;
-			case 64: $diem = 340; break;
-			case 65: $diem = 345; break;
-			case 66: $diem = 350; break;
-			case 67: $diem = 360; break;
-			case 68: $diem = 365; break;
-			case 69: $diem = 370; break;
-			case 70: $diem = 380; break;
-			case 71: $diem = 385; break;
-			case 72: $diem = 390; break;
-			case 73: $diem = 395; break;
-			case 74: $diem = 400; break;
-			case 75: $diem = 405; break;
-			case 76: $diem = 410; break;
-			case 77: $diem = 420; break;
-			case 78: $diem = 425; break;
-			case 79: $diem = 430; break;
-			case 80: $diem = 440; break;
-			case 81: $diem = 445; break;
-			case 82: $diem = 450; break;
-			case 83: $diem = 460; break;
-			case 84: $diem = 465; break;
-			case 85: $diem = 470; break;
-			case 86: $diem = 475; break;
-			case 87: $diem = 480; break;
-			case 88: $diem = 485; break;
-			case 89: $diem = 490; break;
-			case 90: $diem = 495; break;
-			case 91: $diem = 495; break;
-			case 92: $diem = 495; break;
-			case 93: $diem = 495; break;
-			case 94: $diem = 495; break;
-			case 95: $diem = 495; break;
-			case 96: $diem = 495; break;
-			case 97: $diem = 495; break;
-			case 98: $diem = 495; break;
-			case 99: $diem = 495; break;
-			case 100: $diem = 495; break;
-		}
-		return $diem;
-	}
-
+	}	
 }
 
 /* End of file test.php */

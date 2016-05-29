@@ -51,6 +51,70 @@
 				);
 			}
 		}
+		public function getFixLongQuestion($where = "" ,$vt=-1,$limit=-1)
+		{	
+			$query = $this->db->select('*');
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('long_question', $limit, $vt);
+				
+			}
+			else
+			{
+				$query = $this->db->get('long_question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+
+			$long_question =$query->result_array();
+			for($i=0;$i<count($long_question);$i++)
+			{
+				
+				$question=$this->getFixQuesionChoice(array("id_long_question"=>$long_question[$i]['id']));
+				$long_question[$i]['question']=$question;
+				 
+			}
+			return $long_question;
+		}
+		public function getFixQuesionChoice($where = "" ,$vt=-1,$limit=-1)
+
+		{
+			$query = $this->db->select('*');
+
+			if($where!='')
+			{
+				$result = $this->db->where($where);
+
+			}
+			
+			
+			if($vt>=0 && $limit > 0)
+			{
+				$query = $this->db->get('question', $limit, $vt);
+			}
+			else
+			{
+				$query = $this->db->get('question');
+			}
+			//echo $this->db->last_query();
+			//echo '<br>';
+			
+			$ch=$query->result_array();
+			for($i=0;$i<count($ch);$i++)
+			{
+				$tl=$this->getAnswer($ch[$i]['id']);
+				$ch[$i]['choice']=$tl;
+				
+			}
+			
+			return $ch;
+		}
 		public function getLongQuestion($where = "" ,$vt=-1,$limit=-1)
 		{	
 			$query = $this->db->select('*');

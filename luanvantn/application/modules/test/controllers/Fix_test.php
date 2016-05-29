@@ -5,33 +5,32 @@ class Fix_test extends CI_Controller {
 
 	public function __construct()
 	{
+
 		parent::__construct();
+		$this->load->library('Mytest');
 	}
 
-	public function index ($id = null)
+	public function index()
 	{
-		$data['group']['current'] = "fulltest" ;
+		$data['group']['current'] = "fixtest" ;
+		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
+		$data['exam'] = $this->query_sql->select_array("exam", "*","",'','');
+
+		$data['template'] = 'fix_test/index';
+		$this->load->view('frontend/layout/user',isset($data)?$data:"");
+	}
+
+	public function fix ($id = null)
+	{
+		$data['group']['current'] = "fixtest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
+		$dethi = $this->query_sql->select_row("exam", "*", array ('id' => $id),'','');
 
-
-		if($this->input->post())
-		{
-			$maDeThi = $this->session->userdata('maDeThi'); 
-		}
-		else
-		{
-			if($id != NULL)
-			{
-				$maDeThi = $id;
-			}
-			else
-			{
-				$dethi = $this->query_sql->getRandomExam();
-				$maDeThi = $dethi['id'];
-				$data["audio_exam"] = $dethi['audio'] ;
-			}
-		}
+		// print_r($dethi);
+		// die;
+		$maDeThi = $id;
+		$data["audio_exam"] = $dethi['audio'] ;
 		
 		//hien thị các part 
 		$data['part1'] = $this->part1($maDeThi,0,10);
@@ -69,10 +68,14 @@ class Fix_test extends CI_Controller {
 
 			//tinh diem
 			$tongdiem = 0;
-			$diemnghe = $this->diemnghe_minitest($socaudungnghe);
-			$diemdoc = $this->diemdoc_minitest($socaudungdoc);
-			$tongdiem = ($diemnghe + $diemdoc)*2 ;
+			$diemnghe = $this->mytest->diemnghe_fulltest($socaudungnghe);
+			$diemdoc = $this->mytest->diemdoc_fulltest($socaudungdoc);
+			$tongdiem = $diemnghe + $diemdoc ;
 			$data['tongdiem'] = $tongdiem;
+
+			//huy session
+			$huysess = array("part5","part6","part7");
+			$this->session->unset_userdata($huysess);
 		}
 		//GET
 		else
@@ -91,8 +94,8 @@ class Fix_test extends CI_Controller {
 			
 			$this->session->set_userdata( $array );
 		}
-		$data['template'] = 'fix_test/testtoeic';
-		$data['title'] ='kiểm tra thử';
+		$data['template'] = 'full_test/testtoeic';
+		$data['title'] ='Đề Thi Toeic';
 		$data['my_js'] ='frontend/element/foot/my_js/toeic_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}
@@ -141,41 +144,40 @@ class Fix_test extends CI_Controller {
 
 	private function part1 ($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>1,'exam_id'=>$id_exam),$start, $limit);
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>1,'exam_id'=>$id_exam),$start, $limit);
 
 		return $result;
 	}
 	private function part2($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getQuesionChoiceNotRandChoice(array('group_id'=>2,'exam_id'=> $id_exam),$start, $limit);
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>2,'exam_id'=>$id_exam),$start, $limit);
 
 		return $result;
 	}
 	private function part3($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getLongQuestion(array('group_id'=>3,'exam_id'=>$id_exam), $start, $limit);
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>3,'exam_id'=>$id_exam), $start, $limit);
 		return $result;
 	}
 	private function part4($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getLongQuestion(array('group_id'=>4,'exam_id'=>$id_exam), $start,$limit);
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>4,'exam_id'=>$id_exam), $start,$limit);
 		return $result;
 	}
 	private function part5($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getQuesionChoiceRandom(array('group_id'=>5,'exam_id'=> $id_exam), $start, $limit);
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>5), $start, $limit);
 		return $result;
 	}
 	private function part6($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getLongQuestionRandom(array('group_id'=>6,'exam_id'=>$id_exam), $start,$limit);
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>6), $start,$limit);
 		return $result;
 	}
 	private function part7($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getRandLongQuestion_Question(array('group_id'=>7,'exam_id'=>$id_exam), $start, $limit);
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>7,'exam_id'=>$id_exam), $start, $limit);
 		return $result;
-	
 	}
 
 	private function socaudungnghe($part1,$part2,$part3,$part4)
@@ -255,7 +257,7 @@ class Fix_test extends CI_Controller {
 				foreach($q as $id)
 				{
 
-					$answer = $this->query_sql->select_row("choice","correct_answer",array('id'=>$id),'');
+					$answer = $this->query_sql->select_row("choice",'correct_answer',array('id'=>$id),'');
 					
 					if($id!=0)
 					{
@@ -281,125 +283,7 @@ class Fix_test extends CI_Controller {
 			}
 			return $diemdoc;
 	}
-	private function diemnghe_minitest($caudung)
-	{
-		switch($caudung)
-		{
-			case 0: $diem =5; break;
-			case 1: $diem =5; break;
-			case 2: $diem =5; break;
-			case 3: $diem =5; break;
-			case 4: $diem =10; break;
-			case 5: $diem =15; break;
-			case 6: $diem =20; break;
-			case 7: $diem =25; break;
-			case 8: $diem =30; break;
-			case 9: $diem =35; break;
-			case 10: $diem = 40; break;
-			case 11: $diem =45; break;
-			case 12: $diem =50; break;
-			case 13: $diem =55; break;
-			case 14: $diem =60; break;
-			case 15: $diem =65; break;
-			case 16: $diem =72.5; break;
-			case 17: $diem =77.5; break;
-			case 18: $diem =82.5; break;
-			case 19: $diem =87.5; break;
-			case 20: $diem =92.5; break;
-			case 21: $diem =97.5; break;
-			case 22: $diem =10.5; break;
-			case 23: $diem =115; break;
-			case 24: $diem =120; break;
-			case 25: $diem =125; break;
-			case 26: $diem =130; break;
-			case 27: $diem =135; break;
-			case 28: $diem =140; break;
-			case 29: $diem =147.5; break;
-			case 30: $diem =152.5; break;
-			case 31: $diem =157.5; break;
-			case 32: $diem =162.5; break;
-			case 33: $diem =167.5; break;
-			case 34: $diem =172.5; break;
-			case 35: $diem =180; break;
-			case 36: $diem =185; break;
-			case 37: $diem =190; break;
-			case 38: $diem =197.5; break;
-			case 39: $diem =202.5; break;
-			case 40: $diem =210; break;
-			case 41: $diem =215; break;
-			case 42: $diem =220; break;
-			case 43: $diem = 225; break;
-			case 44: $diem =232.5; break;
-			case 45: $diem =237.5; break;
-			case 46: $diem =242.5; break;
-			case 47: $diem =247.5; break;
-			case 48: $diem =247.5; break;
-			case 49: $diem =247.5; break;
-			case 50: $diem =247.5; break;
-			
-		}		
-		return $diem;
-	}
-	private function diemdoc_minitest($caudung)
-	{
-		switch($caudung)
-		{
-			case 0: $diem = 5; break;
-			case 1: $diem = 5; break;
-			case 2: $diem = 5; break;
-			case 3: $diem = 5; break;
-			case 4: $diem = 5; break;
-			case 5: $diem = 10; break;
-			case 6: $diem = 15; break;
-			case 7: $diem = 20; break;
-			case 8: $diem = 25; break;
-			case 9: $diem = 30; break;
-			case 10: $diem = 35; break;
-			case 11: $diem = 40; break;
-			case 12: $diem = 45; break;
-			case 13: $diem = 52.5; break;
-			case 14: $diem = 60; break;
-			case 15: $diem = 65; break;
-			case 16: $diem = 70; break;
-			case 17: $diem = 75; break;
-			case 18: $diem = 80; break;
-			case 19: $diem = 85; break;
-			case 20: $diem = 92.5; break;
-			case 21: $diem = 97.5; break;
-			case 22: $diem = 105; break;
-			case 23: $diem = 110; break;
-			case 24: $diem = 117.5; break;
-			case 25: $diem = 122.5; break;
-			case 26: $diem = 132.5; break;
-			case 27: $diem = 137.5; break;
-			case 28: $diem = 145; break;
-			case 29: $diem = 150; break;
-			case 30: $diem = 155; break;
-			case 31: $diem = 160; break;
-			case 32: $diem = 167.5; break;
-			case 33: $diem = 172.5; break;
-			case 34: $diem = 177.5; break;
-			case 35: $diem = 182.5; break;
-			case 36: $diem = 187.5; break;
-			case 37: $diem = 192.5; break;
-			case 38: $diem = 197.5; break;
-			case 39: $diem = 202.5; break;
-			case 40: $diem = 207.5; break;
-			case 41: $diem = 210; break;
-			case 42: $diem = 215; break;
-			case 43: $diem = 220; break;
-			case 44: $diem = 225; break;
-			case 45: $diem = 232.5; break;
-			case 46: $diem = 237.5; break;
-			case 47: $diem = 245; break;
-			case 48: $diem = 247.5; break;
-			case 49: $diem = 247.5; break;
-			case 50: $diem = 247.5; break;
-			
-		}
-		return $diem;
-	}
-
+	
 }
 
 /* End of file test.php */
