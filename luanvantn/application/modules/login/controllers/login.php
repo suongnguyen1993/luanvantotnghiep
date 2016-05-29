@@ -55,7 +55,14 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('password','Password','trim|required|min_length[6]');
 		return $this->form_validation->run();
 	}
-
+	public function check_login()
+	{
+		if($this->session->has_userdata('username'))
+			echo '1';
+		else
+			echo '0';
+		die;
+	}
 	public function handle_facebook_response(){
 		$fb_data=$this->facebook->validate();
 	//array to store data in database
