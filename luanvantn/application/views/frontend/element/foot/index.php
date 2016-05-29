@@ -76,5 +76,23 @@
 
 		<tr><td id="translated"></td></tr></tbody></table></div></div></span>
 	
-
+	<script type="text/javascript" >
+		$('.check_login').click(function(){
+			var href = $(this).data('href');
+			var url = '<?php echo base_url() ?>' + 'login/login/check_login';
+			$.get(url,function(result){
+				if(result == 1)
+				{
+					window.location = href;
+				}
+				else
+				{
+					if(confirm('Ban chua dang nhap, ban co muon qua trang dang nhap ?'))
+					{
+						window.location = 'login/login';
+					}
+				}
+			});
+		});
+	</script>
     

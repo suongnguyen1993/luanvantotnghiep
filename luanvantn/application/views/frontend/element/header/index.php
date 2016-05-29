@@ -40,59 +40,48 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li <?php echo (isset ($current)&& $current == 'home')? 'class="active"':NULL; ?>><a href="index.php">Trang Chủ</a></li>
-                        <li class="dropdown"><a href="practice/abc">Luyện Tập <i class="fa fa-angle-down"></i></a>
+                        <li <?php echo (isset ($current)&& $current == 'home')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
+                        <li class="dropdown"><a class='check_login'  data-href="practice/abc">Luyện Tập <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                            <?php foreach ($group as $g)
-                            {                             
-                            ?>
-                                
-                            
-
-                                <li ><a <?php echo (isset ($current) && $current == 'about' )? 'class="active"':NULL; ?> href="practice/abc/<?php echo $g['id'] ?>"><?php echo $g['name'] ?></a></li>
-
-                                <?php } ?> 
+                            <?php foreach ($group as $g){?>
+                                <li >
+                                    <a class='check_login' data-href="practice/chitiet/<?php echo $g['id']?> "><?php echo $g['name'] ?></a>
+                                </li>
+                            <?php } ?> 
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a class='check_login' data-href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li onclick="check_longin('test/dauvao')" >
-                                <a <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> >
+                                <li >
+                                <a class='check_login' <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> data-href="test/dauvao" >
                                 Kiểm tra đầu vào
                                 </a>
                                 </li>
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> href="test/full_test">Full Test</a>
+                                <a class='check_login' <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> data-href="test/full_test">Full Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> href="test/mini_test">Mini Test</a>
+                                <a class='check_login'  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> data-href="test/mini_test">Mini Test</a>
+                                </li>
+                                <li>
+                                <a class='check_login'  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> data-href="test/fix_test/index/<?php ?>">Fix Test</a>
                                 </li>
                                 
                             </ul>
                         </li>
-                         <li class="dropdown <?php echo (isset ($current)&& $current == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a href="test/full_test" >Ôn Tập<i class="fa fa-angle-down"></i></a>
+                         <li class="dropdown <?php echo (isset ($current)&& $current == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a class='check_login' data-href="review/review" >Ôn Tập<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'ReviewQuestion')? 'class=" active"':NULL; ?> href="#">Ôn Câu Hỏi</a>
+                                <a class='check_login' <?php echo (isset ($current)&& $current == 'ReviewQuestion')? 'class=" active"':NULL; ?> data-href="review/review">Ôn Câu Hỏi</a>
                                 </li>
                                 <li >
-                                <a <?php echo (isset ($current)&& $current == 'vocabulory')? 'class=" active"':NULL; ?> href="#">Ôn Từ Vựng</a>
+                                <a class='check_login' <?php echo (isset ($current)&& $current == 'vocabulory')? 'class=" active"':NULL; ?> data-href="review/review">Ôn Từ Vựng</a>
                                 </li>
                                                                 
                             </ul>
                         </li>
-                        <li class="dropdown"><a href="#">Portfolio <i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li <?php echo (isset ($current)&& $current == 'portfolio')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfolio">Portfolio Default</a></li>
-                                <li <?php echo (isset ($current)&& $current == 'portfolio4')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfolio4">Isotope 3 Columns + Right Sidebar</a></li>
-                                <li <?php echo (isset ($current)&& $current == 'portfolio1')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfolio1">3 Columns + Right Sidebar</a></li>
-                                <li <?php echo (isset ($current)&& $current == 'portfolio2')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfolio2">3 Columns + Left Sidebar</a></li>
-                                <li <?php echo (isset ($current)&& $current == 'portfolio3')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfolio3">2 Columns</a></li>
-                                <li <?php echo (isset ($current)&& $current == 'portfoliodetails')? 'class=" active"':NULL; ?>><a href="user/portfolio/portfoliodetails">Portfolio Details</a></li>
-                            </ul>
-                        </li>                         
-                        <li <?php echo (isset ($current)&& $current == 'shortcodes')? 'class="active"':NULL; ?>><a href="user/shortcode/shortcodes ">Shortcodes</a></li>                    
+                  
                     </ul>
                 </div>
                 <div class="search">
