@@ -27,7 +27,7 @@
 			{
 
 			 $.ajax({
-					url: '/luanvantotnghiep/luanvantn/translate/translate/index/'+s,		
+					url: '<?php base_url() ?>translate/translate/index/'+s,		
 					data: {},			    	    	    
 					success: function(data){
 						if(data!=undefined)
