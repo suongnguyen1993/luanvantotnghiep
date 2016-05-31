@@ -2862,3 +2862,6 @@ span.stButton_gradient,
    margin-top: 15px;
   text-align: right; 
 }
+.check_login {
+  cursor: pointer;
+}

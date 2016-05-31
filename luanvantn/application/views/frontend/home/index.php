@@ -4,27 +4,27 @@
                 <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <a href="# "><img src="<?php echo base_url(); ?>/public/user/images/home/icon1.png" alt=""></a>
+                            <a class='check_login'  data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/icon1.png" alt=""></a>
                         </div>
-                        <a href="#"><h2>Luyện Thi</h2></a>
+                        <a class='check_login'  data-href="test/test"><h2>Luyện Thi</h2></a>
                         
                     </div>
                 </div>
                 <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-                            <a href="#"><img src="<?php echo base_url(); ?>/public/user/images/home/icon2.png" alt=""></a>
+                            <a href="eview/index"><img src="<?php echo base_url(); ?>/public/user/images/home/icon2.png" alt=""></a>
                         </div>
-                        <a href="#"><h2>Ôn Bài</h2></a>
+                        <a class='check_login'  data-href="review/index"><h2>Ôn Bài</h2></a>
                         
                     </div>
                 </div>
                 <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                            <a href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/icon3.png" alt=""></a>
+                            <a class='check_login' data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/icon3.png" alt=""></a>
                         </div>
-                        <a href="test/test"><h2>Làm Bài Kiểm Tra</h2></a>
+                        <a class='check_login' data-href="test/test"><h2>Làm Bài Kiểm Tra</h2></a>
                         
                     </div>
                 </div>

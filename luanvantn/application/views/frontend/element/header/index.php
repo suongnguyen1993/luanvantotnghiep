@@ -51,7 +51,7 @@
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a class='check_login' data-href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
                                 <a class='check_login' <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> data-href="test/dauvao" >
@@ -84,13 +84,6 @@
                   
                     </ul>
                 </div>
-                <div class="search">
-                    <form role="form">
-                        <i class="fa fa-search"></i>
-                        <div class="field-toggle">
-                            <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                        </div>
-                    </form>
-                </div>
+                
             </div>
         </div>

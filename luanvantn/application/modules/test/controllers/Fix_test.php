@@ -166,12 +166,12 @@ class Fix_test extends CI_Controller {
 	}
 	private function part5($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>5), $start, $limit);
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>5,'exam_id'=>$id_exam), $start, $limit);
 		return $result;
 	}
 	private function part6($id_exam = NULL,$start = "", $limit = "")
 	{
-		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>6), $start,$limit);
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>6,'exam_id'=>$id_exam), $start,$limit);
 		return $result;
 	}
 	private function part7($id_exam = NULL,$start = "", $limit = "")

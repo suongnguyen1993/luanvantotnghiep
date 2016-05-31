@@ -74,8 +74,10 @@
     			
     			if(selectedText != "" && translatedText !="")
     			{
+
     				clickingSaved = true;
-    				url = '';
+    				url = '<?php base_url() ?>vocabulary/voca/index/'+ selectedText +'/'+ translatedText;
+    				// sual lai post
 	    			$.get(url,function(result){
 						if(result == 1)
 						{
@@ -87,10 +89,7 @@
 						}
 						clickingSaved = false;	
 					});
-    			}
-    
-
-    			
+    			}	
     		});
     		document.onmouseup =dich;
 			document.ondblclick=dich;

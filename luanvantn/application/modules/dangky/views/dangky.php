@@ -30,7 +30,7 @@
                                     Nhập lại mật khẩu (*):<input type="password" name="repassword" class="form-control" required="required" placeholder="RePassword">
                                 </div>                          
                                 <div class="form-group">
-                                    <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                                    <input type="submit" name="submit" class="btn btn-submit" value="Đăng Ký">
                                 </div>
                             </form>
                         </div>

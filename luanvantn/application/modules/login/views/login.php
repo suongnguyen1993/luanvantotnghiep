@@ -22,7 +22,7 @@
                                 
                               
                                 <div class="form-group">
-                                    <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                                    <input type="submit" name="submit" class="btn btn-submit" value="Đăng Nhập">
                                 </div>
                                 <div class="hoac">
                                     Đăng nhập bằng Facebook:
@@ -33,6 +33,8 @@
                                 <div class="fb">
                                 <a href="<?=$facebook_login_url?>"class="waves-effect waves-light btn indigo darken-3"><i class="fa fa-facebook left"></i> Facebook login</a>
                                 </div>
+                               
+
                                 <?php } ?>
                             </form>
 
