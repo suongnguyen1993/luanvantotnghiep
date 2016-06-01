@@ -3,12 +3,25 @@
                      <div class="row">
                     
                   
-<?php
-		
-				$dem1 = 69;
-				 foreach ($part6 as $pIndex => $hoi)
-                                          {
-                                          	?>
+					<?php
+							
+					$dem1 = 69;
+					foreach ($part6 as $pIndex => $hoi)
+					{
+
+						$long_content = $hoi['long_content'];
+
+                        $n=$dem1 +1;
+                        $i=strpos($long_content,"___");
+
+                        while($i!==false)
+                        {
+                            
+                            $long_content=substr_replace($long_content," __(".$n++.")__ ",$i,3);
+                            $i=strpos($long_content,"___");
+                       	}
+					                                          	
+					 ?>
                 
                 <div class="col-sm-12 blog-padding-right" >
                 
@@ -24,7 +37,7 @@
                                    
 				<?php 
 				
-				echo  $hoi['long_content'];
+				echo  $long_content;
 				?>
               
                 </h2>

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>/public/user/js/main.js"></script>
     <!-- dich nghia tu vựng -->
     <script language="javascript">
-    	var clickingSaved = false;
+    	
 
     	var selectedText = '';
     	var translatedText = '';
@@ -18,7 +18,7 @@
 
 		function dich(e)
 		{
-			if(clickingSaved) return;
+			
 
 
 			$('#translation').hide();
@@ -77,7 +77,8 @@
 
     				clickingSaved = true;
     				url = '<?php base_url() ?>vocabulary/voca/index/'+ selectedText +'/'+ translatedText;
-    				// sual lai post
+    				alert(url);
+    				
 	    			$.get(url,function(result){
 						if(result == 1)
 						{
@@ -103,7 +104,7 @@
 
 		<tr><td id="translated"></td></tr></tbody></table>
 
-		<div id="saved" class="toolbar"><button id="btnSaved" type="button" class="btn btn-sx btn-primary">Luu</button></div>
+		<div id="saved" class="toolbar"><button id="btnSaved" type="button" class="btn btn-sx btn-primary">Lưu</button></div>
 		</div></div></span>
 	
 	<script type="text/javascript" >

@@ -170,13 +170,7 @@ class Cauhoi extends CI_Model {
 			$result = $this->db->get()->row_array();
 			return $result;
 		}
-		public function getid_user($username)
-		{
-			$query = $this->db->select('id')->where('username',$username)->get('user');
-			
-			
-			return $query->result_array();
-		}
+	
 		// public function kt_id()
 		// {
 		// 	$query = $this->db->select('question_id')->get('false_statements');

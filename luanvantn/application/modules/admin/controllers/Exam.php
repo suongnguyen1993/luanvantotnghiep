@@ -20,7 +20,7 @@ class Exam extends CI_Controller {
 		{
 			$search = $this->input->post("search");
 			$data['exam'] = $this->query_sql
-			->select_array("exam","*","","",array("info" =>"$search"));
+			->select_array("exam","*","","",array("name" =>"$search"));
 		}
 		else
 		{

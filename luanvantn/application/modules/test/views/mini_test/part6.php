@@ -12,7 +12,7 @@
                                 while($i!==false)
                                 {
                                     
-                                    $long_content=substr_replace($long_content," (".$n++.") ",$i,3);
+                                    $long_content=substr_replace($long_content," __(".$n++.")__ ",$i,3);
                                     $i=strpos($long_content,"___");
                                 }
                                
