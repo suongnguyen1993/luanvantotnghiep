@@ -16,8 +16,11 @@
             <div class="row">
               <div class="col-md-3 col-sm-5">
                     <div class="sidebar blog-sidebar">
+
+                    <?php if (isset($left_menu) && !empty($left_menu))
+                     { $this->load->view($left_menu,isset($data)?$data:NULL);}
+                    ?>    
                       
-                        <?php $this->load->view('frontend/element/item/left-menu'); ?>
                        
                     </div>
                 </div>
@@ -44,6 +47,9 @@
 	        <?php $this->load->view('frontend/element/footer/index'); ?>
 	    </footer>
 	    <?php $this->load->view('frontend/element/foot/index'); ?>
+  <!-- my js -->
+      <?php if (isset($my_js) && !empty($my_js)){ $this->load->view($my_js,isset($data)?$data:NULL);}?>
+
 	
 </body>
 </html>

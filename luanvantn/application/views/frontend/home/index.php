@@ -1,7 +1,7 @@
  <section id="services">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="col-sm-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
                             <a class='check_login'  data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/icon1.png" alt=""></a>
@@ -10,7 +10,7 @@
                         
                     </div>
                 </div>
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div class="col-sm-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
                             <a href="eview/index"><img src="<?php echo base_url(); ?>/public/user/images/home/icon2.png" alt=""></a>
@@ -19,12 +19,21 @@
                         
                     </div>
                 </div>
-                <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+                <div class="col-sm-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
                             <a class='check_login' data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/icon3.png" alt=""></a>
                         </div>
                         <a class='check_login' data-href="test/test"><h2>Làm Bài Kiểm Tra</h2></a>
+                        
+                    </div>
+                </div>
+                 <div class="col-sm-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+                    <div class="single-service">
+                        <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+                            <a class='check_login' data-href="index"><img src="<?php echo base_url(); ?>/public/user/images/home/icon3.png" alt=""></a>
+                        </div>
+                        <a class='check_login' data-href="index"><h2>Từ Điển Cá Nhân</h2></a>
                         
                     </div>
                 </div>
@@ -44,7 +53,7 @@
                         </div>
                         <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
                             <div class="tour-button">
-                                <a href="#" class="btn btn-common">TAKE THE TOUR TOEIC4U</a>
+                                <a href="#" class="btn btn-common">TAKE THE TOUR I-TOEIC</a>
                              </div>
                         </div>
                     </div>
@@ -86,7 +95,7 @@
                 </div>
                  <div class="single-features">
                     <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2>Từ Vựng</h2>
+                        <h2>Từ Điển Cá Nhân</h2>
                         <P>Mollit eiusmod id chuck turducken laboris meatloaf pork loin tenderloin swine. Pancetta excepteur fugiat strip steak tri-tip. Swine salami eiusmod sint, ex id venison non. Fugiat ea jowl cillum meatloaf.</P>
                     </div>
                     <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">

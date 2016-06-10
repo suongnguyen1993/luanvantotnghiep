@@ -4,7 +4,7 @@
      <?php foreach ($group as $g){?>
 
     <li <?php echo (isset ($current)&& $current == $g['id'])? 'class="active"':NULL; ?> >
-        <a href="practice/chitiet/<?php echo $g['id'] ?>">
+        <a href="review/review/index/<?php echo $g['id'] ?>">
         <?php echo $g['name']?>
             
         </a>

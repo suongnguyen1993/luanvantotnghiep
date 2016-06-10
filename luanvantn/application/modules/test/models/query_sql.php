@@ -17,6 +17,7 @@
 			}
 		}
 
+		
 		function edit($table = '', $data = NULL, $where = NULL){
 			$query = $this->db->where($where)->update($table, $data);
 			$flag = $this->db->affected_rows();

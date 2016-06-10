@@ -6,6 +6,8 @@ class Dangky extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('facebook');
+
+
 	}
 
 	public function index()
@@ -31,11 +33,15 @@ class Dangky extends CI_Controller {
 						'password' => md5($password),
 						'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 						);
-				$this->query_sql->add('user',$user);
-				if($this->query_sql->add('user',$user == 0))
+				$a = $this->query_sql->add('user',$user);
+				if($a == 0)
 				{
 					$data['error'] = 'lỗi SQL';
-				}			
+				}
+				else
+				{
+					$data['error'] = 'Đăng nhập thành công!';
+				}		
 			}
 		}
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");	
@@ -53,7 +59,7 @@ class Dangky extends CI_Controller {
 	}
 
 
-	private function check_username()
+	public function check_username()
 	{
 
      $post_username = $this->input->post('username');
@@ -76,6 +82,7 @@ class Dangky extends CI_Controller {
 		else 
 		{
 			$this->form_validation->set_message('check_username', 'Username đã tồn tại');
+
 			return false;
 		}    
 	}

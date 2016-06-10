@@ -15,6 +15,8 @@ class Practice extends CI_Controller {
 		$data['title']='Practice';
 		$data['content']='Practice with us now.';
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
+
+		
 		$this->load->view('frontend/layout/practice',$data);
 	}
 
@@ -24,14 +26,14 @@ class Practice extends CI_Controller {
 		$data['title']='Luyện tập';
 		$data['content']='Hãy luyện tập Toeic với chúng tôi.';
 		$data['current1']='practice';
+		$data['left_menu']='frontend/element/item/left-menu';
 		$data['current']=$id;
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 		if($this->session->has_userdata('username'))
 		{
 	
 				$id_u= $this->session->userdata('id');
-		}
-		// part1
+		
 		if(isset($id) && $id == 1)
 		{
 			
@@ -55,13 +57,17 @@ class Practice extends CI_Controller {
 					{
 
 						$qid=$data['part1'][$i]['id'];
+						$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+							'question_id' => $qid),"");
+						if(empty($check_id_false))
+						{
 						
 							$data['them'] = array(
-						'user_id' => $id_u, 
-						'question_id'  => 	$qid	
-						);
-						
+							'user_id' => $id_u, 
+							'question_id'  => 	$qid	
+							);
 						$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+						}
 						
 					// add question vào false_statement
 						
@@ -79,13 +85,19 @@ class Practice extends CI_Controller {
 									if($tl['correct_answer']==0)
 									{
 										$qid=$data['part1'][$i]['id'];
-									// add question vào false_statement
-										$data['them'] = array(
-										'user_id' => $id_u, 
-										'question_id'  => 	$qid	
-										);
-									
-										$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+
+										$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+											'question_id' => $qid),"");
+										if(empty($check_id_false))
+										{
+										// add question vào false_statement
+											$data['them'] = array(
+											'user_id' => $id_u, 
+											'question_id'  => 	$qid	
+											);
+										
+											$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+										}
 									}
 								}
 							}
@@ -94,6 +106,7 @@ class Practice extends CI_Controller {
 					}//end else
 
 				}
+				$this->session->unset_userdata('part1');
 
 			}
 		
@@ -107,7 +120,7 @@ class Practice extends CI_Controller {
 
 			// part2
 			if (isset($id) && $id == 2)
-		{
+			{
 			 $lisques = $this->Cauhoi->getlistening(array('group_id'=>$id));
         	$data['part2']= $lisques;
 			$data['template'] = 'part2';
@@ -126,13 +139,21 @@ class Practice extends CI_Controller {
 					{
 
 						$qid=$data['part2'][$i]['id'];
-						$data['them'] = array(
-						'user_id' => $id_u, 
-						'question_id'  => 	$qid	
-						);
+
+						$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+							'question_id' => $qid),"");
+						if(empty($check_id_false))
+						{
+
+							$data['them'] = array(
+							'user_id' => $id_u, 
+							'question_id'  => 	$qid	
+							);
 						
-						$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
-						}
+						
+							$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);
+						}	
+					}
 					else 
 					{
 						$id1=$data['part2'][$i]['user_choice'];//lấy id_userchoice
@@ -147,12 +168,18 @@ class Practice extends CI_Controller {
 									{
 										$qid=$data['part2'][$i]['id'];
 									// add question vào false_statement
-										$data['them'] = array(
-										'user_id' => $id_u, 
-										'question_id'  => 	$qid	
-										);
-									
-										$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+
+										$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+											'question_id' => $qid),"");
+										if(empty($check_id_false))
+										{
+											$data['them'] = array(
+											'user_id' => $id_u, 
+											'question_id'  => 	$qid	
+											);
+										
+											$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+										}
 									}
 								}
 							}
@@ -161,7 +188,7 @@ class Practice extends CI_Controller {
 						 
 					}//end else
 				}
-				  
+				$this->session->unset_userdata('part2');  
 			}
 
 			else{
@@ -226,13 +253,19 @@ class Practice extends CI_Controller {
 				//add cau sai
 				foreach ($xl_long_false as $idl)
 				{
-					$false=array(
-						'id'=>'',
-						'long_question_id'=> $idl,
-						'user_id'=> $id_u
-						);
-					$this->Cauhoi->addfalsestatement('false_statements',$false);
+
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,'long_question_id' => $idl),"");
+					if(empty($check_id_false))
+					{
+						$false=array(
+							'id'=>'',
+							'long_question_id'=> $idl,
+							'user_id'=> $id_u
+							);
+						$this->Cauhoi->addfalsestatement('false_statements',$false);
+					}
 				}
+				$this->session->unset_userdata('part3');
 
 
 			}
@@ -294,13 +327,18 @@ class Practice extends CI_Controller {
 				//add cau sai
 				foreach ($xl_long_false as $idl)
 				{
-					$false=array(
-						'id'=>'',
-						'long_question_id'=> $idl,
-						'user_id'=> $id_u
-						);
-					$this->Cauhoi->addfalsestatement('false_statements',$false);
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,'long_question_id' => $idl),"");
+					if(empty($check_id_false))
+					{
+						$false=array(
+							'id'=>'',
+							'long_question_id'=> $idl,
+							'user_id'=> $id_u
+							);
+						$this->Cauhoi->addfalsestatement('false_statements',$false);
+					}
 				}
+				$this->session->unset_userdata('part4');
 
 			}
 			else
@@ -353,12 +391,17 @@ class Practice extends CI_Controller {
 										{
 											$qid=$data['part5'][$i]['id'];
 										// add question vào false_statement
-											$data['them'] = array(
-											'user_id' => $id_u, 
-											'question_id'  => 	$qid	
-											);
-										
-											$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+											$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+											'question_id' => $qid),"");
+											if(empty($check_id_false))
+											{
+												$data['them'] = array(
+												'user_id' => $id_u, 
+												'question_id'  => 	$qid	
+												);
+											
+												$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+											}	
 										}
 									}
 								}
@@ -367,7 +410,7 @@ class Practice extends CI_Controller {
 						}//end else
 						
 					}
-					  
+					$this->session->unset_userdata('part5');  
 				}
 
 				else
@@ -428,13 +471,18 @@ class Practice extends CI_Controller {
 				//add cau sai
 				foreach ($xl_long_false as $idl)
 				{
-					$false=array(
-						'id'=>'',
-						'long_question_id'=> $idl,
-						'user_id'=> $id_u
-						);
-					$this->Cauhoi->addfalsestatement('false_statements',$false);
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,'long_question_id' => $idl),"");
+					if(empty($check_id_false))
+					{
+						$false=array(
+							'id'=>'',
+							'long_question_id'=> $idl,
+							'user_id'=> $id_u
+							);
+						$this->Cauhoi->addfalsestatement('false_statements',$false);
+					}
 				}
+				$this->session->unset_userdata('part6');
 			}
 			else
 			{
@@ -493,13 +541,19 @@ class Practice extends CI_Controller {
 				//add cau sai
 				foreach ($xl_long_false as $idl)
 				{
-					$false=array(
-						'id'=>'',
-						'long_question_id'=> $idl,
-						'user_id'=> $id_u
-						);
-					$this->Cauhoi->addfalsestatement('false_statements',$false);
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,'long_question_id' => $idl),"");
+					if(empty($check_id_false))
+					{
+						$false=array(
+							'id'=>'',
+							'long_question_id'=> $idl,
+							'user_id'=> $id_u
+							);
+						$this->Cauhoi->addfalsestatement('false_statements',$false);
+					}
 				}
+
+				$this->session->unset_userdata('part7');
 			}
 			else
 			{
@@ -507,6 +561,9 @@ class Practice extends CI_Controller {
 			}	
 		
 	}
+}
+
+$data['my_js'] ='frontend/element/foot/my_js/translator_js';
 $this->load->view('frontend/layout/practice',isset($data)?$data:"");
 }
 

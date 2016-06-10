@@ -89,22 +89,40 @@ class Full_test extends CI_Controller {
 				
 				//luu cau sai
 				foreach ($short_false_answer as  $value) {
-					$false_statements = array(
-						'id' 		=> "",
-						'user_id'	=> $id_user,
-						'question_id' => $value
-						);
-					 $this->query_sql->add('false_statements',$false_statements);
+
+					$a = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_user,
+						'question_id' => $value),"");
+		
+
+					if(empty($a))
+					{
+						$false_statements = array(
+							
+							'user_id'	=> $id_user,
+							'question_id' => $value
+							);
+						 $this->query_sql->add('false_statements',$false_statements);	
+					}
+				
 				}
 				foreach ($XL_long_false_answer as  $value) {
+					$a = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_user,
+						'long_question_id' => $value),"");
+
+					if(empty($a))
+					{
 					$false_statements = array(
-						'id' 		=> "",
+						
 						'user_id'	=> $id_user,
 						'long_question_id' => $value
 						);
 					 $this->query_sql->add('false_statements',$false_statements);
+					}
 				}
 			}
+
+			$huysess = array("part1","part2","part3","part4","part5","part6","part7");
+			$this->session->unset_userdata($huysess);
 		}
 		//GET
 		else

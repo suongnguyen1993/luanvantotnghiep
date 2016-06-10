@@ -10,29 +10,17 @@ class Cauhoi extends CI_Model {
 	/* viet ham su dung bien where*/
 	//lay long_question va question thuoc long_question
 	
-	public function getLongQuestion($where = "" ,$vt=-1,$limit=-1)
+	public function getLongQuestion($where = "")
 	
 		{	
 		
-			//lay long_question
-			$query = $this->db->select('*');//lay thong tin sua lai o day
-			$this->db->order_by('id','RANDOM');
+			$this->db->select('*');
+			$this->db->from('false_statements');
+			$this->db->join('long_question', 'false_statements.long_question_id = long_question.id');
+			$this->db->where($where);
+			$this->db->order_by('long_question_id','RANDOM');
 			$this->db->limit(4);
-			
-			if($where!='')
-			{
-				$result = $this->db->where($where);
-				
-			}
-			if($vt>=0 && $limit > 0)
-			{
-				$query = $this->db->get('long_question', $limit, $vt);
-				
-			}
-			else
-			{
-				$query = $this->db->get('long_question');
-			}
+			$query = $this->db->get();
 			//da lay duoc long_question
 			$long_question =$query->result_array();
 			for($i=0;$i<count($long_question);$i++)
@@ -78,13 +66,14 @@ class Cauhoi extends CI_Model {
 	
 	public function getlistening($where = "")
 	{
-		
-		$query = $this->db->select('*')->where($where);//o day nua lay cai can thiet thoi
-		$this->db->order_by('id','RANDOM');
+		$this->db->select('*');
+		$this->db->from('false_statements');
+		$this->db->join('question', 'false_statements.question_id = question.id');
+
+		$this->db->where($where);
+		$this->db->order_by('question_id','RANDOM');
 		$this->db->limit(10,0);
-		
-			$query = $this->db->get('question');
-		
+		$query = $this->db->get();
 		$ch=$query->result_array();
 		
 		for($i=0;$i<count($ch);$i++)
@@ -142,11 +131,20 @@ class Cauhoi extends CI_Model {
 			$query = $this->db->insert($table, $data);
 			$flag = $this->db->affected_rows();
 			if($flag > 0){
-				return 1;
+				$this->db->select_max('id');
+				$max_id = $this->db->get($table)->row_array();
+				return array(
+					'type'		=> 'Successful',
+					'message'	=> 'Adding successful data!',
+					'id'		=> $max_id		
+				);
 			}
 			else
 			{
-				return 0;
+				return array(
+					'type'		=> 'Error',
+					'message'	=> 'Adding data failed!',
+				);
 			}
 		}
 	

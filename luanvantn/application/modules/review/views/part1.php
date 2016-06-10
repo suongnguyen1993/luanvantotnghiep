@@ -153,11 +153,10 @@
                             <hr >
                         </div>
                         <?php } // end foreach part1?>
-                        <p class="clear-fix" align="center">
+                        <p align="center">
                           <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
                             
-                        </p>
-                        
+                            </p>
                           </form>
                     
   

@@ -14,7 +14,7 @@ class Mini_test extends CI_Controller {
 		$data['group']['current'] = "minitest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
-
+		
 		//POST
 		if($this->input->post())
 		{
@@ -56,23 +56,46 @@ class Mini_test extends CI_Controller {
 				$xl_trung = array();
 
 				$XL_long_false_answer = $this->XL_long_false_answer($long_false_answer,$xl_trung); 
-				
+
+
 				//luu cau sai
-				foreach ($short_false_answer as  $value) {
-					$false_statements = array(
-						'id' 		=> "",
-						'user_id'	=> $id_user,
-						'question_id' => $value
-						);
-					 $this->query_sql->add('false_statements',$false_statements);
+				foreach ($short_false_answer as  $value) 
+				{
+
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_user,
+						'question_id' => $value),"");
+		
+
+					if(empty($check_id_false))
+					{
+						$false_statements = array(
+							
+							'user_id'	=> $id_user,
+							'question_id' => $value
+							);
+						 $this->query_sql->add('false_statements',$false_statements);	
+					}
+				
+					
+					
 				}
-				foreach ($XL_long_false_answer as  $value) {
+
+
+				foreach ($XL_long_false_answer as  $value) 
+				{
+
+					$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_user,
+						'long_question_id' => $value),"");
+
+					if(empty($check_id_false))
+					{
 					$false_statements = array(
-						'id' 		=> "",
+						
 						'user_id'	=> $id_user,
 						'long_question_id' => $value
 						);
 					 $this->query_sql->add('false_statements',$false_statements);
+					}
 				}
 			}
 
@@ -421,7 +444,7 @@ class Mini_test extends CI_Controller {
 			return $diemdoc;
 	}
 
-
+	
 	
 	
 
