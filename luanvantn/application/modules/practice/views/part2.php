@@ -4,7 +4,7 @@
                    
          
 								<?php 
-								$dem = 11;
+								$dem = 1;
 							
 								foreach($part2 as  $index => $q)
                              {
@@ -140,9 +140,11 @@
                         </div>
                         <?php }?>  
                      
-                        <p align="center">
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                           </p>
+                       <p class="clear-fix" align="center">
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                        </p>
                             
                           </form>
                     

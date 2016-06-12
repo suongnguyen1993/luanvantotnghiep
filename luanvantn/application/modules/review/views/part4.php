@@ -3,7 +3,7 @@
                     <div class="col-sm-12 blog-padding-right" >
                         <?php
                             
-                                $dem1 = 32; 
+                                $dem1 = 0; 
                                     
                                           foreach ($part4 as $pIndex => $hoi)
                                           {

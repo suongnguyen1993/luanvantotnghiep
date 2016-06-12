@@ -24,7 +24,14 @@ class Review extends CI_Controller {
 			$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id,'user_id'=>$id_u));
 		
         	$data['part1']= $lisPhoto;
-			$data['template'] = 'part1';
+			if(empty($lisPhoto))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part1';
+        	}
 			if($this->input->post())
 			{
 				$data['part1'] = $this->session->userdata('part1');
@@ -75,7 +82,14 @@ class Review extends CI_Controller {
 	{
 		$lisques = $this->Cauhoi->getlistening(array('group_id'=>$id,'user_id'=>$id_u));
     	$data['part2']= $lisques;
-		$data['template'] = 'part2';
+		if(empty($lisques))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part2';
+        	}
 		if($this->input->post())
 		{
 			$data['part2'] = $this->session->userdata('part2');
@@ -127,7 +141,14 @@ class Review extends CI_Controller {
 	{
 		 $lisshort = $this->Cauhoi->getLongQuestion(array('group_id'=>$id,'user_id'=>$id_u));
         $data['part3']= $lisshort;
-		$data['template'] = 'part3';
+		if(empty($lisshort))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part3';
+        	}
 		if($this->input->post())
 		{
 			$data['part3'] = $this->session->userdata('part3');
@@ -200,9 +221,17 @@ class Review extends CI_Controller {
 
 	if (isset($id) && $id == 4)
 		{
+			
 			$shorttalk = $this->Cauhoi->getLongQuestion(array('group_id'=>$id,'user_id'=>$id_u));
         	$data['part4']= $shorttalk;
-			$data['template'] = 'part4';
+			if(empty($shorttalk))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part4';
+        	}
 			if($this->input->post())
 			{
 				$data['part4'] = $this->session->userdata('part4');
@@ -270,7 +299,14 @@ class Review extends CI_Controller {
 		{
 			$readsence = $this->Cauhoi->getlistening(array('group_id'=>$id,'user_id'=>$id_u));
       		$data['part5']= $readsence;
-			$data['template'] = 'part5';
+			if(empty($readsence))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part5';
+        	}
 			if($this->input->post())
 			{
 				$data['part5'] = $this->session->userdata('part5');
@@ -294,7 +330,7 @@ class Review extends CI_Controller {
 								{
 									if($tl['correct_answer']==1)
 									{
-										$qid=$data['part1'][$i]['id'];
+										$qid=$data['part5'][$i]['id'];
 										$this->query_sql->del('false_statements',array('user_id' => $id_u, 'question_id' => $qid));
 									}
 								}
@@ -318,7 +354,14 @@ class Review extends CI_Controller {
 		{
 			$shorttalk = $this->Cauhoi->getLongQuestion(array('group_id'=>$id,'user_id'=>$id_u));
         	$data['part6']= $shorttalk;
-			$data['template'] = 'part6';
+			if(empty($shorttalk))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part6';
+        	}
 			if($this->input->post())
 			{
 				$data['part6'] = $this->session->userdata('part6');
@@ -385,7 +428,14 @@ class Review extends CI_Controller {
 		{
 			$shorttalk = $this->Cauhoi->getLongQuestion(array('group_id'=>$id,'user_id'=>$id_u));
         	$data['part7']= $shorttalk;
-			$data['template'] = 'part7';
+			if(empty($shorttalk))
+        	{
+        		$data['template'] = 'error';
+        	}
+
+        	else{
+        		$data['template'] = 'part1';
+        	}
 			if($this->input->post())
 			{
 				$data['part7'] = $this->session->userdata('part7');

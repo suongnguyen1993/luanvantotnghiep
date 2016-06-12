@@ -16,6 +16,8 @@ class Practice extends CI_Controller {
 		$data['content']='Practice with us now.';
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 
+
+
 		
 		$this->load->view('frontend/layout/practice',$data);
 	}
@@ -39,9 +41,13 @@ class Practice extends CI_Controller {
 			
 			$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id));
         	$data['part1']= $lisPhoto;
-			$data['template'] = 'part1';
+
+        	$data['template'] = 'part1';
+        	
+			
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part1'] = $this->session->userdata('part1');
 
 				$postPart = $this->input->post()['part1'];
@@ -126,6 +132,7 @@ class Practice extends CI_Controller {
 			$data['template'] = 'part2';
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part2'] = $this->session->userdata('part2');
 				
 				$postPart = $this->input->post()['part2'];
@@ -206,6 +213,7 @@ class Practice extends CI_Controller {
 			$data['template'] = 'part3';
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part3'] = $this->session->userdata('part3');
 
 				$postPart = $this->input->post()['part3'];
@@ -284,6 +292,7 @@ class Practice extends CI_Controller {
 			$data['template'] = 'part4';
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part4'] = $this->session->userdata('part4');
 
 				$postPart = $this->input->post()['part4'];
@@ -357,6 +366,7 @@ class Practice extends CI_Controller {
 				$data['template'] = 'part5';
 				if($this->input->post())
 				{
+					$data['submit'] = 1;
 					$data['part5'] = $this->session->userdata('part5');
 					
 					$postPart = $this->input->post()['part5'];
@@ -430,6 +440,7 @@ class Practice extends CI_Controller {
 			$data['template'] = 'part6';
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part6'] = $this->session->userdata('part6');
 
 				$postPart = $this->input->post()['part6'];
@@ -500,6 +511,7 @@ class Practice extends CI_Controller {
 			$data['template'] = 'part7';
 			if($this->input->post())
 			{
+				$data['submit'] = 1;
 				$data['part7'] = $this->session->userdata('part7');
 
 				$postPart = $this->input->post()['part7'];
@@ -580,6 +592,7 @@ $this->load->view('frontend/layout/practice',isset($data)?$data:"");
 		}
 		return $XL_array;
 	}
+
 	
 }
 

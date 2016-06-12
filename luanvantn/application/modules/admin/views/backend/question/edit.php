@@ -61,16 +61,24 @@
 	    <div class="radio">
 
 	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="1" checked="checked">
-	                          Easy
+	        <input type="radio" name="level" id="optionsRadios1" value="100" <?php if($question['level'] == 100) { echo" checked='checked'";} ?>>
+	                         Very Easy.
 	        </label> <br>
 	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="2">
-	        	Medium
+	        <input type="radio" name="level" id="optionsRadios1" value="250" <?php if($question['level'] == 250) { echo" checked='checked'";} ?> >
+	        	 Easy.
 	        </label><br>
 	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="3">
-	           Difficult
+	        <input type="radio" name="level" id="optionsRadios1" value="400" <?php if($question['level'] == 400) { echo" checked='checked'";} ?> >
+	           Medium.
+	        </label><br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="500" <?php if($question['level'] == 500) { echo" checked='checked'";} ?> >
+	           Hard.
+	        </label><br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="700"  <?php if($question['level'] == 700) { echo" checked='checked'";} ?>>
+	           Very Hard.
 	        </label>
 	     </div>	
 

@@ -4,7 +4,7 @@
                    
          
 								<?php 
-								$dem = 11;
+								$dem = 1;
 							
 								foreach($part2 as  $index => $q)
                              {

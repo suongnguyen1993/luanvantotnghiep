@@ -3,7 +3,7 @@
                   <div class="row" >
 <?php
 		
-				$dem1 = 81;
+				$dem1 = 1;
 				 foreach ($part7 as $pIndex => $hoi)
                                           {
                                           	?>

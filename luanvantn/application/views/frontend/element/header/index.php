@@ -40,7 +40,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li <?php echo (isset ($current)&& $current == 'home')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
+                        <li <?php echo (isset ($current) && $current == 'practice')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
                         <li class="dropdown"><a>Luyện Tập <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                             <?php foreach ($group as $g){?>
@@ -72,7 +72,7 @@
                         </li>
                          <li class="dropdown <?php echo (isset ($current)&& $current == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a class='check_login' data-href="review/review/index/1" >Ôn Câu Hỏi</i></a>
                         </li>
-                        <li class="dropdown <?php echo (isset ($current)&& $current == 'tudien')?'active':NULL ?> "  ><a class='check_login' data-href="review/review/index/1" >Từ Điển Cá Nhân</i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'tudien')?'active':NULL ?> "  ><a class='check_login' data-href="vocabulary/voca/tudien" >Từ Điển Cá Nhân</i></a>
                         </li>
                   
                     </ul>

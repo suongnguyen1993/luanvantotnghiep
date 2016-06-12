@@ -152,10 +152,16 @@
                             </div>
                             <hr >
                         </div>
+
+
                         <?php } // end foreach part1?>
+
+                        
+
                         <p class="clear-fix" align="center">
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                            
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
                         </p>
                         
                           </form>

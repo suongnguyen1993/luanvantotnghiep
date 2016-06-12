@@ -71,17 +71,25 @@
     <h4> Level:</h4>
 	    <div class="radio">
 
-	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="1" checked="checked">
-	                          Easy
+	         <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="100" checked="checked">
+	                         Very Easy.
 	        </label> <br>
 	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="2">
-	        	Medium
+	        <input type="radio" name="level" id="optionsRadios1" value="250">
+	        	 Easy.
 	        </label><br>
 	        <label>
-	        <input type="radio" name="level" id="optionsRadios1" value="3">
-	           Difficult
+	        <input type="radio" name="level" id="optionsRadios1" value="400">
+	           Medium.
+	        </label><br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="500">
+	           Hard.
+	        </label><br>
+	        <label>
+	        <input type="radio" name="level" id="optionsRadios1" value="700">
+	           Very Hard.
 	        </label>
 	     </div>
 

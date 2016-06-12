@@ -9,13 +9,15 @@
 			$query = $this->db->insert($table, $data);
 			$flag = $this->db->affected_rows();
 			if($flag > 0){
-				return 1;
+				return 1;	
+			
 			}
 			else
 			{
 				return 0;
 			}
 		}
+
 		function edit($table = '', $data = NULL, $where = NULL){
 			$query = $this->db->where($where)->update($table, $data);
 			$flag = $this->db->affected_rows();
@@ -73,7 +75,7 @@
 			return $result;
 		}
 		function total($table){
-			return $this->db->from($table)->count_all_results();
+			return $this->db->from($table)->where($where)->count_all_results();
 		}
 		function total_where($table,$where){
 			return $this->db->from($table)->where($where)->count_all_results();
@@ -85,6 +87,41 @@
 		function view_where($select, $table, $where, $start, $limit){
 			return $this->db->select($select)->from($table)->order_by('id desc')->where($where)->limit($limit, $start)->get()->result_array();
 		}
+		function _pagination()
+		{
+
+
+			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';
+			$config['first_link'] = '&laquo; First';
+			$config['first_tag_open'] = '<li>';
+			$config['first_tag_close'] = '</li>';
+			
+			$config['last_link'] = 'Last &raquo;';
+			$config['last_tag_open'] = '<li>';
+			$config['last_tag_close'] = '</li>';
+			
+			$config['next_link'] = 'Next &raquo;';
+			$config['next_tag_open'] = '<li ">';
+			$config['next_tag_close'] = '</li>';
+			
+			$config['prev_link'] = '&laquo; Previous';
+			$config['prev_tag_open'] = '<li ">';
+			$config['prev_tag_close'] = '</li>';
+			
+			$config['cur_tag_open'] = '<li ><a class="number current active ">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+			
+			$config['num_links'] = 5;
+			$config['uri_segment'] = 3;
+			
+			$config['use_page_numbers'] = TRUE;
+			$config['per_page'] = 10;
+			return $config;
+		}
+		
 		function check_maxid($table = ''){
 			$results = $this->db->select_max('id')->from($table)->get()->row_array();
 			$data = $results['id'] + 1;

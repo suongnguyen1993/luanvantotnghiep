@@ -3,7 +3,7 @@
                   <div class="row" >
 <?php
 		
-				$dem1 = 81;
+				$dem1 = 1;
 				 foreach ($part7 as $pIndex => $hoi)
                                           {
                                           	?>
@@ -188,21 +188,23 @@
                                    <?php } //end else?>     
                     
 
- <?php
-    }//end question
-    ?>
- 
- 
-     
-<?php
-    }//end long_question
-    ?>
-  
-</div>
+                         <?php
+                            }//end question
+                            ?>
+                         
+                         
+                             
+                        <?php
+                            }//end long_question
+                            ?>
+                          
+                        </div>
 
- <p align="center">
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                           </p>
+                         <p class="clear-fix" align="center">
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                        </p>
                       </form>
                     
                           

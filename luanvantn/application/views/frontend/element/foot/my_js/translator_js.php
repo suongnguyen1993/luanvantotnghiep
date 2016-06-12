@@ -6,21 +6,20 @@
     	
 
 		function dich(e)
-		{
-			
-
-
+		{			
 			$('#translation').hide();
 			s=getSelectionText();
 			if(s != "")
 			{
 
 			 $.ajax({
-					url: '<?php base_url() ?>translate/translate/index/'+s,		
-					data: {},			    	    	    
+					url: '<?php base_url() ?>translate/translate/index/',		
+					data: {'inputString':s},
+					method: 'POST',			    	    	    
 					success: function(data){
 						if(data!=undefined)
 						{
+							data = decodeURI(data);
 							selectedText = s;
 							translatedText = data;
 							var ss = getSelectionCoords();
@@ -60,22 +59,36 @@
 
 		$(document).ready(function(){
 			$('#btnSaved').click(function(){
-    			
+
     			if(selectedText != "" && translatedText !="")
     			{
+    				if(selectedText.length >20)
+    				{
+    					alert('Chuổi quá dài không thể lưu!');
+    					return;
+    				}
 
     				clickingSaved = true;
-    				url = '<?php base_url() ?>vocabulary/voca/index/'+ selectedText +'/'+ translatedText;
-    				alert(url);
-    				
-	    			$.get(url,function(result){
+    				var url = '<?php base_url() ?>vocabulary/voca/index/';
+    				var data = {
+    					'eng': selectedText,
+    					'vi': translatedText,
+    				};
+    				$.post(url, data, function(result){
 						if(result == 1)
 						{
 							alert('Luu thanh cong');
 						}
 						else
 						{
-							alert('Luu that bai');
+							if(result == -2)
+							{
+								alert('Từ này đã có trong từ điển của bạn!');
+							}
+							else
+							{
+								alert('Luu that bai');
+							}
 						}
 						clickingSaved = false;	
 					});

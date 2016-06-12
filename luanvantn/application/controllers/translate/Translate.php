@@ -3,8 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Translate extends CI_Controller {
 
-	public function index($inputString)
+	public function index()
 	{
+		$inputString = $this->input->post('inputString');
 		
         $this->load->library('My_translator');
 

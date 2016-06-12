@@ -5,7 +5,7 @@
                   
 					<?php
 							
-					$dem1 = 69;
+					$dem1 = 1;
 					foreach ($part6 as $pIndex => $hoi)
 					{
 
@@ -57,7 +57,7 @@
                                        <?php if ($userchoice == -1)
                                         {
 					?>
-                     <div class="col-md-6 col-sm-12 blog-padding-right">
+                     <div class="col-md-12 col-sm-12 blog-padding-right">
                      <div class="single-blog two-column">
                      <div class="post-content overflow">
                      <label style="font-size:16px">
@@ -203,20 +203,22 @@
                                    <?php } //end else?>     
                     
 
- <?php
-    }//end question
-    ?>
- 
-   <hr />
-     
-<?php
-    }//end long_question
-    ?>
-  
-</div>
- <p align="center">
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                           </p>
+                             <?php
+                                }//end question
+                                ?>
+                             
+                               <hr />
+                                 
+                            <?php
+                                }//end long_question
+                                ?>
+                              
+                            </div>
+                             <p class="clear-fix" align="center">
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                        </p>
                       </form>
                     
   

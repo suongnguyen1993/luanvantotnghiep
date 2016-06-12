@@ -90,9 +90,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" align="center" id="myModalLabel">Bạn đã sẵn sàng chưa?</h3>
+        <h2 class="modal-title" align="center" id="myModalLabel">Bạn đã sẵn sàng chưa?</h2>
       </div>
-      <div class="modal-footer">
+
+      <div class="modal-body">
+        <div class="diem">
+            Khi làm bài kiểm tra những câu bạn làm sai sẽ được lưu lại ở phần ôn tập
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align: center">
         <button id="turnbackBtn" type="button" class="btn btn-primary" data-dismiss="modal">Quay lại</button>
         <button id="okBtn" type="button" class="btn btn-primary" data-dismiss="modal">Sẵn sàng</button>
       </div>

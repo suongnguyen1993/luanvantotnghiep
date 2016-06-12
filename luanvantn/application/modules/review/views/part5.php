@@ -2,7 +2,7 @@
                      <form action="" method="post" accept-charset="utf-8">
                   
 <?php
-		$dem1 = 45;
+		$dem1 = 1;
 				
 				foreach($part5 as  $index => $hoi)
                              {

@@ -140,7 +140,7 @@ class Mini_test extends CI_Controller {
 			
 			$this->session->set_userdata( $array );
 		}
-		$data['template'] = 'dauvao/testtoeic';
+		$data['template'] = 'mini_test/testtoeic';
 		$data['title'] ='kiểm Tra Mini Test';
 		$data['my_js'] ='frontend/element/foot/my_js/mini_test_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");

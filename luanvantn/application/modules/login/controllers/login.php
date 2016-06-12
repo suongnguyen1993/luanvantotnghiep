@@ -68,6 +68,8 @@ class Login extends CI_Controller {
 	//array to store data in database
 		if(isset($fb_data))
 		{
+
+			
 			$user = $this->query_sql->select_row("user","fullname,username,fb_id,id",array('fb_id'=>$fb_data['id']),"");
 			if(!empty($user))
 			{

@@ -5,7 +5,7 @@
                   
 					<?php
 							
-					$dem1 = 69;
+					$dem1 = 1;
 					foreach ($part6 as $pIndex => $hoi)
 					{
 
@@ -57,7 +57,7 @@
                                        <?php if ($userchoice == -1)
                                         {
 					?>
-                     <div class="col-md-6 col-sm-12 blog-padding-right">
+                     <div class="col-md-12 col-sm-12 blog-padding-right">
                      <div class="single-blog two-column">
                      <div class="post-content overflow">
                      <label style="font-size:16px">
