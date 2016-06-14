@@ -126,21 +126,20 @@
 
                                    <?php }?>
 	
-  <hr />
+							  <hr />
 
- </div>
- </div>
+							 </div>
+							 </div>
 
- </div>
- <?php
-	}
-	?>
-</br>
-   <p align="center" >
-   </br>
-   </br>
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                           </p>
-                      </form>
+							 </div>
+							 <?php
+								}
+								?>
+							</br>
+							   <p class="clear-fix" align="center">
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                        </p>                      </form>
                     
   

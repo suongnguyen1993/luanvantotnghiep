@@ -14,6 +14,7 @@ class DauVao extends CI_Controller {
 		$data['group']['current'] = "dau_vao" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
+		$id_user = $this->session->userdata('id');
 
 		//POST
 		if($this->input->post())
@@ -38,44 +39,7 @@ class DauVao extends CI_Controller {
 			$part6 = $this->addLongUserChoice('part6', $data);
 			$part7 = $this->addLongUserChoice7('part7', $data);
 			
-			//neu user tra loi sai thi add vao on cau hoi
-			/*if($this->session->has_userdata('username'))
-			{
-				$id_user = $this->session->userdata('id');
-				//xac dinh nguoi dung chon cau sai
-				$short_false_answer = array();
-				$long_false_answer = array();
-				$this->short_false_answer($data['part1'],$short_false_answer);
-				$this->short_false_answer($data['part2'],$short_false_answer);
-				$this->long_false_answer($data['part3'],$long_false_answer);
-				$this->long_false_answer($data['part4'],$long_false_answer);
-				$this->short_false_answer($data['part5'],$short_false_answer);
-				$this->long_false_answer($data['part6'],$long_false_answer);
-				$this->long_false_answer7($data['part7'],$long_false_answer);
-
-				$xl_trung = array();
-
-				$XL_long_false_answer = $this->XL_long_false_answer($long_false_answer,$xl_trung); 
-				
-				//luu cau sai
-				foreach ($short_false_answer as  $value) {
-					$false_statements = array(
-						'id' 		=> "",
-						'user_id'	=> $id_user,
-						'question_id' => $value
-						);
-					 $this->query_sql->add('false_statements',$false_statements);
-				}
-				foreach ($XL_long_false_answer as  $value) {
-					$false_statements = array(
-						'id' 		=> "",
-						'user_id'	=> $id_user,
-						'long_question_id' => $value
-						);
-					 $this->query_sql->add('false_statements',$false_statements);
-				}
-			}*/
-
+			
 			//tinh cau dung
 			$tongsocaudung = 0;
 
@@ -90,6 +54,22 @@ class DauVao extends CI_Controller {
 			$diemdoc = $this->mytest->diemdoc_minitest($socaudungdoc);
 			$tongdiem = ($diemnghe + $diemdoc)*2 ;
 			$data['tongdiem'] = $tongdiem;
+
+			if($data['tongdiem'] < 100)
+			{
+				$diem = 100;
+			}
+			else
+			{
+				$diem = $data['tongdiem'];
+			}
+			//add level user 
+			$diem_dau_vao = array(
+							'level'=> $diem
+				); 
+
+			$add_level = $this->query_sql->edit('user',$diem_dau_vao, array('id'=>$id_user));
+			
 
 			$huysess = array("part1","part2","part3","part4","part5","part6","part7");
 			$this->session->unset_userdata($huysess);
@@ -122,75 +102,7 @@ class DauVao extends CI_Controller {
 		$data['my_js'] ='frontend/element/foot/my_js/mini_test_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}
-	// private function short_false_answer(&$data = "",&$false_answer = array())
-	// {
-	// 	foreach ($data as $p1)
-	// 	 {
-	// 		if($p1['user_choice'] == 0)
-	// 		{
-	// 			$false_answer[] = $p1['id'];
-	// 		}
-	// 		else
-	// 		{
-	// 			$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
-	// 			if($a['correct_answer'] == 0)
-	// 			{
-	// 				$false_answer[] = $p1['id'];
-	// 			}
-	// 		}
-	// 	}
-	// 	return $false_answer;
-	// }
-	// private function long_false_answer(&$data = "",&$false_answer = array())
-	// {
-	// 	foreach ($data as $p2 ) 
-	// 	{			
-	// 		foreach ($p2['question'] as $p1)
-	// 		{
-
-	// 			if($p1['user_choice'] == 0)
-	// 			{
-	// 				$false_answer[] = $p1['id'];
-	// 			}
-	// 			else
-	// 			{
-	// 				$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
-	// 				if($a['correct_answer'] == 0)
-	// 				{
-	// 					$false_answer[] = $p1['id'];
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// private function long_false_answer7(&$data = "",&$false_answer = array())
-	// {
-	// 	foreach ($data as $p0 ) 
-	// 	{
-	// 		foreach ($p0 as $p2 ) 
-	// 		{			
-	// 			foreach ($p2['question'] as $p1)
-	// 			{
-
-	// 				if($p1['user_choice'] == 0)
-	// 				{
-
-	// 					$false_answer[] = $p2['id'];
-	// 				}
-	// 				else
-	// 				{
-						
-	// 					$a = $this->query_sql->select_row('choice','id,correct_answer',array('id'=>$p1['user_choice']));
-	// 					if($a['correct_answer'] == 0)
-	// 					{
-	// 						$false_answer[] = $p2['id'];
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
+	
 
 	private function addShortUserChoice($part, &$data)
 	{
@@ -257,18 +169,6 @@ class DauVao extends CI_Controller {
 		}
 		return $postPart;
 	}
-
-	/*private function XL_long_false_answer($arr,&$XL_array)
-	{
-		$arrayUnique = array();
-		foreach ($arr as  $value) {
-			$arrayUnique[$value] = 1;	
-		}
-		foreach ($arrayUnique as $k => $v) {
-			$XL_array[] = $k;
-		}
-		return $XL_array;
-	}*/
 
 	private function part1 ($start = "", $limit = "")
 	{

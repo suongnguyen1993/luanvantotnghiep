@@ -43,6 +43,31 @@
                           <textarea id="editor" id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $this->input->post('long_content') ?></textarea>
                       </div>   
                       </div>
+
+                      <h4> Level:</h4>
+                      <div class="radio">
+
+                           <label>
+                          <input type="radio" name="level" id="optionsRadios1" value="100" checked="checked">
+                                           Very Easy.
+                          </label> <br>
+                          <label>
+                          <input type="radio" name="level" id="optionsRadios1" value="250">
+                             Easy.
+                          </label><br>
+                          <label>
+                          <input type="radio" name="level" id="optionsRadios1" value="400">
+                             Medium.
+                          </label><br>
+                          <label>
+                          <input type="radio" name="level" id="optionsRadios1" value="500">
+                             Hard.
+                          </label><br>
+                          <label>
+                          <input type="radio" name="level" id="optionsRadios1" value="700">
+                             Very Hard.
+                          </label>
+                       </div>
                       <div class="form-group">
                       <h4>Number Question:</h4>
                           <div class="input-group">

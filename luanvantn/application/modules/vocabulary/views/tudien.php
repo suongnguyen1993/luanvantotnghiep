@@ -4,11 +4,11 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-md-offset-2 border-style">
                     <div class="row">
                     <?php foreach($vocabulary as $index => $voca) { ?>
                         <div class="wp-focus" id="wpFocus<?php echo $voca['id']; ?>">
-                            <div class="col-md-5 col-sm-10 blog-padding-right">
+                            <div class="col-md-5 col-sm-10 blog-padding-right ">
                                 <div class="single-blog two-column">
                                     
                                     <div class="post-content overflow">
@@ -42,7 +42,10 @@
                         <?php } ?>
 
                     </div>
-            <?php echo (isset($list_pagination))?$list_pagination:"" ?>                
+                    <div class="portfolio-pagination">
+                         
+            <?php echo (isset($list_pagination))?$list_pagination:"" ?> 
+            </div>               
             </div>
         </div>
     </section>

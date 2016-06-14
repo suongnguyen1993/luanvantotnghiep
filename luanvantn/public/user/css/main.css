@@ -1136,9 +1136,8 @@ ul.elements li > i{
 
 .portfolio-pagination{
   text-align: center;
-  
   padding-top: 40px;
-  padding-bottom: 90px;
+  padding-bottom: 10px;
 }
 
 .pagination li{
@@ -2884,4 +2883,18 @@ span.stButton_gradient,
 }
 .row .wp-focus:hover .post-title .fa-trash{
   color: red ;
+}
+
+.border-style{
+    margin-left: 100px;
+    border: solid;
+    border-radius: 24px;
+    width: 1000px;
+    border-color: #00aeef;
+    box-shadow: 15px 15px 10px blue;
+    -moz-box-shadow: 10px 10px 5px;
+    -webkit-box-shadow: 12px 7px 5px #00AEF8;
+    -o-box-shadow: 30px 30px 10px , blue;
+    -ms-box-shadow: 30px 30px 10px;
+    margin-bottom: 50px;
 }

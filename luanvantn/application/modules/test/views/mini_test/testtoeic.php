@@ -41,8 +41,11 @@
                                 <!-- part 7 -->
                                 <?php $this->load->view('mini_test/part7', $part7); ?>
                             
-                                <input type="submit" name="chamdiem" value="Chấm điểm" class="btn btn-sm btn-primary">
-    
+                                <p  align="center">
+                                <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                                <a href="test/full_test" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                              </p>
                                 </form>
                             </div>
                     </div>

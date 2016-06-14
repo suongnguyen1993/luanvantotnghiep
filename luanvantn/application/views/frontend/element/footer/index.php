@@ -20,7 +20,7 @@
                                 <a href="#"><img with = '81px' height = '81px' src="<?php echo base_url(); ?>/public/user/images/avar2.png" alt=""></a>
                             </div>
                             <div class="media-body">
-                                <blockquote>Hi, I'm Cam. Injoy my website</blockquote>
+                                <blockquote>Hi, I'm Cam. Enjoy my website</blockquote>
                                 <h3><a href="">- Sully Yang</a></h3>
                             </div>
                         </div>   

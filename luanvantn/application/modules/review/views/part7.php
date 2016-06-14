@@ -10,8 +10,6 @@
                 
                 <div class="col-sm-12 blog-padding-right" >
                 <h2 class="post-title bold" >
-                	
-              
                
                 <label style="font-size:20px"></br></br>  
                                     <?php 
@@ -20,6 +18,7 @@
 									
 									?>
                                     </label>
+                                    </h2>
              <h2 class="post-title bold" style="border:double;border-color:#00aeef;  margin-bottom:10px; padding:20px 20px 20px 20px; " >
                                    
 				<?php 
@@ -47,9 +46,9 @@
                     
                      <div class="post-content overflow" style="height: 280px">
                     <label >
-                       <h3 class="post-title bold">
+                       <h2 class="post-title bold">
                      <?php echo $dem1++.'. ';echo $ques['content'];?>
-                     </h3>
+                     </h2>
                      </label>
           
                     
@@ -188,21 +187,23 @@
                                    <?php } //end else?>     
                     
 
- <?php
-    }//end question
-    ?>
- 
- 
-     
-<?php
-    }//end long_question
-    ?>
-  
-</div>
+                         <?php
+                            }//end question
+                            ?>
+                         
+                         
+                             
+                        <?php
+                            }//end long_question
+                            ?>
+                          
+                        </div>
 
- <p align="center">
-                          <input type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary">
-                           </p>
+                         <p class="clear-fix" align="center">
+                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                        </p>
                       </form>
                     
                           

@@ -36,9 +36,8 @@
                                
 
                                 <?php } ?>
-                            </form>
 
-                            
+                            </form>
                         </div>
                     </div>
                 </div>

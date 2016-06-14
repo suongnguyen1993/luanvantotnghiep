@@ -35,7 +35,32 @@
                     <textarea id="editor" id="long_content" name="long_content" rows="10" cols="80" placeholder='Add long question'><?php echo $long_question['long_content'] ?></textarea>
                 </div>
             </div>
-            <div class="form-group">
+
+            <h4> Level:</h4>
+      <div class="radio">
+
+          <label>
+          <input type="radio" name="level" id="optionsRadios1" value="100" <?php if($long_question['level'] == 100) { echo" checked='checked'";} ?>>
+                           Very Easy.
+          </label> <br>
+          <label>
+          <input type="radio" name="level" id="optionsRadios1" value="250" <?php if($long_question['level'] == 250) { echo" checked='checked'";} ?> >
+             Easy.
+          </label><br>
+          <label>
+          <input type="radio" name="level" id="optionsRadios1" value="400" <?php if($long_question['level'] == 400) { echo" checked='checked'";} ?> >
+             Medium.
+          </label><br>
+          <label>
+          <input type="radio" name="level" id="optionsRadios1" value="500" <?php if($long_question['level'] == 500) { echo" checked='checked'";} ?> >
+             Hard.
+          </label><br>
+          <label>
+          <input type="radio" name="level" id="optionsRadios1" value="700"  <?php if($long_question['level'] == 700) { echo" checked='checked'";} ?>>
+             Very Hard.
+          </label>
+       </div> 
+    <div class="form-group">
                       <h4>Number Question:</h4>
                           <div class="input-group">
                             <input name="number_question" type="number" min ='0' class="form-control" value="<?php echo $long_question['number_question']?>">

@@ -434,7 +434,7 @@ class Review extends CI_Controller {
         	}
 
         	else{
-        		$data['template'] = 'part1';
+        		$data['template'] = 'part7';
         	}
 			if($this->input->post())
 			{

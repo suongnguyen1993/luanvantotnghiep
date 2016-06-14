@@ -51,7 +51,7 @@ class Longquestion extends CI_Controller {
 		}
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['long_question'] = $this->query_sql
-			->select_array("long_question","id,long_content,long_audio,group_id,exam_id,number_question","","","");
+			->select_array("long_question","id,long_content,level,long_audio,group_id,exam_id,number_question","","","");
 		$data ['exam'] = $this->query_sql
 			->select_array ("exam","id,name","","","");
 		$data['title'] = 'Manage Add Long Question';
@@ -81,6 +81,7 @@ class Longquestion extends CI_Controller {
 							{					
 								$data = array(
 									'id' 			=> '',
+									'level'			=>	$this->input->post('level'),
 									'long_content' 	=> $this->input->post('long_content'),
 									'group_id' 		=> $this->input->post('group'),
 									'number_question'=> $this->input->post('number_question'),
@@ -97,6 +98,7 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
+									'level'			=>	$this->input->post('level'),
 									'group_id' 		=> $this->input->post('group'),	
 									'number_question'=> $this->input->post('number_question'),		
 									'long_audio' 	=> $audio_data['file_name'],			
@@ -117,6 +119,7 @@ class Longquestion extends CI_Controller {
 							$data = array(
 								'id' 			=> '',
 								'long_content' 	=> $this->input->post('long_content'),
+								'level'			=>	$this->input->post('level'),
 								'number_question'=> $this->input->post('number_question'),
 								'group_id' 		=> $this->input->post('group'),			
 								'exam_id'		=> $exam
@@ -130,6 +133,7 @@ class Longquestion extends CI_Controller {
 							$data = array(
 								'id' 			=> '',
 								'long_content' 	=> $this->input->post('long_content'),
+								'level'			=>	$this->input->post('level'),
 								'number_question'=> $this->input->post('number_question'),
 								'group_id' 	=> $this->input->post('group'),			
 								'exam_id'		=> $exam
@@ -156,7 +160,7 @@ class Longquestion extends CI_Controller {
 		}
 		$data['group']= $this->query_sql->select_array('group','id, name','','','');
 		$data['title'] = 'Manage Update Long Question';	
-		$data['long_question']= $this->query_sql->select_row('long_question','long_content,long_audio, exam_id,group_id,number_question',array('id'=>$id),'');
+		$data['long_question']= $this->query_sql->select_row('long_question','long_content,long_audio, exam_id,group_id,level,number_question',array('id'=>$id),'');
 		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
 		$data ['exam'] = $this->query_sql
 			->select_array ("exam","id,name","","","");
@@ -190,6 +194,7 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
+									'level'			=>	$this->input->post('level'),
 									'group_id' 	=> $this->input->post('group'),
 									'number_question'=> $this->input->post('number_question'),
 									'long_audio' => $audio_data['file_name'],			
@@ -204,6 +209,7 @@ class Longquestion extends CI_Controller {
 								$data = array(
 									'id' 			=> '',
 									'long_content' 	=> $this->input->post('long_content'),
+									'level'			=>	$this->input->post('level'),
 									'group_id' 	=> $this->input->post('group'),
 									'number_question'=> $this->input->post('number_question'),			
 									'long_audio' => $audio_data['file_name'],			
@@ -222,6 +228,7 @@ class Longquestion extends CI_Controller {
 						{
 							$data = array(
 									'long_content' => $this->input->post('long_content'),
+									'level'			=>	$this->input->post('level'),
 									'group_id' 	=> $this->input->post('group'),	
 									'number_question'=> $this->input->post('number_question'),		
 									'exam_id' => $exam
@@ -236,6 +243,7 @@ class Longquestion extends CI_Controller {
 							$data = array(
 									'long_content' => $this->input->post('long_content'),
 									'group_id' 	=> $this->input->post('group'),	
+									'level'			=>	$this->input->post('level'),
 									'number_question'=> $this->input->post('number_question'),		
 									'exam_id' => $exam
 									);

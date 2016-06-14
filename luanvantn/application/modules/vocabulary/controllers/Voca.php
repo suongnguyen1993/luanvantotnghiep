@@ -36,6 +36,7 @@ class Voca extends CI_Controller {
 
 	public function tudien($page = 1)
 	{
+		$data['title'] = 'Từ điển cá nhân';
 		$data['group']['current'] = "tudien" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$id_user = $this->session->userdata('id');
@@ -60,6 +61,7 @@ class Voca extends CI_Controller {
 		{
 			$data['template'] = 'tudien';
 		}
+		$data['my_js'] ='frontend/element/foot/my_js/review_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 
 	}

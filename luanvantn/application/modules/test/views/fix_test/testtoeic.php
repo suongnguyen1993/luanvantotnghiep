@@ -41,7 +41,9 @@
                                 <!-- part 7 -->
                                 <?php $this->load->view('full_test/part7', $part7); ?>
                             
-                                <input type="submit" name="chamdiem" value="Chấm điểm" class="btn btn-sm btn-primary">
+                                <p class="clear-fix" align="center">
+                                <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                                </p>
     
                                 </form>
                             </div>

@@ -40,12 +40,12 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li <?php echo (isset ($current) && $current == 'practice')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
-                        <li class="dropdown"><a>Luyện Tập <i class="fa fa-angle-down"></i></a>
+                        <li <?php echo (isset ($current) && $current == 'home')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
+                        <li class="dropdown" ><a>Luyện Tập <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                             <?php foreach ($group as $g){?>
                                 <li >
-                                    <a class='check_login' data-href="practice/chitiet/<?php echo $g['id']?> "><?php echo $g['name'] ?></a>
+                                    <a <?php echo (isset ($current)&& $current == $g['id'])? 'class="active"':NULL; ?>  data-href="practice/chitiet/<?php echo $g['id']?>" class='check_login'><?php echo $g['name'] ?></a>
                                 </li>
                             <?php } ?> 
                                 
@@ -54,18 +54,18 @@
                         <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
-                                <a class='check_login' <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> data-href="test/dauvao" >
+                                <a  <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> class='check_login' data-href="test/dauvao" >
                                 Kiểm tra đầu vào
                                 </a>
                                 </li>
                                 <li >
-                                <a class='check_login' <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> data-href="test/full_test">Full Test</a>
+                                <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/full_test">Full Test</a>
                                 </li>
                                 <li>
-                                <a class='check_login'  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> data-href="test/mini_test">Mini Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/mini_test">Mini Test</a>
                                 </li>
                                 <li>
-                                <a class='check_login'  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> data-href="test/fix_test/index/<?php ?>">Fix Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/fix_test/index/<?php ?>">Fix Test</a>
                                 </li>
                                 
                             </ul>

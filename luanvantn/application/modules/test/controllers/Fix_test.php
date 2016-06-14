@@ -94,7 +94,7 @@ class Fix_test extends CI_Controller {
 			
 			$this->session->set_userdata( $array );
 		}
-		$data['template'] = 'full_test/testtoeic';
+		$data['template'] = 'fix_test/testtoeic';
 		$data['title'] ='Đề Thi Toeic';
 		$data['my_js'] ='frontend/element/foot/my_js/toeic_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
