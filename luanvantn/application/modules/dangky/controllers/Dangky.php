@@ -40,7 +40,7 @@ class Dangky extends CI_Controller {
 				}
 				else
 				{
-					$data['error'] = 'Đăng nhập thành công!';
+					$data['error'] = 'Đăng Ký thành công!';
 				}		
 			}
 		}

@@ -33,55 +33,55 @@ class Practice extends CI_Controller {
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 		if($this->session->has_userdata('username'))
 		{
-	
-				$id_u= $this->session->userdata('id');
-		
-		if(isset($id) && $id == 1)
-		{
 			
-			$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id));
-        	$data['part1']= $lisPhoto;
-
-        	$data['template'] = 'part1';
-        	
+			$id_u= $this->session->userdata('id');
 			
-			if($this->input->post())
+			if(isset($id) && $id == 1)
 			{
-				$data['submit'] = 1;
-				$data['part1'] = $this->session->userdata('part1');
+				
+				$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id));
+				$data['part1']= $lisPhoto;
 
-				$postPart = $this->input->post()['part1'];
-				foreach ($data['part1'] as $i => $v)
-				 {
+				$data['template'] = 'part1';
+				
+				
+				if($this->input->post())
+				{
+					$data['submit'] = 1;
+					$data['part1'] = $this->session->userdata('part1');
 
-					$data['part1'][$i]['user_choice'] = $postPart[$i];
+					$postPart = $this->input->post()['part1'];
+					foreach ($data['part1'] as $i => $v)
+					{
+
+						$data['part1'][$i]['user_choice'] = $postPart[$i];
 
 
 					//------------------------add câu sai -----------------------
 
-					if($data['part1'][$i]['user_choice'] ==0)
-					{
-
-						$qid=$data['part1'][$i]['id'];
-						$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
-							'question_id' => $qid),"");
-						if(empty($check_id_false))
+						if($data['part1'][$i]['user_choice'] ==0)
 						{
-						
-							$data['them'] = array(
-							'user_id' => $id_u, 
-							'question_id'  => 	$qid	
-							);
-						$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
-						}
-						
+
+							$qid=$data['part1'][$i]['id'];
+							$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
+								'question_id' => $qid),"");
+							if(empty($check_id_false))
+							{
+								
+								$data['them'] = array(
+									'user_id' => $id_u, 
+									'question_id'  => 	$qid	
+									);
+								$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+							}
+							
 					// add question vào false_statement
-						
-					}
-					else 
-					{
+							
+						}
+						else 
+						{
 						$id1=$data['part1'][$i]['user_choice'];//lấy id_userchoice
-			
+						
 						foreach($data['part1'] as $id)
 						{	
 							foreach($id['traloi'] as $tl)
@@ -98,24 +98,24 @@ class Practice extends CI_Controller {
 										{
 										// add question vào false_statement
 											$data['them'] = array(
-											'user_id' => $id_u, 
-											'question_id'  => 	$qid	
-											);
-										
+												'user_id' => $id_u, 
+												'question_id'  => 	$qid	
+												);
+											
 											$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
 										}
 									}
 								}
 							}
 						}
-						 
+						
 					}//end else
 
 				}
 				$this->session->unset_userdata('part1');
 
 			}
-		
+			
 			else
 			{
 				$this->session->set_userdata('part1',$data['part1']);
@@ -125,10 +125,10 @@ class Practice extends CI_Controller {
 
 
 			// part2
-			if (isset($id) && $id == 2)
-			{
-			 $lisques = $this->Cauhoi->getlistening(array('group_id'=>$id));
-        	$data['part2']= $lisques;
+		if (isset($id) && $id == 2)
+		{
+			$lisques = $this->Cauhoi->getlistening(array('group_id'=>$id));
+			$data['part2']= $lisques;
 			$data['template'] = 'part2';
 			if($this->input->post())
 			{
@@ -137,7 +137,7 @@ class Practice extends CI_Controller {
 				
 				$postPart = $this->input->post()['part2'];
 				foreach ($data['part2'] as $i => $v)
-				 {
+				{
 					$data['part2'][$i]['user_choice'] = $postPart[$i];
 
 					//------------------------add câu sai -----------------------
@@ -153,18 +153,18 @@ class Practice extends CI_Controller {
 						{
 
 							$data['them'] = array(
-							'user_id' => $id_u, 
-							'question_id'  => 	$qid	
-							);
-						
-						
+								'user_id' => $id_u, 
+								'question_id'  => 	$qid	
+								);
+							
+							
 							$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);
 						}	
 					}
 					else 
 					{
 						$id1=$data['part2'][$i]['user_choice'];//lấy id_userchoice
-			
+						
 						foreach($data['part2'] as $id)
 						{	
 							foreach($id['traloi'] as $tl)
@@ -181,10 +181,10 @@ class Practice extends CI_Controller {
 										if(empty($check_id_false))
 										{
 											$data['them'] = array(
-											'user_id' => $id_u, 
-											'question_id'  => 	$qid	
-											);
-										
+												'user_id' => $id_u, 
+												'question_id'  => 	$qid	
+												);
+											
 											$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
 										}
 									}
@@ -192,7 +192,7 @@ class Practice extends CI_Controller {
 							}
 
 						}
-						 
+						
 					}//end else
 				}
 				$this->session->unset_userdata('part2');  
@@ -208,8 +208,8 @@ class Practice extends CI_Controller {
 
 		if (isset($id) && $id == 3)
 		{
-			 $lisshort = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
-            $data['part3']= $lisshort;
+			$lisshort = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
+			$data['part3']= $lisshort;
 			$data['template'] = 'part3';
 			if($this->input->post())
 			{
@@ -217,8 +217,8 @@ class Practice extends CI_Controller {
 				$data['part3'] = $this->session->userdata('part3');
 
 				$postPart = $this->input->post()['part3'];
- 				foreach ($data['part3'] as $part3I => $part3V) 
- 				{
+				foreach ($data['part3'] as $part3I => $part3V) 
+				{
 					foreach ($part3V['question'] as $i => $v)
 					{
 						
@@ -239,21 +239,21 @@ class Practice extends CI_Controller {
 							{	
 								if(isset($tl['id'])&&($tl['id'])==$id1)//lấy dl nếu id_userchoice trong câu hỏi = id_userchoice
 								{
-								if($tl['correct_answer']==0)
-								{
+									if($tl['correct_answer']==0)
+									{
 									$lqid=$part3V['id'];//lấy idlong_ques		
 									$id_long[]=$lqid;
 
-									}
 								}
 							}
-					
+						}
+						
 						}//end else
 
 						
 					}
 
-					 
+					
 				}
 				$xl_trung = array();
 				$xl_long_false=$this->XL_long_false_answer($id_long,$xl_trung);
@@ -279,8 +279,8 @@ class Practice extends CI_Controller {
 			}
 			else{
 				$this->session->set_userdata('part3',$data['part3']);
-				}	
-		
+			}	
+			
 		}
 
 	//part4
@@ -288,7 +288,7 @@ class Practice extends CI_Controller {
 		if (isset($id) && $id == 4)
 		{
 			$shorttalk = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
-        	$data['part4']= $shorttalk;
+			$data['part4']= $shorttalk;
 			$data['template'] = 'part4';
 			if($this->input->post())
 			{
@@ -296,10 +296,10 @@ class Practice extends CI_Controller {
 				$data['part4'] = $this->session->userdata('part4');
 
 				$postPart = $this->input->post()['part4'];
- 				foreach ($data['part4'] as $part4I => $part4V) 
- 				{
+				foreach ($data['part4'] as $part4I => $part4V) 
+				{
 					foreach ($part4V['question'] as $i => $v)
-				 	{					
+					{					
 						$data['part4'][$part4I]['question'][$i]['user_choice'] = $postPart[$part4I][$i];	
 						//------------------------add câu sai -----------------------
 
@@ -317,16 +317,16 @@ class Practice extends CI_Controller {
 							{	
 								if(isset($tl['id'])&&($tl['id'])==$id1)//lấy dl nếu id_userchoice trong câu hỏi = id_userchoice
 								{
-								if($tl['correct_answer']==0)
+									if($tl['correct_answer']==0)
 									{
-									
+										
 										$lqid=$part4V['id'];//lấy idlong_ques
 										$id_long[]=$lqid;	
 									}
 								}
 							}
-						
-						 
+							
+							
 						}//end else
 					}
 				}
@@ -354,43 +354,51 @@ class Practice extends CI_Controller {
 			{
 				$this->session->set_userdata('part4',$data['part4']);
 			}	
-		
+			
 		}
 
 
 	// part5
-			if (isset($id) && $id == 5)
+		if (isset($id) && $id == 5)
+		{
+			$readsence = $this->Cauhoi->getreading(array('group_id'=>$id));
+				// echo "<pre>";
+				// print_r($readsence);
+			$data['part5']= $readsence;
+			$data['template'] = 'part5';
+			if($this->input->post())
 			{
-				$readsence = $this->Cauhoi->getreading(array('group_id'=>$id));
-	      		 $data['part5']= $readsence;
-				$data['template'] = 'part5';
-				if($this->input->post())
+				$data['submit'] = 1;
+				$data['part5'] = $this->session->userdata('part5');
+				
+				$postPart = $this->input->post()['part5'];
+				foreach ($data['part5'] as $i => $v)
 				{
-					$data['submit'] = 1;
-					$data['part5'] = $this->session->userdata('part5');
+					$matran = array(
+						'id_question' =>$v['id'],
+						'id_user'	  =>$id_u
+						);
 					
-					$postPart = $this->input->post()['part5'];
-					foreach ($data['part5'] as $i => $v)
-					{
-						$data['part5'][$i]['user_choice'] = $postPart[$i];
+					$data['part5'][$i]['user_choice'] = $postPart[$i];
 
 						//------------------------add câu sai -----------------------
 
-						if($data['part5'][$i]['user_choice'] ==0)
-						{
+					if($data['part5'][$i]['user_choice'] ==0)
+					{
 
-							$qid=$data['part5'][$i]['id'];
-							$data['them'] = array(
+						$qid=$data['part5'][$i]['id'];
+						$data['them'] = array(
 							'user_id' => $id_u, 
 							'question_id'  => 	$qid	
 							);
-							
-							$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
-						}
-						else 
-						{
+						
+						$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
+						$matran['trloi'] = 0;
+					}
+					else 
+					{
 							$id1=$data['part5'][$i]['user_choice'];//lấy id_userchoice
-				
+							
 							foreach($data['part5'] as $id)
 							{	
 								foreach($id['traloi'] as $tl)
@@ -402,22 +410,38 @@ class Practice extends CI_Controller {
 											$qid=$data['part5'][$i]['id'];
 										// add question vào false_statement
 											$check_id_false = $this->query_sql->select_row("false_statements","*",array('user_id'	=> $id_u,
-											'question_id' => $qid),"");
+												'question_id' => $qid),"");
 											if(empty($check_id_false))
 											{
 												$data['them'] = array(
-												'user_id' => $id_u, 
-												'question_id'  => 	$qid	
-												);
-											
+													'user_id' => $id_u, 
+													'question_id'  => 	$qid	
+													);
+												
 												$flag = $this->Cauhoi->addfalsestatement('false_statements',$data['them']);	
-											}	
+											}
+											//add so nguoi làm	
+											$the_total_do = $v['the_total_do']+1;
+											$nguoi_lam = array('the_total_do' =>$the_total_do);
+
+											$matran['trloi'] = 0;
+										}
+										else
+										{
+											$matran['trloi'] = 1;
+
 										}
 									}
 								}
 							}
-							 
+							
 						}//end else
+						
+							
+						$check_key_ma_tran = $this->query_sql->select_row('ma_tran_tra_loi',$matran,array("id_question"=>$matran['id_question'],"id_user"=>$matran['id_user']),'');
+						if(empty($check_key_ma_tran)){
+							$this->Cauhoi->add('ma_tran_tra_loi', $matran);
+						}
 						
 					}
 					$this->session->unset_userdata('part5');  
@@ -426,34 +450,31 @@ class Practice extends CI_Controller {
 				else
 				{
 					$this->session->set_userdata('part5',$data['part5']);
-				}
-				
+				}				
 			}
-
-
 		//part6
 
-		if (isset($id) && $id == 6)
-		{
-			$readtext = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
-        	$data['part6']= $readtext;
-			$data['template'] = 'part6';
-			if($this->input->post())
+			if (isset($id) && $id == 6)
 			{
-				$data['submit'] = 1;
-				$data['part6'] = $this->session->userdata('part6');
+				$readtext = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
+				$data['part6']= $readtext;
+				$data['template'] = 'part6';
+				if($this->input->post())
+				{
+					$data['submit'] = 1;
+					$data['part6'] = $this->session->userdata('part6');
 
-				$postPart = $this->input->post()['part6'];
- 				foreach ($data['part6'] as $part6I => $part6V) 
- 				{
-					foreach ($part6V['question'] as $i => $v)
+					$postPart = $this->input->post()['part6'];
+					foreach ($data['part6'] as $part6I => $part6V) 
 					{
-						$data['part6'][$part6I]['question'][$i]['user_choice'] = $postPart[$part6I][$i];	
-					
+						foreach ($part6V['question'] as $i => $v)
+						{
+							$data['part6'][$part6I]['question'][$i]['user_choice'] = $postPart[$part6I][$i];	
+							
 						//------------------------add câu sai -----------------------
 
-						if(	$data['part6'][$part6I]['question'][$i]['user_choice'] ==0)
-						{
+							if(	$data['part6'][$part6I]['question'][$i]['user_choice'] ==0)
+							{
 
 							$lqid=$part6V['id'];//lấy idlong_ques
 							$id_long[]=$lqid;	
@@ -461,18 +482,18 @@ class Practice extends CI_Controller {
 						else 
 						{
 							$id1=$data['part6'][$part6I]['question'][$i]['user_choice'] ;//lấy id_userchoice
-			
+							
 							foreach($v['traloi'] as $tl)
 							{	
 								if(isset($tl['id'])&&($tl['id'])==$id1)//lấy dl nếu id_userchoice trong câu hỏi = id_userchoice
 								{
-								if($tl['correct_answer']==0)
-								{
+									if($tl['correct_answer']==0)
+									{
 									$lqid=$part6V['id'];//lấy idlong_ques
 									$id_long[]=$lqid;	
 								}
-								}
-							}	 
+							}
+						}	 
 						}//end else
 					}					 
 				}
@@ -499,15 +520,15 @@ class Practice extends CI_Controller {
 			{
 				$this->session->set_userdata('part6',$data['part6']);
 			}	
-		
-	}	
+			
+		}	
 
 		//part7
 
 		if (isset($id) && $id == 7)
 		{
 			$readcom = $this->Cauhoi->getLongQuestion(array('group_id'=>$id));
-        	$data['part7']= $readcom;
+			$data['part7']= $readcom;
 			$data['template'] = 'part7';
 			if($this->input->post())
 			{
@@ -515,12 +536,12 @@ class Practice extends CI_Controller {
 				$data['part7'] = $this->session->userdata('part7');
 
 				$postPart = $this->input->post()['part7'];
- 				foreach ($data['part7'] as $part7I => $part7V) 
- 				{
+				foreach ($data['part7'] as $part7I => $part7V) 
+				{
 					foreach ($part7V['question'] as $i => $v)
 					{
 						$data['part7'][$part7I]['question'][$i]['user_choice'] = $postPart[$part7I][$i];	
-					
+						
 						//------------------------add câu sai -----------------------
 
 						if(	$data['part7'][$part7I]['question'][$i]['user_choice'] ==0)
@@ -532,7 +553,7 @@ class Practice extends CI_Controller {
 						else 
 						{
 							$id1=$data['part7'][$part7I]['question'][$i]['user_choice'] ;//lấy id_userchoice
-			
+							
 							foreach($v['traloi'] as $tl)
 							{	
 								if(isset($tl['id'])&&($tl['id'])==$id1)//lấy dl nếu id_userchoice trong câu hỏi = id_userchoice
@@ -571,29 +592,29 @@ class Practice extends CI_Controller {
 			{
 				$this->session->set_userdata('part7',$data['part7']);
 			}	
-		
-	}
-}
-
-$data['my_js'] ='frontend/element/foot/my_js/translator_js';
-$this->load->view('frontend/layout/practice',isset($data)?$data:"");
-}
-
-
-
-	private function XL_long_false_answer($arr,&$XL_array)
-	{
-		$arrayUnique = array();
-		foreach ($arr as  $value) {
-			$arrayUnique[$value] = 1;	
+			
 		}
-		foreach ($arrayUnique as $k => $v) {
-			$XL_array[] = $k;
-		}
-		return $XL_array;
 	}
 
-	
+	$data['my_js'] ='frontend/element/foot/my_js/translator_js';
+	$this->load->view('frontend/layout/practice',isset($data)?$data:"");
+}
+
+
+
+private function XL_long_false_answer($arr,&$XL_array)
+{
+	$arrayUnique = array();
+	foreach ($arr as  $value) {
+		$arrayUnique[$value] = 1;	
+	}
+	foreach ($arrayUnique as $k => $v) {
+		$XL_array[] = $k;
+	}
+	return $XL_array;
+}
+
+
 }
 
 

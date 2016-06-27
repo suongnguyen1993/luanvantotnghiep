@@ -1,5 +1,6 @@
 <script type="text/javascript">
-    	var del = function(id){
+    	var del = function(id)
+        {
     		if(!isNaN(id) && id < 1)
     		{
     			alert("id khong hop le");

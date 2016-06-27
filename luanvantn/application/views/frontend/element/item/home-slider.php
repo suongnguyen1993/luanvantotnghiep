@@ -6,7 +6,7 @@
                         <p>I-Toeic là hệ thống thông minh. </p>
                         <p>Đến với hệ thống I-Toeic các học viên sẽ được hệ thống nhận diện khả năng từ đó đưa ra câu hỏi phù hợp với trình độ của bạn.Giúp các bạn hứng thú trong việc học tiếng anh từ đó nâng cao được trình độ của mình </p>
                         <p>WELCOME TO I-TOEIC - YOUR WORD ENGLISH</p>
-                        <a href="<?php echo base_url(); ?>dangky" class="btn btn-common">ĐĂNG KÝ</a>
+                        <a href="<?php echo ($this->session->has_userdata('username'))?'index':'dangky' ?>" class="btn btn-common"> <?php echo ($this->session->has_userdata('username'))?"WELCOME":"ĐĂNG KÝ"; ?></a>
                     </div>
                     <img src="<?php echo base_url(); ?>/public/user/images/home/slider/hill.png" class="slider-hill" alt="slider image">
                     <img src="<?php echo base_url(); ?>/public/user/images/home/slider/house.png" class="slider-house" alt="slider image">

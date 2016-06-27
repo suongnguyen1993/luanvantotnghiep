@@ -62,6 +62,7 @@
 
     			if(selectedText != "" && translatedText !="")
     			{
+    				//chiều dài chuỗi
     				if(selectedText.length >20)
     				{
     					alert('Chuổi quá dài không thể lưu!');

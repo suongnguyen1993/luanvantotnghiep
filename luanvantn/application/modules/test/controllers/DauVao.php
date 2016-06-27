@@ -47,6 +47,7 @@ class DauVao extends CI_Controller {
 			$socaudungdoc = $this->socaudungdoc($part5,$part6,$part7);
 			$tongsocaudung = $socaudungnghe + $socaudungdoc;
 			$data['tongsocaudung'] = $tongsocaudung;
+			print_r($tongsocaudung);
 
 			//tinh diem
 			$tongdiem = 0;
