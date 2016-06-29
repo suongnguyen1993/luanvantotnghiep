@@ -45,7 +45,7 @@
                             <ul role="menu" class="sub-menu">
                             <?php foreach ($group as $g){?>
                                 <li >
-                                    <a <?php echo (isset ($current)&& $current == $g['id'])? 'class="active"':NULL; ?>  data-href="practice/chitiet/<?php echo $g['id']?>" class='check_login'><?php echo $g['name'] ?></a>
+                                    <a <?php echo (isset ($current)&& $current == "practice".$g['id'])? 'class="active"':NULL; ?>  data-href="practice/chitiet/<?php echo $g['id']?>" class='check_login'><?php echo $g['name'] ?></a>
                                 </li>
                             <?php } ?> 
                                 
@@ -70,7 +70,7 @@
                                 
                             </ul>
                         </li>
-                         <li class="dropdown <?php echo (isset ($current)&& $current == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a class='check_login' data-href="review/review/index/1" >Ôn Câu Hỏi</i></a>
+                         <li class="dropdown <?php echo (isset ($current1)&& $current1 == 'review' || isset ($current)&& $current == 'ReviewQuestion' || isset ($current)&& $current == 'vocabulory' )?'active':NULL ?> "  ><a class='check_login' data-href="review/review/index/1" >Ôn Câu Hỏi</i></a>
                         </li>
                         <li class="dropdown <?php echo (isset ($current)&& $current == 'tudien')?'active':NULL ?> "  ><a class='check_login' data-href="vocabulary/voca/tudien" >Từ Điển Cá Nhân</i></a>
                         </li>

@@ -1,4 +1,4 @@
-<h1 align="center"><b> part 1</b></h1>
+<h1><b><u>Part 1</u>:</b></h1>
                             <?php $dem = 0; ?>
                             <?php foreach($part1 as $index => $p1) { $dem += 1; 
                                 $userChoose = -1;

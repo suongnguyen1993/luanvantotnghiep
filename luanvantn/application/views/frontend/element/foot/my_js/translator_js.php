@@ -17,6 +17,7 @@
 					data: {'inputString':s},
 					method: 'POST',			    	    	    
 					success: function(data){
+						
 						if(data!=undefined)
 						{
 							data = decodeURI(data);
@@ -107,5 +108,5 @@
 
 		<tr><td id="translated"></td></tr></tbody></table>
 
-		<div id="saved" class="toolbar"><button id="btnSaved" type="button" class="btn btn-sx btn-primary">Lưu</button></div>
+		<div id="saved" class="toolbar"><button id="btnSaved" type="button" class="btn btn-sx btn-primary">Lưu từ này</button></div>
 		</div></div></span>

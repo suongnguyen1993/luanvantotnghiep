@@ -1,5 +1,5 @@
 <div class="single-blog two-column">
-                            <h1 align="center"><b> part 2</b></h1>
+                            <h1><b><u>Part 2</u>:</b></h1>
                             <?php $dem = 5;?>
                              <?php foreach($part2 as $index => $p1) { $dem += 1; 
                                 $userChoose = -1;

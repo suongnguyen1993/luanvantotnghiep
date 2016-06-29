@@ -12,7 +12,8 @@ class Review extends CI_Controller {
 	public function index($id)
 	{
 		$data['title']='Ôn tập';
-		$data['current']='review';
+		$data['current1']='review';
+		$data['current']=$id;
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 		$data['left_menu']='frontend/element/item/left-menu-review';
 
@@ -20,7 +21,7 @@ class Review extends CI_Controller {
 	
 		
 		if(isset($id) && $id == 1)
-		{
+		{ 
 			$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id,'user_id'=>$id_u));
 		
         	$data['part1']= $lisPhoto;

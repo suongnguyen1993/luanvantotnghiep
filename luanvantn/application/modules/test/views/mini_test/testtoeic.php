@@ -1,67 +1,67 @@
 
-    <section id="blog" class="padding-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-5">
-                   <div class="sidebar blog-sidebar">
-                        
-                        <div class="sidebar-item tag-cloud" id="fix-clock" >
-                            <h3>Thời gian</h3>
-                            <div id="clock"></div>
-                        </div>
-                        
-                    </div>
-                </div>    
-             
-                <div class="col-md-9 col-sm-7">
-                    <div class="row">
-                    <audio autoplay="on">
-                        <source src="uploads/test_audio/<?php echo isset($audio_exam)?$audio_exam:"" ?>">
-                     </audio>
-                         <div class="col-md-12 col-sm-12">
-                            <form id="form-fulltest" action="" method="post" accept-charset="utf-8">
-                                <!-- part 1 -->
-                                <?php $this->load->view('mini_test/part1', $part1); ?>
-
-                                <!-- part 2 -->
-                                <?php $this->load->view('mini_test/part2', $part2); ?>
-
-                                <!-- part 3 -->
-                                <?php $this->load->view('mini_test/part3', $part3); ?>
-
-                                <!-- part 4 -->
-                                <?php $this->load->view('mini_test/part4', $part4); ?>
-
-                                <!-- part 5 -->
-                                <?php $this->load->view('mini_test/part5', $part5); ?>
-                                
-                                <!-- part 6 -->
-                                <?php $this->load->view('mini_test/part6', $part6); ?>
-
-                                <!-- part 7 -->
-                                <?php $this->load->view('mini_test/part7', $part7); ?>
-                            
-                                <p  align="center">
-                                <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
-
-                                <a href="test/full_test" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
-                              </p>
-                                </form>
-                            </div>
-                    </div>
-                        
-                    </div>
-                    
-                 </div>
-            </div>
+<section id="blog" class="padding-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-5">
+       <div class="sidebar blog-sidebar">
+        
+        <div class="sidebar-item tag-cloud" id="fix-clock" >
+          <h3>Thời gian</h3>
+          <div id="clock"></div>
         </div>
-    </section>
-    <!--/#blog-->
+        
+      </div>
+    </div>    
+    
+    <div class="col-md-9 col-sm-7">
+      <div class="row">
+        <audio autoplay="on">
+          <source src="uploads/test_audio/<?php echo isset($audio_exam)?$audio_exam:"" ?>">
+          </audio>
+          <div class="col-md-12 col-sm-12">
+            <form id="form-fulltest" action="" method="post" accept-charset="utf-8">
+              <!-- part 1 -->
+              <?php $this->load->view('mini_test/part1', $part1); ?>
+
+              <!-- part 2 -->
+              <?php $this->load->view('mini_test/part2', $part2); ?>
+
+              <!-- part 3 -->
+              <?php $this->load->view('mini_test/part3', $part3); ?>
+
+              <!-- part 4 -->
+              <?php $this->load->view('mini_test/part4', $part4); ?>
+
+              <!-- part 5 -->
+              <?php $this->load->view('mini_test/part5', $part5); ?>
+              
+              <!-- part 6 -->
+              <?php $this->load->view('mini_test/part6', $part6); ?>
+
+              <!-- part 7 -->
+              <?php $this->load->view('mini_test/part7', $part7); ?>
+              
+              <p  align="center">
+                <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+
+                <a href="test/full_test" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+              </p>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+</section>
+<!--/#blog-->
 
 
 
 <script type="text/javascript">
-    var __submit = <?php echo isset($submit)?1:0; ?>
+  var __submit = <?php echo isset($submit)?1:0; ?>
 </script>
 
 
@@ -76,7 +76,7 @@
       </div>
       <div class="modal-body">
         <div class="diem">
-            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem:"0"; ?>
+          <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem:"0"; ?>
         </div>
       </div>
       <div class="modal-footer">
@@ -98,7 +98,7 @@
 
       <div class="modal-body">
         <div class="diem">
-            Khi làm bài kiểm tra những câu bạn làm sai sẽ được lưu lại ở phần ôn tập
+          Khi làm bài kiểm tra những câu bạn làm sai sẽ được lưu lại ở phần ôn tập
         </div>
       </div>
       <div class="modal-footer" style="text-align: center">

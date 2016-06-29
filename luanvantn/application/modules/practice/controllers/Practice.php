@@ -29,7 +29,7 @@ class Practice extends CI_Controller {
 		$data['content']='Hãy luyện tập Toeic với chúng tôi.';
 		$data['current1']='practice';
 		$data['left_menu']='frontend/element/item/left-menu';
-		$data['current']=$id;
+		$data['current']="practice".$id;
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 		if($this->session->has_userdata('username'))
 		{

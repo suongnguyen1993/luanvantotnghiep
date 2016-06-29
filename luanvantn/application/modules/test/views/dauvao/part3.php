@@ -1,5 +1,5 @@
 <div class="single-blog two-column">
-                            <h1 align="center"><b> part 3</b></h1>
+                           <h1><b><u>Part 3</u>:</b></h1>
                             <?php $dem = 25;
                             
                             foreach ($part3 as $pIndex => $p2)
