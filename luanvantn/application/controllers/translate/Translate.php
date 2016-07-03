@@ -12,7 +12,7 @@ class Translate extends CI_Controller {
         $translation = $this->my_translator->entovi($inputString);
 		if(isset($translation[0]))
 		{
-        	echo str_replace('% 20','',$translation[0]);
+			echo str_replace('% 20','',$translation[0]);	
         }
         die;
 	}

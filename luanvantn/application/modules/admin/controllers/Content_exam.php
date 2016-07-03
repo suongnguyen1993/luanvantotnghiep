@@ -7,9 +7,21 @@ class Content_exam extends CI_Controller {
 	{
 		parent::__construct();
 	}
+	/*
+		-Hàm index hiển thị dữ liệu của 1 đề thi 
+		# if check_login() = false thì chuyển về trang admin/login
+		# $page = 1 là biến dùng phân trang
+		# if check_login() == false thì quay lại trang login
 
+		# $search là dữ liệu lấy từ from search
+
+		# if $this->input->post() có dữa liệu đưa lên qua form thì gán dữ liệu được tìm kiếm thông qua search vào $data['admin'] xuất dữ liệu tìm kiếm
+		# else thì phần trang (mỗi trang gồm 10 phần từ) hiển thị dữ liệu của admin vào $data['exam']
+		
+	*/
 	public function index($page = 1)
 	{
+		//check login
 		if($this->check_login() == false)
 		{
 			redirect('admin/login');
@@ -24,7 +36,7 @@ class Content_exam extends CI_Controller {
 		}
 		else
 		{
-			
+			//phan trang
 			$this->load->library('pagination');
 			$config = $this->query_sql->_pagination();
 			$config['base_url'] = base_url().'admin/exam/index/';
@@ -45,6 +57,7 @@ class Content_exam extends CI_Controller {
 	}
 	public function update($id)
 	{
+		//check login
 		if($this->check_login() == false)
 		{
 			redirect('admin/login');
@@ -56,6 +69,7 @@ class Content_exam extends CI_Controller {
 		$data['title'] = "Manage Content exam $name_exam";
 		$data['question_part1'] = $this->part1($id);
 		$count1 = $this->query_sql->total_where('question',array ('group_id' => 1, 'exam_id'=>$id)) ;
+		//neu lon hon = 10 khong hien thi nut add
 		if( $count1 >= 10)
 		{
 			$data['show1'] = 'style="display: none;"';
@@ -80,8 +94,23 @@ class Content_exam extends CI_Controller {
 			$data['show4'] = 'style="display: none;"';
 		}	
 		$data['question_part5'] = $this->part5($id);
+		$count5 = $this->query_sql->total_where('question',array ('group_id' => 5, 'exam_id'=>$id));
+		if( $count5 >= 40)
+		{
+			$data['show5'] = 'style="display: none;"';
+		}
 		$data['question_part6'] = $this->part6($id);
+		$count6 = $this->query_sql->total_where('long_question',array ('group_id' => 6, 'exam_id'=>$id));
+		if( $count6 >= 3)
+		{
+			$data['show6'] = 'style="display: none;"';
+		}
 		$data['question_part7'] = $this->part7($id);
+		$count7 = $this->query_sql->total_where('long_question',array ('group_id' => 7, 'exam_id'=>$id));
+		if( $count7 >= 13)
+		{
+			$data['show7'] = 'style="display: none;"';
+		}
 
 		$data['template']='backend/content_exam/edit';
 		$this->load->view('backend/layout/admin',$data);

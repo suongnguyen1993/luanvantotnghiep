@@ -3,6 +3,7 @@
 
     	var selectedText = '';
     	var translatedText = '';
+    	var enableSaved = true;
     	
 
 		function dich(e)
@@ -24,6 +25,17 @@
 							selectedText = s;
 							translatedText = data;
 							var ss = getSelectionCoords();
+
+							//Tim vi tri cua chuoi Exception 
+							if(data.indexOf('Exception') != -1)
+							{
+								enableSaved = false;
+							}
+							else
+							{
+								enableSaved = true;
+							}
+
 							$('#translated').text(data);
 							$('#translation').css({
 								    top: ss.y	+"px",
@@ -60,6 +72,13 @@
 
 		$(document).ready(function(){
 			$('#btnSaved').click(function(){
+
+				if(enableSaved === false)
+				{
+					//Ko cho luu
+					alert('Không lưu được do lỗi server! ');
+					return;
+				}
 
     			if(selectedText != "" && translatedText !="")
     			{

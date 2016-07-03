@@ -48,17 +48,8 @@
                           } else echo $part1['content'] ?></a>
                         </td>
                         <td >
-                          <a href="admin/question/update/<?php echo $part1['id'] ?>"> <?php switch ($part1['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
+                          <a href="admin/question/update/<?php echo $part1['id'] ?>"> <?php echo $part1['level']
+    
                          ?></a>
                         </td>          
                         <td><?php echo $part1['created']?></td>
@@ -110,18 +101,7 @@
                           } else echo $part2['content'] ?></a>
                         </td>
                         <td >
-                          <a href="admin/question/update/<?php echo $part2['id'] ?>"> <?php switch ($part2['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
+                          <a href="admin/question/update/<?php echo $part2['id'] ?>"> <?php echo $part1['level']?></a>
                         </td>          
                         <td><?php echo $part2['created']?></td>
                         <td>
@@ -144,12 +124,11 @@
                   <div class="col-lg-6">
                   <h3>Part 3</h3>
                 </div>
-                <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show3)?$show3:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
-                                 </div>
-                    <thead>
+                <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show3)?$show3:""; ?>> <span class="glyphicon glyphicon-plus" aria-hidden="true">Add</span></a>
+                                 </div><thead>
                        <tr>
-                        <th>question</th>
-                        
+                        <th>Question</th>
+                        <<th>Level</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -158,14 +137,17 @@
                    { ?>
                       <tr>
                         <td >
-                          <a href="admin/longquestion/update/<?php echo $part3['id'] ?>"><?php if(strlen($part3['long_content']) > 200 ){
+                          <a href="admin/longquestion/update/<?php echo $part3['id'] ?>">
+                          <?php if(strlen($part3['long_content']) > 200 ){
                           echo substr($part3['long_content'],0,200)."...";
                           } else echo $part3['long_content'] ?></a>
                         </td>
                                 
-                        
+                         <td >
+                          <a href="admin/longquestion/update/<?php echo $part3['id'] ?>"> <?php echo $part3['level']?></a>
+                        </td> 
                         <td>
-                          <a href="admin/question/update/<?php echo $part3['id'] ?>"<i class="fa fa-wrench"></i></a>
+                          <a href="admin/longquestion/update/<?php echo $part3['id'] ?>"<i class="fa fa-wrench"></i></a>
                           <a onclick="long_del(<?php echo $part3['id'] ?>)"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr> 
@@ -243,18 +225,7 @@
                           } else echo $part5['content'] ?></a>
                         </td>
                         <td >
-                          <a href="admin/question/update/<?php echo $part5['id'] ?>"> <?php switch ($part5['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;                        
-                        }
-                         ?></a>
+                          <a href="admin/question/update/<?php echo $part5['id'] ?>"> <?php echo $part5['level'] ?></a>
                         </td>          
                         <td><?php echo $part5['created']?></td>
                         <td>
