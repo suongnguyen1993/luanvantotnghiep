@@ -27,8 +27,12 @@ class Fix_test extends CI_Controller {
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
 		$dethi = $this->query_sql->select_row("exam", "*", array ('id' => $id),'','');
 
-		// print_r($dethi);
-		// die;
+		$id_user = $this->session->userdata('id');
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 		$maDeThi = $id;
 		$data["audio_exam"] = $dethi['audio'] ;
 		

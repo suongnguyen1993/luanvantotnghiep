@@ -120,7 +120,6 @@
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
                   <div class="form-group text-right">
-                  
                   <div class="col-lg-6">
                   <h3>Part 3</h3>
                 </div>
@@ -128,7 +127,7 @@
                                  </div><thead>
                        <tr>
                         <th>Question</th>
-                        <<th>Level</th>
+                        <th>Level</th>
                         <th style="width: 50px">Action</th>
                       </tr>
                     </thead>
@@ -205,7 +204,7 @@
                   <div class="col-lg-6">
                   <h3>Part 5</h3>
                  </div>
-                <a href="admin/question/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+                <a href="admin/question/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show5)?$show5:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
                                  </div>
                     <thead>
                       <tr>
@@ -249,7 +248,7 @@
                   <div class="col-lg-6">
                   <h3>Part 6</h3>
                  </div>
-                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show6)?$show6:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
                  </div>
                     <thead>
                       <tr>
@@ -285,7 +284,7 @@
                   <div class="col-lg-6">
                   <h3>Part 7</h3>
                  </div>
-                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
+                    <a href="admin/longquestion/add/<?php echo $exam['id'] ?>" type="button" class="btn btn-success btn-flat" <?php echo isset($show7)?$show7:""; ?>><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>
                  </div>
                     <thead>
                        <tr>

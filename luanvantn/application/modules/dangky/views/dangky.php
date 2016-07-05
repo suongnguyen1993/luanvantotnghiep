@@ -21,13 +21,13 @@
                                     Email (*):<input type="email" name="email" value="<?php echo $this->input->post('email') ?>" class="form-control" required="required" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    Tên đăng nhập (*):<input type="text" name="username" value="<?php echo $this->input->post('username') ?>" class="form-control" required="required" placeholder="Username">
+                                    Tên đăng nhập (*):<input type="text" minlength="6" name="username" value="<?php echo $this->input->post('username') ?>" class="form-control" required="required" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    Mật khẩu (*):<input type="password" name="password" class="form-control" required="required" placeholder="Password">
+                                    Mật khẩu (*):<input type="password" minlength="6" name="password" class="form-control" required="required" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    Nhập lại mật khẩu (*):<input type="password" name="repassword" class="form-control" required="required" placeholder="RePassword">
+                                    Nhập lại mật khẩu (*):<input type="password" minlength="6" name="repassword" class="form-control" required="required" placeholder="RePassword">
                                 </div>                          
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-submit" value="Đăng Ký">

@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 				{
 					$login  = array(
 			        'admin'  => $username,
-			        'id'		=> $user['id'],
+			        'id_admin'		=> $user['id'],
 					);
 					$this->session->set_userdata($login);	
 					redirect("admin/admin");		

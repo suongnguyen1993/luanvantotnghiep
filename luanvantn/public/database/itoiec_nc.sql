@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 27, 2016 at 06:52 PM
--- Server version: 5.6.17-log
--- PHP Version: 5.5.12
+-- Client :  127.0.0.1
+-- Généré le :  Lun 04 Juillet 2016 à 18:00
+-- Version du serveur :  5.6.17-log
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `itoiec_nc`
+-- Base de données :  `itoiec_nc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `admin`
+-- Contenu de la table `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `fullname`, `email`, `created`, `updated`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `admin` (`id`, `username`, `password`, `fullname`, `email`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `choice`
+-- Structure de la table `choice`
 --
 
 CREATE TABLE IF NOT EXISTS `choice` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `choice` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=559 ;
 
 --
--- Dumping data for table `choice`
+-- Contenu de la table `choice`
 --
 
 INSERT INTO `choice` (`id`, `content`, `correct_answer`, `question_id`, `created`, `updated`) VALUES
@@ -266,7 +266,7 @@ INSERT INTO `choice` (`id`, `content`, `correct_answer`, `question_id`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exam`
+-- Structure de la table `exam`
 --
 
 CREATE TABLE IF NOT EXISTS `exam` (
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `false_statements`
+-- Structure de la table `false_statements`
 --
 
 CREATE TABLE IF NOT EXISTS `false_statements` (
@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `false_statements` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=484 ;
 
 --
--- Dumping data for table `false_statements`
+-- Contenu de la table `false_statements`
 --
 
 INSERT INTO `false_statements` (`id`, `long_question_id`, `question_id`, `user_id`) VALUES
@@ -789,7 +789,7 @@ INSERT INTO `false_statements` (`id`, `long_question_id`, `question_id`, `user_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `group`
+-- Structure de la table `group`
 --
 
 CREATE TABLE IF NOT EXISTS `group` (
@@ -801,7 +801,7 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `group`
+-- Contenu de la table `group`
 --
 
 INSERT INTO `group` (`id`, `name`, `created`, `updated`) VALUES
@@ -816,7 +816,7 @@ INSERT INTO `group` (`id`, `name`, `created`, `updated`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `long_question`
+-- Structure de la table `long_question`
 --
 
 CREATE TABLE IF NOT EXISTS `long_question` (
@@ -832,7 +832,7 @@ CREATE TABLE IF NOT EXISTS `long_question` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `long_question`
+-- Contenu de la table `long_question`
 --
 
 INSERT INTO `long_question` (`id`, `long_content`, `group_id`, `exam_id`, `long_audio`, `level`, `number_question`) VALUES
@@ -848,7 +848,7 @@ INSERT INTO `long_question` (`id`, `long_content`, `group_id`, `exam_id`, `long_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ma_tran_tra_loi`
+-- Structure de la table `ma_tran_tra_loi`
 --
 
 CREATE TABLE IF NOT EXISTS `ma_tran_tra_loi` (
@@ -858,7 +858,7 @@ CREATE TABLE IF NOT EXISTS `ma_tran_tra_loi` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ma_tran_tra_loi`
+-- Contenu de la table `ma_tran_tra_loi`
 --
 
 INSERT INTO `ma_tran_tra_loi` (`id_question`, `id_user`, `trloi`) VALUES
@@ -1321,30 +1321,10 @@ INSERT INTO `ma_tran_tra_loi` (`id_question`, `id_user`, `trloi`) VALUES
 (51, 65, 1),
 (50, 65, 1),
 (36, 65, 1),
-(42, 65, 1),
-(42, 30, 0),
-(46, 30, 0),
-(40, 30, 0),
-(37, 30, 0),
-(20, 30, 0),
-(48, 30, 0),
-(34, 30, 0),
-(39, 30, 0),
-(36, 30, 0),
-(41, 30, 0),
-(47, 30, 0),
-(38, 30, 0),
-(45, 30, 0),
-(19, 30, 0),
-(35, 30, 0),
-(50, 30, 0),
-(43, 30, 0),
-(51, 30, 0),
-(49, 30, 0),
-(21, 30, 0);
+(42, 65, 1);
 
 --
--- Triggers `ma_tran_tra_loi`
+-- Déclencheurs `ma_tran_tra_loi`
 --
 DROP TRIGGER IF EXISTS `update_total_do`;
 DELIMITER //
@@ -1359,7 +1339,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Structure de la table `question`
 --
 
 CREATE TABLE IF NOT EXISTS `question` (
@@ -1380,64 +1360,64 @@ CREATE TABLE IF NOT EXISTS `question` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
--- Dumping data for table `question`
+-- Contenu de la table `question`
 --
 
 INSERT INTO `question` (`id`, `content`, `image`, `audio`, `level`, `exam_id`, `group_id`, `id_long_question`, `created`, `updated`, `the_total_do`, `the_total_do_correct`) VALUES
-(1, 'Listening Photograhs', 'cau1_test3.JPG', 'cau1_test3.mp3', 100, NULL, 1, NULL, '2016-04-21 14:40:36', NULL, 0, 0),
-(2, 'Listening Photographs', 'cau2_test3.JPG', 'cau2_test3.mp3', 250, NULL, 1, NULL, '2016-04-21 14:43:09', NULL, 0, 0),
-(3, 'Listening Photographs', 'cau3_test3.JPG', 'cau3_test3.mp3', 400, NULL, 1, NULL, '2016-04-21 14:45:03', NULL, 0, 0),
-(4, 'Where is Samantha moving?', '', 'cau11_test3.mp3', 400, NULL, 2, NULL, '2016-04-21 14:58:35', NULL, 0, 0),
-(5, 'How fast can you get here?', '', 'cau12_test3.mp3', 100, NULL, 2, NULL, '2016-04-21 14:59:46', NULL, 0, 0),
-(6, 'Will you be able to finish on time?', '', 'cau13_test3.mp3', 250, NULL, 2, NULL, '2016-04-21 15:01:19', NULL, 0, 0),
-(7, 'Where is this conversation most likely taking place?', '', '', 100, NULL, 3, '1', '2016-04-21 19:28:20', NULL, 0, 0),
-(8, 'What does the man want to buy?', '', '', 250, NULL, 3, '1', '2016-04-21 19:29:20', NULL, 0, 0),
-(9, 'When does the shop open?', '', '', 100, NULL, 3, '1', '2016-04-21 19:30:07', NULL, 0, 0),
-(10, 'What is the woman looking for?', '', '', 500, NULL, 3, '2', '2016-04-21 19:35:22', NULL, 0, 0),
-(11, 'Where is Johnny today?', '', '', 400, NULL, 3, '2', '2016-04-21 19:36:02', NULL, 0, 0),
-(12, 'What does Jackie say he will do?', '', '', 250, NULL, 3, '2', '2016-04-21 19:36:59', NULL, 0, 0),
-(13, 'What is the purpose of the message?', '', '', 250, NULL, 4, '3', '2016-04-21 20:20:36', NULL, 0, 0),
-(14, 'Who is most likely leaving the message?', '', '', 700, NULL, 4, '3', '2016-04-21 20:21:10', NULL, 0, 0),
-(15, 'What does the caller tell Ms. Spartan to do?', '', '', 100, NULL, 4, '3', '2016-04-21 20:21:45', NULL, 0, 0),
-(16, 'What is this advertisement about?', '', '', 400, NULL, 4, '4', '2016-04-21 20:26:29', NULL, 0, 0),
-(17, 'What is convenient about the product?', '', '', 100, NULL, 4, '4', '2016-04-21 20:27:10', NULL, 0, 0),
-(18, 'According to the advertisement, what is special about the product?', '', '', 250, NULL, 4, '4', '2016-04-21 20:27:52', NULL, 0, 0),
-(19, 'This weekend the Main Street Bar & Lounge ___ closing at 1 a.m', '', '', 100, NULL, 5, NULL, '2016-04-21 21:16:26', NULL, 24, 15),
-(20, 'The hotel reservation ___ Mr. Jenkin’s business trip to London has just been confirmed by his travel agent.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:18:03', NULL, 24, 9),
-(21, 'We estimate students will need ___ two hours to complete the online\r\napplication and submit it to \r\nus', '', '', 100, NULL, 5, NULL, '2016-04-21 21:19:04', NULL, 24, 15),
-(22, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:40:25', NULL, 0, 0),
-(23, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:41:57', NULL, 0, 0),
-(24, '.', '', '', 500, NULL, 6, '5', '2016-04-21 22:42:41', NULL, 0, 0),
-(25, '.', '', '', 100, NULL, 6, '6', '2016-04-21 22:49:46', NULL, 0, 0),
-(26, '.', '', '', 400, NULL, 6, '6', '2016-04-21 23:07:05', NULL, 0, 0),
-(27, '.', '', '', 700, NULL, 6, '6', '2016-04-21 23:07:48', NULL, 0, 0),
-(28, 'What position is being advertised?', '', '', 700, NULL, 7, '7', '2016-04-21 23:28:13', NULL, 0, 0),
-(29, 'What is mentioned as a requirement for the job?', '', '', 500, NULL, 7, '7', '2016-04-21 23:29:16', NULL, 0, 0),
-(30, 'Why have prices been reduced?', '', '', 250, NULL, 7, '8', '2016-04-21 23:31:37', NULL, 0, 0),
-(31, 'What product is in limited supply?', '', '', 400, NULL, 7, '8', '2016-04-21 23:36:25', NULL, 0, 0),
-(32, 'What will customers who spend more than $250 receive?', '', '', 700, NULL, 7, '8', '2016-04-21 23:37:59', NULL, 0, 0),
-(34, 'Mr. Anderson has been a  senior account manager ___ over three years at one of the leading consulting firms.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:20:53', NULL, 24, 15),
-(35, 'Around 90 percent of  individual stock investors were found to be not \r\nqualified for direct stock investment due to ___ of knowledge and skills in investment.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:22:18', NULL, 24, 18),
-(36, 'In its ongoing commitment to maintain the highest level of customer ___, Peterson Incorporated values your comments on its service.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:23:43', NULL, 24, 10),
-(37, 'The sales figures are not very favorable this quarter,but are expected to rise ___.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:24:31', NULL, 24, 7),
-(38, 'In spite of inclement weather, the staff Christmas party was ___ attended by both management and employees.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:26:15', NULL, 24, 6),
-(39, 'A responsible financial planner give clients enough advice to help them make a right decision for ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:26:51', NULL, 24, 17),
-(40, 'The city has received federal funding to ___ the historical City Hall building to its former beauty.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:27:42', NULL, 24, 12),
-(41, 'Human resources managers should have excellence speaking and conflict resolution skills to communicate ___ with a variety of employees.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:28:47', NULL, 24, 15),
-(42, 'Attached please find the file containing last week’s sales presentation ___ you requested', '', '', 100, NULL, 5, NULL, '2016-04-21 21:29:34', NULL, 24, 8),
-(43, 'Barnes & Noble can send invoices — for product orders at the customer’s request.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:37:24', NULL, 24, 10),
-(45, 'Ms. Swanson will manage all operations on the upcoming construction contract, and all supervisors will report directly back to ___.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:41:11', NULL, 24, 15),
-(46, 'Because of the lack of ticket sales, this evening’s theater performance has been ___ until next week.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:42:14', NULL, 24, 6),
-(47, 'Canadian customs and immigration staff report that most of the breaches of security involve travelers who did not — import illegal products into the country.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:43:18', NULL, 24, 4),
-(48, 'When the sales clerk finishes running all of the items through the scanner, the computer quickly prints ___ the receipt.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:44:21', NULL, 24, 15),
-(49, 'Product ___ at Wellington Industries work both independently and cooperatively with team members.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:45:42', NULL, 24, 12),
-(50, 'At Omega Engineering, we strongly believe that a ___ work environment is essential to productive and motivated employees .', '', '', 700, NULL, 5, NULL, '2016-04-21 21:47:02', NULL, 24, 15),
-(51, 'Ms. Pemberton removed a number of financial charts from her presentation after deciding they would be too ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:49:23', NULL, 24, 10);
+(1, 'Listening Photograhs', 'cau1_test3.JPG', 'cau1_test3.mp3', 100, NULL, 1, NULL, '2016-04-21 14:40:36', NULL, 23, 0),
+(2, 'Listening Photographs', 'cau2_test3.JPG', 'cau2_test3.mp3', 250, NULL, 1, NULL, '2016-04-21 14:43:09', NULL, 23, 0),
+(3, 'Listening Photographs', 'cau3_test3.JPG', 'cau3_test3.mp3', 400, NULL, 1, NULL, '2016-04-21 14:45:03', NULL, 23, 0),
+(4, 'Where is Samantha moving?', '', 'cau11_test3.mp3', 400, NULL, 2, NULL, '2016-04-21 14:58:35', NULL, 23, 0),
+(5, 'How fast can you get here?', '', 'cau12_test3.mp3', 100, NULL, 2, NULL, '2016-04-21 14:59:46', NULL, 23, 0),
+(6, 'Will you be able to finish on time?', '', 'cau13_test3.mp3', 250, NULL, 2, NULL, '2016-04-21 15:01:19', NULL, 23, 0),
+(7, 'Where is this conversation most likely taking place?', '', '', 100, NULL, 3, '1', '2016-04-21 19:28:20', NULL, 23, 0),
+(8, 'What does the man want to buy?', '', '', 250, NULL, 3, '1', '2016-04-21 19:29:20', NULL, 23, 0),
+(9, 'When does the shop open?', '', '', 100, NULL, 3, '1', '2016-04-21 19:30:07', NULL, 23, 0),
+(10, 'What is the woman looking for?', '', '', 500, NULL, 3, '2', '2016-04-21 19:35:22', NULL, 23, 0),
+(11, 'Where is Johnny today?', '', '', 400, NULL, 3, '2', '2016-04-21 19:36:02', NULL, 23, 0),
+(12, 'What does Jackie say he will do?', '', '', 250, NULL, 3, '2', '2016-04-21 19:36:59', NULL, 23, 0),
+(13, 'What is the purpose of the message?', '', '', 250, NULL, 4, '3', '2016-04-21 20:20:36', NULL, 23, 0),
+(14, 'Who is most likely leaving the message?', '', '', 700, NULL, 4, '3', '2016-04-21 20:21:10', NULL, 23, 0),
+(15, 'What does the caller tell Ms. Spartan to do?', '', '', 100, NULL, 4, '3', '2016-04-21 20:21:45', NULL, 23, 0),
+(16, 'What is this advertisement about?', '', '', 400, NULL, 4, '4', '2016-04-21 20:26:29', NULL, 23, 0),
+(17, 'What is convenient about the product?', '', '', 100, NULL, 4, '4', '2016-04-21 20:27:10', NULL, 23, 0),
+(18, 'According to the advertisement, what is special about the product?', '', '', 250, NULL, 4, '4', '2016-04-21 20:27:52', NULL, 23, 0),
+(19, 'This weekend the Main Street Bar & Lounge ___ closing at 1 a.m', '', '', 100, NULL, 5, NULL, '2016-04-21 21:16:26', NULL, 23, 15),
+(20, 'The hotel reservation ___ Mr. Jenkin’s business trip to London has just been confirmed by his travel agent.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:18:03', NULL, 23, 9),
+(21, 'We estimate students will need ___ two hours to complete the online\r\napplication and submit it to \r\nus', '', '', 100, NULL, 5, NULL, '2016-04-21 21:19:04', NULL, 23, 15),
+(22, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:40:25', NULL, 23, 0),
+(23, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:41:57', NULL, 23, 0),
+(24, '.', '', '', 500, NULL, 6, '5', '2016-04-21 22:42:41', NULL, 23, 0),
+(25, '.', '', '', 100, NULL, 6, '6', '2016-04-21 22:49:46', NULL, 23, 0),
+(26, '.', '', '', 400, NULL, 6, '6', '2016-04-21 23:07:05', NULL, 23, 0),
+(27, '.', '', '', 700, NULL, 6, '6', '2016-04-21 23:07:48', NULL, 23, 0),
+(28, 'What position is being advertised?', '', '', 700, NULL, 7, '7', '2016-04-21 23:28:13', NULL, 23, 0),
+(29, 'What is mentioned as a requirement for the job?', '', '', 500, NULL, 7, '7', '2016-04-21 23:29:16', NULL, 23, 0),
+(30, 'Why have prices been reduced?', '', '', 250, NULL, 7, '8', '2016-04-21 23:31:37', NULL, 23, 0),
+(31, 'What product is in limited supply?', '', '', 400, NULL, 7, '8', '2016-04-21 23:36:25', NULL, 23, 0),
+(32, 'What will customers who spend more than $250 receive?', '', '', 700, NULL, 7, '8', '2016-04-21 23:37:59', NULL, 23, 0),
+(34, 'Mr. Anderson has been a  senior account manager ___ over three years at one of the leading consulting firms.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:20:53', NULL, 23, 15),
+(35, 'Around 90 percent of  individual stock investors were found to be not \r\nqualified for direct stock investment due to ___ of knowledge and skills in investment.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:22:18', NULL, 23, 18),
+(36, 'In its ongoing commitment to maintain the highest level of customer ___, Peterson Incorporated values your comments on its service.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:23:43', NULL, 23, 10),
+(37, 'The sales figures are not very favorable this quarter,but are expected to rise ___.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:24:31', NULL, 23, 7),
+(38, 'In spite of inclement weather, the staff Christmas party was ___ attended by both management and employees.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:26:15', NULL, 23, 6),
+(39, 'A responsible financial planner give clients enough advice to help them make a right decision for ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:26:51', NULL, 23, 17),
+(40, 'The city has received federal funding to ___ the historical City Hall building to its former beauty.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:27:42', NULL, 23, 12),
+(41, 'Human resources managers should have excellence speaking and conflict resolution skills to communicate ___ with a variety of employees.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:28:47', NULL, 23, 15),
+(42, 'Attached please find the file containing last week’s sales presentation ___ you requested', '', '', 100, NULL, 5, NULL, '2016-04-21 21:29:34', NULL, 23, 8),
+(43, 'Barnes & Noble can send invoices — for product orders at the customer’s request.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:37:24', NULL, 23, 10),
+(45, 'Ms. Swanson will manage all operations on the upcoming construction contract, and all supervisors will report directly back to ___.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:41:11', NULL, 23, 15),
+(46, 'Because of the lack of ticket sales, this evening’s theater performance has been ___ until next week.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:42:14', NULL, 23, 6),
+(47, 'Canadian customs and immigration staff report that most of the breaches of security involve travelers who did not — import illegal products into the country.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:43:18', NULL, 23, 4),
+(48, 'When the sales clerk finishes running all of the items through the scanner, the computer quickly prints ___ the receipt.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:44:21', NULL, 23, 15),
+(49, 'Product ___ at Wellington Industries work both independently and cooperatively with team members.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:45:42', NULL, 23, 12),
+(50, 'At Omega Engineering, we strongly believe that a ___ work environment is essential to productive and motivated employees .', '', '', 700, NULL, 5, NULL, '2016-04-21 21:47:02', NULL, 23, 15),
+(51, 'Ms. Pemberton removed a number of financial charts from her presentation after deciding they would be too ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:49:23', NULL, 23, 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -1459,7 +1439,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
--- Dumping data for table `user`
+-- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id`, `fullname`, `username`, `password`, `email`, `level`, `total_listen`, `total_read`, `listen_correct`, `read_correct`, `created`, `updated`, `fb_id`) VALUES
@@ -1505,7 +1485,7 @@ INSERT INTO `user` (`id`, `fullname`, `username`, `password`, `email`, `level`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vocabularies`
+-- Structure de la table `vocabularies`
 --
 
 CREATE TABLE IF NOT EXISTS `vocabularies` (

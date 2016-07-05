@@ -44,9 +44,9 @@ ul li{height:40px; margin:15px 0; list-style:none}
 <form form id="frm-login" method="post" action="">
 <ul>
 <li>
-<span class="un"><i class="fa fa-user"></i></span><input name= 'username' type="text" required class="text" value = '<?php echo $this->input->post('username') ?>' placeholder="User Name Or Email"/></li>
+<span class="un"><i class="fa fa-user"></i></span><input name= 'username' type="text" required= 'required' minlength="6" class="text" value = '<?php echo $this->input->post('username') ?>' placeholder="User Name Or Email"/></li>
 <li>
-<span class="un"><i class="fa fa-lock"></i></span><input name = 'password' type="password" required class="text" placeholder="User Password"/></li>
+<span class="un"><i class="fa fa-lock"></i></span><input name = 'password' type="password" required = 'required' minlength="6" class="text" placeholder="User Password"/></li>
 <li>
 <input type="submit" value="LOGIN" class="btn">
 </li>

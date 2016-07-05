@@ -58,7 +58,7 @@ class Exam extends CI_Controller {
 			{
 				$this->form_validation->set_rules('name','Name', 'required');
 				$this->form_validation->set_rules('info','Info', 'required');
-				$this->form_validation->set_rules('time','Time','required');
+				$this->form_validation->set_rules('time','Time','required|exact_length[4]|numeric');
 				if($this->form_validation->run())
 				{	
 					$audio = $_FILES["audio_file"]["name"];
@@ -84,7 +84,7 @@ class Exam extends CI_Controller {
 							$flag = $this->query_sql->add('exam',$data);
 							
 							$this->session->set_flashdata('flag', $flag);
-							$this->session->set_flashdata('noice',2);
+							$this->session->set_flashdata('noice',1);
 							redirect('admin/exam/index');
 						}
 					}	
@@ -95,13 +95,12 @@ class Exam extends CI_Controller {
 							'info' => $this->input->post('info'), 
 							'name' => $this->input->post('name'), 
 							'time' => $this->input->post('time'),
-							//'audio' => $audio_data['file_name'],
 							'created'  => gmdate('Y-m-d H:i:s', time()+7*3600)		
 									);
 							$flag = $this->query_sql->add('exam',$data);
 							
 							$this->session->set_flashdata('flag', $flag);
-							$this->session->set_flashdata('noice',2);
+							$this->session->set_flashdata('noice',1);
 							redirect('admin/exam/index');
 					}
 													
@@ -125,7 +124,7 @@ class Exam extends CI_Controller {
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('info','Info', 'required');
-			$this->form_validation->set_rules('time','Time','required');
+			$this->form_validation->set_rules('time','Time','required|exact_length[4]|numeric');
 			if($this->form_validation->run())
 			{
 				$audio = $_FILES["audio_file"]["name"];

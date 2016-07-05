@@ -152,7 +152,7 @@
 			$config['num_tag_open'] = '<li>';
 			$config['num_tag_close'] = '</li>';
 			
-			$config['num_links'] = 5;
+			$config['num_links'] = 4;
 			$config['uri_segment'] = 3;
 			
 			$config['use_page_numbers'] = TRUE;

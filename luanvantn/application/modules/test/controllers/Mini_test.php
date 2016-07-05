@@ -14,6 +14,12 @@ class Mini_test extends CI_Controller {
 		$data['group']['current'] = "minitest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
+		$id_user = $this->session->userdata('id');
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 		
 		//POST
 		if($this->input->post())
@@ -41,7 +47,7 @@ class Mini_test extends CI_Controller {
 			//neu user tra loi sai thi add vao on cau hoi
 			if($this->session->has_userdata('username'))
 			{
-				$id_user = $this->session->userdata('id');
+				
 				//xac dinh nguoi dung chon cau sai
 				$short_false_answer = array();
 				$long_false_answer = array();

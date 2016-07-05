@@ -7,19 +7,19 @@
                       <label for="info" class="control-label">
                       Name:
                       </label>                      
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $exam['name'] ?>">                      
+                        <input type="text" class="form-control" required="required" name="name" id="name" placeholder="Name" value="<?php echo $exam['name'] ?>">                      
                     </div>
 
                     <div class="form-group">  
                       <h4>Infor:</h4>
-                      <textarea class="form-control" rows="5" placeholder=" Enter ..."
-                       name="info" id="info" value = ""><?php echo $exam['info'] ?></textarea>
+                      <textarea class="form-control" required="required" rows="5" placeholder=" Enter ..."
+                       name="info" id="info" required="required" value = ""><?php echo $exam['info'] ?></textarea>
                     </div>
                     <div class="form-group">
                       <label for="time" class="control-label">
                       Time:
                       </label>                      
-                        <input type="text" class="form-control" name="time" id="time" placeholder="dd/mm/yyy" value="<?php echo $exam['time'] ?>">                      
+                        <input type="text" class="form-control" name="time" required="required" id="time" placeholder="yyyy" value="<?php echo $exam['time'] ?>">                      
                     </div>
                     <div class="form-group">
                       <h4 for="audio_file">Audio:  </h4>   

@@ -8,11 +8,11 @@ echo isset($error)?$error:"";
                       <label for="info" class="control-label">
                       Name:
                       </label>                      
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php $this->input->post('name') ?>">                      
+                        <input type="text" class="form-control" required="required" name="name" id="name" placeholder="Name" value="<?php $this->input->post('name') ?>">                      
                     </div>
                     <div class="form-group">  
                       <h4>Info:</h4>
-                      <textarea class="form-control" rows="5" placeholder=" Enter ..."
+                      <textarea class="form-control" required="required" rows="5" placeholder=" Enter ..."
                        name="info" id="info" value = ""><?php $this->input->post('info') ?></textarea>
                     </div>
 
@@ -20,7 +20,7 @@ echo isset($error)?$error:"";
                       <label for="time" class="control-label">
                       Time:
                       </label>                      
-                        <input type="text" class="form-control" name="time" id="time" placeholder="dd/mm/yyy" value="<?php $this->input->post('time') ?>">                      
+                        <input type="text" class="form-control" required="required" name="time" id="time" placeholder="yyyy" value="<?php $this->input->post('time') ?>">                      
                     </div>
 
                     <div class="form-group">

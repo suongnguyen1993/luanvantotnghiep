@@ -8,24 +8,24 @@
                       <label for="fullname" class="control-label">
                       Full name:
                       </label>                      
-                        <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Full name" value="<?php echo $this->input->post('fullname') ?>">                      
+                        <input type="text" class="form-control" name="fullname" id="fullname" required="required" placeholder="Full name" value="<?php echo $this->input->post('fullname') ?>">                      
                     </div> 
                     <div class="form-group">
                       <label for="username" class=" control-label">
                       User name:
                       </label>                      
-                        <input type="text" class="form-control" name="username" id="username" placeholder="User name" value="<?php echo $this->input->post('username') ?>">                      
+                        <input type="text" class="form-control" name="username" required="required" id="username" placeholder="User name" value="<?php echo $this->input->post('username') ?>">                      
                     </div>
                     <div class="form-group">
                       <label for="email" class=" control-label">
                       Email:
                       </label>                      
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $this->input->post('email') ?>">                      
+                        <input type="email" class="form-control" name="email" required="required" id="email" placeholder="Email" value="<?php echo $this->input->post('email') ?>">                      
                     </div>
                     <div class="form-group">
                       <label for="password" class=" control-label">Password:
                       </label>                     
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control" required="required" name="password" id="password" placeholder="Password">
                     </div>
                     
                     <div class="form-group text-right">

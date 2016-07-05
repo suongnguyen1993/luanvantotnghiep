@@ -51,7 +51,7 @@
 	
 	<div class="form-group">	
 		<h4>Question</h4>
-		<textarea class="form-control" rows="5" placeholder=" Enter ..."
+		<textarea class="form-control" rows="5" required="required" placeholder=" Enter ..."
 		 name="content" ><?php echo $question['content'] ?></textarea>
 	</div>
 
@@ -100,7 +100,7 @@
 		    <p class="input-group-addon"> Correct answer A
 		    <input name="choosecorrect" value= '1' type="radio" <?php echo ($chooses[0]['correct_answer'] == 1)?'checked="checked"':""; ?>>
 		    </p>
-		    <input name="choosecontent1" type="text" class="form-control" value="<?php echo $chooses[0]['content']; ?>">
+		    <input name="choosecontent1" required="required" type="text" class="form-control" value="<?php echo $chooses[0]['content']; ?>">
 	    </div>
 	</div>    
 	<div class="form-group text-right">
@@ -108,7 +108,7 @@
 		    <p class="input-group-addon"> Correct answer B
 		    <input name="choosecorrect" value='2' type="radio" <?php echo ($chooses[1]['correct_answer'] == 1)?'checked="checked"':""; ?>>
 		    </p>
-		    <input name="choosecontent2"  type="text" class="form-control" value="<?php echo $chooses[1]['content']; ?>"  >
+		    <input name="choosecontent2" required="required" type="text" class="form-control" value="<?php echo $chooses[1]['content']; ?>"  >
 	    </div>
 	</div>
 	<div class="form-group text-right">
@@ -116,7 +116,7 @@
 		    <p class="input-group-addon"> Correct answer C
 		    <input name="choosecorrect" value='3' type="radio" <?php echo ($chooses[2]['correct_answer'] == 1)?'checked="checked"':""; ?>>
 		    </p>
-		    <input name="choosecontent3" type="text" class="form-control" value="<?php echo $chooses[2]['content']; ?>">
+		    <input name="choosecontent3" required="required" type="text" class="form-control" value="<?php echo $chooses[2]['content']; ?>">
 	    </div>
 	</div>
 	<div class="form-group text-right" id="chooseD">
@@ -124,7 +124,7 @@
 		    <label class="input-group-addon"> Correct answer D
 		    <input id="radioD" name="choosecorrect" value="4" type="radio" <?php echo (isset($chooses[3]['content']) && $chooses[3]['correct_answer'] == 1)?'checked="checked"':""; ?>>
 		    </label>
-		    <input id="textD" name="choosecontent4" 
+		    <input id="textD" name="choosecontent4" required="required"
 		    value="<?php echo (isset($chooses[3]['content']))?$chooses[3]['content']:""; ?>" placeholder = "Enter content of choose D " type="text" class="form-control">
 	    </div>
 	</div> 
