@@ -40,7 +40,7 @@
 
           $('#ready').modal('show');
           $('#turnbackBtn').click(function(){
-              window.location = 'test/test';
+              window.location = 'index';
           });
           $('#okBtn').click(function(){
               $('#ready').modal('hide');

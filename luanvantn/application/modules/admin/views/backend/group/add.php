@@ -6,7 +6,7 @@
                       <label for="name" class="control-label">
                       Group name:
                       </label>                      
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Group name" value="<?php $this->input->post('name') ?>">                      
+                        <input type="text" class="form-control" required="required" name="name" id="name" placeholder="Group name" value="<?php echo $this->input->post('name') ?>">                      
                     </div> 
 
                     <div class="form-group text-right">

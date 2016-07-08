@@ -487,6 +487,10 @@
 			->limit($limit, $start)
 			->get()->result_array();*/
 		}
+		function view($select="", $table="", $start=NULL, $limit=NULL){
+
+			return $this->db->select($select)->from($table)->order_by('id desc')->limit($limit, $start)->get()->result_array();
+		}
 		function view_where($select, $table, $where, $start, $limit){
 			return $this->db->select($select)->from($table)->order_by('id desc')->where($where)->limit($limit, $start)->get()->result_array();
 		}
@@ -494,6 +498,31 @@
 			$results = $this->db->select_max('id')->from($table)->get()->row_array();
 			$data = $results['id'] + 1;
 			return $data;
+		}
+		function _pagination()
+		{
+			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';
+			
+			$config['next_link'] = 'Next &raquo;';
+			$config['next_tag_open'] = '<li class="paginate_button next">';
+			$config['next_tag_close'] = '</li>';
+			
+			$config['prev_link'] = '&laquo; Previous';
+			$config['prev_tag_open'] = '<li class="paginate_button previous">';
+			$config['prev_tag_close'] = '</li>';
+			
+			$config['cur_tag_open'] = '<li class="paginate_button active"><a class="number current">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+			
+			$config['num_links'] = 5;
+			$config['uri_segment'] = 3;
+			
+			$config['use_page_numbers'] = TRUE;
+			$config['per_page'] = 5;
+			return $config;
 		}
 	}
 ?>

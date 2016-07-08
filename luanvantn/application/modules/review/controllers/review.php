@@ -18,11 +18,16 @@ class Review extends CI_Controller {
 		$data['left_menu']='frontend/element/item/left-menu-review';
 
 		$id_u= $this->session->userdata('id');
-	
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_u));
+			if($data_user['level'] == 0)
+			{
+				$data['error'] = 1;
+			}
 		
 		if(isset($id) && $id == 1)
 		{ 
 			$lisPhoto = $this->Cauhoi->getlistening(array('group_id'=>$id,'user_id'=>$id_u));
+
 		
         	$data['part1']= $lisPhoto;
 			if(empty($lisPhoto))

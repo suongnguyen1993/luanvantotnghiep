@@ -42,7 +42,7 @@
                                 <!-- part 7 -->
                                 <?php $this->load->view('dauvao/part7', $part7); ?>
                               <p class="clear-fix" align="center">
-                          <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                          <input  type="submit" name="btn-submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
                         </p>
       
                                 </form>
@@ -75,7 +75,7 @@
       </div>
       <div class="modal-body">
         <div class="diem">
-            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem:"0"; ?>
+            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem.'/990':"0/990"; ?>
         </div>
       </div>
       <div class="modal-footer">

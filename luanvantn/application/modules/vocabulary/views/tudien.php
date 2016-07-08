@@ -65,7 +65,7 @@
                         <?php } ?>
 
                     </div>
-                    <div class="portfolio-pagination">
+            <div class="portfolio-pagination">
                          
             <?php echo (isset($list_pagination))?$list_pagination:"" ?> 
             </div>               

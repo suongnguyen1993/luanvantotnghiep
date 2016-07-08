@@ -22,7 +22,7 @@
 				}
 				else
 				{
-					if(confirm('Ban chua dang nhap, ban co muon qua trang dang nhap ?'))
+					if(confirm('Bạn chưa đăng nhập, bạn có muốn qua trang đăng nhập?'))
 					{
 						window.location = 'login/login';
 					}

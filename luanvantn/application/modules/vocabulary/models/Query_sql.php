@@ -85,7 +85,7 @@
 			return $this->db->select($select)->from($table)->order_by('id desc')->limit($limit, $start)->get()->result_array();
 		}
 		function view_where($select, $table, $where, $start, $limit){
-			return $this->db->select($select)->from($table)->order_by('id desc')->where($where)->limit($limit, $start)->get()->result_array();
+			return $this->db->select($select)->from($table)->order_by('vocabulary asc')->where($where)->limit($limit, $start)->get()->result_array();
 		}
 		function _pagination()
 		{
@@ -118,7 +118,7 @@
 			$config['uri_segment'] = 4;
 			
 			$config['use_page_numbers'] = TRUE;
-			$config['per_page'] = 10;
+			$config['per_page'] = 5;
 			return $config;
 		}
 		

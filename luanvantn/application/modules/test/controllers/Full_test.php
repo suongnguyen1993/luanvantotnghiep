@@ -14,7 +14,12 @@ class Full_test extends CI_Controller {
 		$data['group']['current'] = "fulltest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
-
+		$id_user = $this->session->userdata('id');
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 
 		if($this->input->post())
 		{

@@ -13,11 +13,11 @@
                                 
                                 
                                 <div class="form-group">
-                                    Tên đăng nhập (*):<input type="text" name="username" autocomplete = 'off' value="<?php echo $this->input->post('username') ?>" class="form-control" required="required" placeholder="Username">
+                                    Tên đăng nhập (*):<input type="text" minlength="6" name="username" autocomplete = 'off' value="<?php echo $this->input->post('username') ?>" class="form-control" required="required" placeholder="Username">
 
                                 </div>
                                 <div class="form-group">
-                                    Mật Khẩu (*):<input type="password" name="password" class="form-control" required="required" placeholder="Password">
+                                    Mật Khẩu (*):<input type="password" name="password" class="form-control" minlength="6" required="required" placeholder="Password">
                                 </div>
                                 
                               

@@ -51,7 +51,7 @@
                                 
                             </ul>
                         </li>                    
-                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a href="test/test" >Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown <?php echo (isset ($current)&& $current == 'test' ||isset ($current)&& $current == 'dau_vao' || isset ($current)&& $current == 'fulltest' || isset ($current)&& $current == 'minitest' )?'active':NULL ?> "  ><a>Bài Kiểm Tra <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li >
                                 <a  <?php echo (isset ($current)&& $current == 'dau_vao')? 'class=" active"':NULL; ?> class='check_login' data-href="test/dauvao" >
@@ -65,7 +65,7 @@
                                 <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/mini_test">Mini Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/fix_test/index/<?php ?>">Fix Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/fix_test/index/<?php ?>">Real Test</a>
                                 </li>
                                 
                             </ul>

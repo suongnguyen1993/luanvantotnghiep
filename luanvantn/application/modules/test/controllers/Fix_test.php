@@ -10,13 +10,34 @@ class Fix_test extends CI_Controller {
 		$this->load->library('Mytest');
 	}
 
-	public function index()
+	public function index($page = 1)
 	{
 		$data['group']['current'] = "fixtest" ;
 		$data['group']['group'] =$this->query_sql->select_array("group", "id,name", "",'','');
 		$data['exam'] = $this->query_sql->select_array("exam", "*","",'','');
-
+		$data['title'] ='Danh sách đề thi chính thức';
 		$data['template'] = 'fix_test/index';
+
+		$id_user = $this->session->userdata('id');
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
+		$this->load->library('pagination');
+		$config = $this->query_sql->_pagination();
+		$config['base_url'] = base_url().'test/fix_test/index/';
+		$config['total_rows'] = $this->query_sql->total('exam');
+		$config['uri_segment'] = 4;
+		$total_page = ceil($config['total_rows']/$config['per_page']);
+		$page = ($page > $total_page)?$total_page:$page;
+		$page = (!isset($page) | $page <= 1)?1:$page;
+
+		$this->pagination->initialize($config);
+		$data['list_pagination'] = $this->pagination->create_links();
+
+		$data['exam']= $this->query_sql
+		->view('*',"exam",($page-1)*$config['per_page'],$config['per_page']);
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}
 
@@ -27,8 +48,12 @@ class Fix_test extends CI_Controller {
 		$data['choice'] =$this->query_sql->select_array("choice", "*", "",'','');
 		$dethi = $this->query_sql->select_row("exam", "*", array ('id' => $id),'','');
 
-		// print_r($dethi);
-		// die;
+		$id_user = $this->session->userdata('id');
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 		$maDeThi = $id;
 		$data["audio_exam"] = $dethi['audio'] ;
 		

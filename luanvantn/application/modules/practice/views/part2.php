@@ -1,4 +1,7 @@
-
+<?php if(isset($error) && $error==1){ ?>
+<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
+</div>
+<?php }?>
                      <form action="" method="post" accept-charset="utf-8">
                    
                    
@@ -16,7 +19,7 @@
                             
                                     ?>
                         
-                         <div class="col-md-6 col-sm-12 blog-padding-right" style="height:380px">
+                         <div class="col-md-6 col-sm-12 blog-padding-right" style="height:350px">
                             <div class="single-blog two-column">
                                 <div >
                                    <label style="font-size:20px">
@@ -136,11 +139,11 @@
                                    <?php }?>                 
                                 </div>
                             </div>
-                            <hr >
+                          
                         </div>
                         <?php }?>  
                      
-                       <p class="clear-fix" align="center">
+                       <p class="clear-fix col-md-12 col-sm-12" align="center">
                           <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
 
                           <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>

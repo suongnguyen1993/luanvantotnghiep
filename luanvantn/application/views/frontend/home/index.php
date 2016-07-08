@@ -16,7 +16,7 @@
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
                             <a class='check_login' data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/exam.png" alt=""></a>
                         </div>
-                        <h2><a class='check_login' data-href="test/test">Làm Bài Kiểm Tra</a></h2>
+                        <h2><a class='check_login' data-href="test/full_test">Làm Bài Kiểm Tra</a></h2>
                         
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="single-features">
                     <div class="col-sm-6 wow fadeInRight aling_top " data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2><a href="test/test">Các Bài Test</a></h2>
+                        <h2><a href="test/full_test">Các Bài Test</a></h2>
                         <P>Hãy cùng kiểm tra trình độ Toeic của bạn thông qua những bài Test của chúng tôi ngay. Với những bài Test này, bạn sẽ nắm được khả năng Toeic của mình để từ đó hãy cải thiện chúng ngày càng tốt hơn nhé. </P>
                     </div>
 

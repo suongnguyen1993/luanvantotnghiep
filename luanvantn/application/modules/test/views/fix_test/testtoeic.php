@@ -1,6 +1,9 @@
-
     <section id="blog" class="padding-top">
         <div class="container">
+        <?php if(isset($error) && $error==1){ ?>
+        <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
+        </div>
+        <?php }?>
             <div class="row">
                 <div class="col-md-3 col-sm-5">
                     <div class="sidebar blog-sidebar">
@@ -42,7 +45,7 @@
                                 <?php $this->load->view('full_test/part7', $part7); ?>
                             
                                 <p class="clear-fix" align="center">
-                                <input  type="submit" name="submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                                <input  type="submit" name="btn-submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
                                 </p>
     
                                 </form>
@@ -75,7 +78,7 @@
       </div>
       <div class="modal-body">
         <div class="diem">
-            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem:"0"; ?>
+            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem.'/990':"0/990"; ?>
         </div>
       </div>
       <div class="modal-footer">

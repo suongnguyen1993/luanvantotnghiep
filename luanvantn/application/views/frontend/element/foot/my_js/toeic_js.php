@@ -4,14 +4,16 @@
       $(document).ready(function(){
         var countdownFnc = function(){
             $('div#clock').countdown(get2hoursFromNow(), function(event){
-              $miliSecond = event.finalDate.getTime()-event.timeStamp;
-              if($miliSecond > 60000)
+              var miliSecond = event.finalDate.getTime()-event.timeStamp;
+              
+              if(miliSecond > 60000)
               {
+                // $(this).html(event.strftime('%H:%M:%S'));
                 $(this).html(event.strftime('%H:%M'));  
               }
               else
               {
-                if($miliSecond > 10000)
+                if(miliSecond > 10000)
                 {
                   $(this).html(event.strftime('%H:%M:%S'));
                 }
@@ -21,7 +23,7 @@
                 }
                  
               }
-              
+             
               if(event.type=='finish')
               {
                   $('#form-fulltest').submit();
@@ -32,7 +34,7 @@
         // đồng hồ đếm ngược 2h
         function get2hoursFromNow(){
           return new Date(new Date().valueOf() + 2 * 60 * 60 * 1000);
-          //return new Date(new Date().valueOf() +  15 * 1000);
+          // return new Date(new Date().valueOf() +  12 * 1000);
         }
 
         if(!__submit)
@@ -40,7 +42,7 @@
 
           $('#ready').modal('show');
           $('#turnbackBtn').click(function(){
-              window.location = 'test/test';
+              window.location = 'index';
           });
           $('#okBtn').click(function(){
               $('#ready').modal('hide');

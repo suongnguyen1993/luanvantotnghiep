@@ -47,7 +47,6 @@ class DauVao extends CI_Controller {
 			$socaudungdoc = $this->socaudungdoc($part5,$part6,$part7);
 			$tongsocaudung = $socaudungnghe + $socaudungdoc;
 			$data['tongsocaudung'] = $tongsocaudung;
-			print_r($tongsocaudung);
 
 			//tinh diem
 			$tongdiem = 0;
@@ -99,7 +98,7 @@ class DauVao extends CI_Controller {
 			$this->session->set_userdata( $array );
 		}
 		$data['template'] = 'dauvao/testtoeic';
-		$data['title'] ='kiểm tra thử';
+		$data['title'] ='Kiểm Tra Đầu Vào';
 		$data['my_js'] ='frontend/element/foot/my_js/mini_test_js';
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}

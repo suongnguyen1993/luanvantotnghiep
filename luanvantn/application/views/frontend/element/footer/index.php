@@ -26,7 +26,7 @@
                         </div>   
                     </div> 
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="contact-info bottom">
                         <h2>LIÊN HỆ</h2>
                         <address>
@@ -44,21 +44,14 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="contact-form bottom">
-                        <h2>GỬI MAIL CHO CHÚNG TÔI</h2>
-                        <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="Tiêu đề">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Lời Nhắn"></textarea>
-                            </div>                        
-                            <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-submit" value="Submit">
-                            </div>
-                        </form>
+                        <h2>GIỚI THIỆU</h2>
+                        <P>Đến với I-TOEIC, các bạn có thể:</P>
+                        <h3><a class='check_login'  data-href="practice/chitiet/1">Luyện Thi</a></h3>
+                        <h3><a class='check_login' data-href="test/test">Làm Bài Kiểm Tra</a></h3>
+                        <h3><a class='check_login'  data-href="review/index/1">Ôn Bài</a></h3>
+                        <h3><a class='check_login' data-href="vocabulary/voca/tudien">Từ Điển Cá Nhân</a></h3>
+
+                        
                     </div>
                 </div>
                 <div class="col-sm-12">

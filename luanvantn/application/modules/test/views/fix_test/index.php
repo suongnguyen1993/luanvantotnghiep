@@ -1,69 +1,43 @@
 
-    <section id="blog" class="padding-top">
+
+    <section id="projects" class="padding-top">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-5">
-                    <div class="sidebar blog-sidebar">
-                        
-                        <div class="sidebar-item tag-cloud" id="fix-clock" >
-                            
+                <div class="col-md-3 col-sm-4">
+                    <div class="sidebar portfolio-sidebar">
+                        <div class="sidebar-item categories">
+                            <h3>Bài Kiểm Tra</h3>
+                            <ul class="nav navbar-stacked">
+                                <li><a href="test/dauvao">Kiểm Tra Đầu Vào</a></li>
+                                <li class='active'><a  href="test/fix_test">Real Test</a></li>
+                                <li><a href="test/full_test">Full Test</a></li>
+                                <li><a href="test/mini_test">MiniTest</a></li>
+                                
+                            </ul>
                         </div>
-                        
                     </div>
-                </div>    
-                <div class="col-md-9 col-sm-7">
+                </div>
+                <div class="col-md-9 col-sm-8">
+                <?php if(isset($error) && $error==1){ ?>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
+                </div>
+                <?php }?>
                     <div class="row">
-
-                    <?php foreach ($exam  as $ex ): ?>
-                    
-                      <a href="test/fix_test/fix/<?php echo $ex["id"]?>">
-                        <h2>
-                          <?php
-                          $name = $ex['name'];
-                          $info = $ex['info'];
-                          $time = $ex['time'];
-                          echo "$name , $info, năm $time"; 
-                           ?>
-                          
-                        </h2>
-                      <a>
-
-                    <?php endforeach ?>    
-                    </div>
-                    
-                 </div>
-                
-                    
-                 </div>
+                     <?php foreach ($exam as $ex): $info = $ex['info']; $nam = $ex['time'] ?>
+                        <div class="col-xs-12 col-sm-12 col-md-12 portfolio-item branded folio" style = 'margin: 25px;'>
+                       
+                            
+                       
+                               <img src="<?php echo base_url(); ?>/public/user/images/tamgiac.png" style="width: 40px; height: 40px">                        
+                                 <a class="fixsize" href="#"><?php echo $info.','.'năm'.$nam ?></a> 
+                        
+                        </div>
+                        <?php endforeach ?>
+                </div>
             </div>
+              <div class="portfolio-pagination">
+                         
+            <?php echo (isset($list_pagination))?$list_pagination:"" ?> 
+            </div> 
         </div>
     </section>
-    <!--/#blog-->
-
-
-
-<script type="text/javascript">
-    var __submit = <?php echo isset($submit)?1:0; ?>
-</script>
-
-
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" align="center" id="myModalLabel">Hoàn Thành Bài Kiểm Tra</h3>
-      </div>
-      <div class="modal-body">
-        <div class="diem">
-            <?php echo isset($tongdiem)?'<span class = "mau">Bạn đạt được số điểm:</span>'.$tongdiem:"0"; ?>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Hoàn tất</button>
-      </div>
-    </div>
-  </div>
-</div>

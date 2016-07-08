@@ -98,7 +98,7 @@
     				$.post(url, data, function(result){
 						if(result == 1)
 						{
-							alert('Luu thanh cong');
+							alert('Lưu thành công!');
 						}
 						else
 						{
@@ -108,7 +108,7 @@
 							}
 							else
 							{
-								alert('Luu that bai');
+								alert('Lưu thất bại');
 							}
 						}
 						clickingSaved = false;	

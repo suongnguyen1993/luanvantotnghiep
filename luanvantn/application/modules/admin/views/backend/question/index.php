@@ -59,21 +59,7 @@
                           } else echo $q['content'] ?></a>
                         </td>
                         <td>
-                        <?php switch ($q['level']) {
-                          case '1':
-                            echo "Easy";
-                            break;
-                          case '2':
-                            echo "Medium";
-                            break;
-                          case '3':
-                            echo "Difficult";
-                            break;
-                          
-                        }
-
-
-                         ?>
+                        <?php echo $q['level']?>
                         </td>
                         
                         <td><?php echo $q['created'] ?></td>

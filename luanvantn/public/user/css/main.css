@@ -2901,3 +2901,7 @@ span.stButton_gradient,
 .aling_top{
   padding-top: 100px
 }
+.fixsize{
+  font-size: 30px;
+  padding-left: 15px
+}

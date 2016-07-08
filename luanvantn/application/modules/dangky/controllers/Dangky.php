@@ -82,7 +82,6 @@ class Dangky extends CI_Controller {
 		else 
 		{
 			$this->form_validation->set_message('check_username', 'Username đã tồn tại');
-
 			return false;
 		}    
 	}
