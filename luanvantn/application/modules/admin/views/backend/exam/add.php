@@ -9,7 +9,7 @@ echo isset($error)?$error:"";
                       Name:
                       </label>                      
                         <input type="text" class="form-control" required="required" name="name" id="name" placeholder="Name" value="<?php echo $this->input->post('name') ?>">                      
-                    </div>
+                   </div>
                     <div class="form-group">  
                       <h4>Info:</h4>
                       <textarea class="form-control" required="required" rows="5" placeholder=" Enter ..."

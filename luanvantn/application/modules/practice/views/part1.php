@@ -18,6 +18,7 @@
     
     ?>
     
+
     <div class="col-md-6 col-sm-12 blog-padding-right" style="height:600px;   margin-top: 15px;">
       <div class="single-blog two-column">
         <div >

@@ -59,6 +59,7 @@ class Exam extends CI_Controller {
 				$this->form_validation->set_rules('name','Name', 'required');
 				$this->form_validation->set_rules('info','Info', 'required');
 				$this->form_validation->set_rules('time','Time','required|exact_length[4]|numeric|callback_check_valid_time');
+
 				if($this->form_validation->run())
 				{	
 					$audio = $_FILES["audio_file"]["name"];
@@ -124,7 +125,11 @@ class Exam extends CI_Controller {
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('info','Info', 'required');
+<<<<<<< HEAD
 			$this->form_validation->set_rules('time','Time','required|exact_length[4]|numeric|callback_check_valid_time');
+=======
+			$this->form_validation->set_rules('time','Time','required|exact_length[4]|numeric');
+>>>>>>> 4097d0005d12210928ee540f3525bfb0ea8c1403
 			if($this->form_validation->run())
 			{
 				$audio = $_FILES["audio_file"]["name"];
