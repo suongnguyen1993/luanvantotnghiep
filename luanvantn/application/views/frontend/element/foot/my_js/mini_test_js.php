@@ -7,7 +7,8 @@
               $miliSecond = event.finalDate.getTime()-event.timeStamp;
               if($miliSecond > 60000)
               {
-                $(this).html(event.strftime('%H:%M'));  
+                // $(this).html(event.strftime('%H:%M')); 
+                $(this).html(event.strftime('%H:%M:%S')); 
               }
               else
               {
@@ -32,7 +33,7 @@
         // đồng hồ đếm ngược 2h
         function get2hoursFromNow(){
           return new Date(new Date().valueOf() + 1 * 60 * 60 * 1000);
-          //return new Date(new Date().valueOf() +  15 * 1000);
+          // return new Date(new Date().valueOf() +  12 * 1000);
         }
 
         if(!__submit)
