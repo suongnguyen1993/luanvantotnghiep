@@ -10,6 +10,7 @@ class Voca extends CI_Controller {
 		$vi = trim($this->input->post('vi'));
 
 		$id_user = $this->session->userdata('id');
+		
 
 		$check_key = $this->query_sql->select_row('vocabularies','*',array('vocabulary'=>$eng,'user_id'=>$id_user));
 
@@ -52,7 +53,11 @@ class Voca extends CI_Controller {
 		$this->pagination->initialize($config);
 		$data['list_pagination'] = $this->pagination->create_links();
 		$data['vocabulary']=$this->query_sql->view_where('*', 'vocabularies', array('user_id'=>$id_user), ($page-1)*$config['per_page'],$config['per_page']);
-
+		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 		if(empty($data['vocabulary']))
 		{
 			$data['template'] = 'error';

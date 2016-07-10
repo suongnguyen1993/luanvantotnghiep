@@ -16,7 +16,7 @@
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
                             <a class='check_login' data-href="test/test"><img src="<?php echo base_url(); ?>/public/user/images/home/exam.png" alt=""></a>
                         </div>
-                        <h2><a class='check_login' data-href="test/full_test">Làm Bài Kiểm Tra</a></h2>
+                        <h2><a  href="test/mini_test">Làm Bài Kiểm Tra</a></h2>
                         
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="single-features">
                     <div class="col-sm-6 wow fadeInRight aling_top " data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2><a href="test/full_test">Các Bài Test</a></h2>
+                        <h2><a href="test/mini_test">Các Bài Test</a></h2>
                         <P>Hãy cùng kiểm tra trình độ Toeic của bạn thông qua những bài Test của chúng tôi ngay. Với những bài Test này, bạn sẽ nắm được khả năng Toeic của mình để từ đó hãy cải thiện chúng ngày càng tốt hơn nhé. </P>
                     </div>
 
@@ -93,7 +93,7 @@
                         <img src="<?php echo base_url(); ?>/public/user/images/home/prac.gif" class="img-responsive" alt="">
                     </div>
                     <div class="col-sm-4 col-sm-offset-1 align-right wow fadeInLeft aling_top" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2><a href="practice/chitiet/1">Luyện Các Kỹ Năng</a></h2>
+                        <h2><a class='check_login' data-href="practice/chitiet/1">Luyện Các Kỹ Năng</a></h2>
                         <P>Website luyện thi Toeic trực tuyến mang đến cho bạn những bài tập bổ ích, giúp bạn có thể luyện riêng những phần Toeic còn yếu. Nhờ đó mà bạn sẽ dần cải thiện được trình độ Toeic của mình.</P>
                     </div>
                    
@@ -109,13 +109,13 @@
                         <img src="<?php echo base_url(); ?>/public/user/images/home/review.gif" class="img-responsive" alt="">
                     </div>
                     <div class="col-sm-4 wow fadeInRight aling_top" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2><a href="review/review/index/1">Ôn Tập Bài Học</a></h2>
+                        <h2><a class='check_login' data-href="review/review/index/1">Ôn Tập Bài Học</a></h2>
                         <P>Hãy cùng tham gia học tập cùng website Luyện thi Toeic trực tuyến, bạn sẽ được ôn lại những bài tập, bài học mà mình đã làm sai trong quá trình làm những bài Test hoặc trong quá trình luyện tập hằng ngày. Từ đó, bạn sẽ nắm vững các kỹ năng hơn.</P>
                     </div>
                 </div>
                  <div class="single-features">
                     <div class="col-sm-5 col-sm-offset-1 align-right wow fadeInLeft aling_top" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <h2><a href="tu-dien-ca-nhan.html">Từ Điển Cá Nhân</a></h2>
+                        <h2><a class='check_login' data-href="tu-dien-ca-nhan.html">Từ Điển Cá Nhân</a></h2>
                         <P>Website hổ trợ từ điển cho cá nhân bạn. Thông qua quá trình học tập cùng website, bạn có thể dịch nghĩa những từ khó và lưu chúng lại để có thể xem lại bất kỳ khi nào bạn muốn.</P>
                     </div>
                     <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">

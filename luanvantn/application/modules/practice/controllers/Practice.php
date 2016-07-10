@@ -26,6 +26,7 @@ class Practice extends CI_Controller {
 		$data['current1']='practice';
 		$data['left_menu']='frontend/element/item/left-menu';
 		$data['current']="practice".$id;
+		$data['id_group'] = $id;
 		$data['group']['group']= $this->query_sql->select_array('group',"id, name", "",'',"");
 		if($this->session->has_userdata('username'))
 		{

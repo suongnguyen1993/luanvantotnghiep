@@ -2,7 +2,7 @@
     <section id="blog" class="padding-top">
         <div class="container">
         <?php if(isset($error) && $error==1){ ?>
-        <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
+        <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy làm bài kiểm tra đầu vào! Để hệ thống gợi ý câu hỏi phù hợp với bạn. </strong> 
         </div>
         <?php }?>
             <div class="row">
@@ -46,9 +46,9 @@
                                 <?php $this->load->view('full_test/part7', $part7); ?>
                             
                                 <p  align="center">
-                                <input  type="submit" name="btn-submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                                <input  type="submit" name="btn-submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
 
-                                <a href="test/full_test" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
+                                <a class="btn btn-sm btn-primary" href="<?php echo base_url() ?>test/full_test" >Làm tiếp</a>
                               </p>
     
                                 </form>

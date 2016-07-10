@@ -62,10 +62,10 @@
                                 <a <?php echo (isset ($current)&& $current == 'fulltest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/full_test">Full Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/mini_test">Mini Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'minitest')? 'class=" active"':NULL; ?> href="test/mini_test">Mini Test</a>
                                 </li>
                                 <li>
-                                <a  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> class='check_login' data-href="test/fix_test/index/<?php ?>">Real Test</a>
+                                <a  <?php echo (isset ($current)&& $current == 'fixtest')? 'class=" active"':NULL; ?> href="test/fix_test/index/<?php ?>">Real Test</a>
                                 </li>
                                 
                             </ul>

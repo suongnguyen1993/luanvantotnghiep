@@ -43,6 +43,17 @@
           $('#turnbackBtn').click(function(){
               window.location = 'index';
           });
+          $('button[aria-label="Close"]').click(function(){
+              window.location = 'index';
+          });
+          $('input[type="submit"]').click(function(){
+           
+              if(confirm('Vẫn còn thời gian làm bài, bạn có chắc muốn hoàn thành bài thi không?'))
+              {
+                 $('#form-fulltest').submit();  
+              }
+              return false;
+          });
           $('#okBtn').click(function(){
               $('#ready').modal('hide');
               

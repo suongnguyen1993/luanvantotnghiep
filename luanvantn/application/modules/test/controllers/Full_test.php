@@ -49,6 +49,7 @@ class Full_test extends CI_Controller {
 			$data['part6'] = $this->session->userdata('part6');
 			$data['part7'] = $this->session->userdata('part7');
 
+
 			$part1 = $this->addShortUserChoice('part1', $data);
 
 			$part2 = $this->addShortUserChoice('part2', $data);

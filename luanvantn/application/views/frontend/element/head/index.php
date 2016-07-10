@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?php echo $title ?> - I-TOIEC</title>
+    <title><?php echo $title ?> -iTOIEC</title>
     <link href="<?php echo base_url(); ?>/public/user/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/public/user/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>/public/user/css/animate.min.css" rel="stylesheet"> 

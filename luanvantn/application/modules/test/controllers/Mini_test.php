@@ -20,6 +20,51 @@ class Mini_test extends CI_Controller {
 		{
 			$data['error'] = 1;
 		}
+		if($this->session->has_userdata('username') == false)
+		{
+			$data["error"] = 0;
+			$data['part1'] = $this->part1_not_rand(0,5);
+			$data['part2'] = $this->part2_not_rand(0,20);
+			$data['part3'] = $this->part3_not_rand(0,5);
+			$data['part4'] = $this->part4_not_rand(0,5);
+			$data['part5'] = $this->part5_not_rand(0,20);
+			$data['part6'] = $this->part6_not_rand(0,4);
+			$data['part7'] = $this->mini_part7_not_rand();
+
+			$array = array(
+				'part1' => $data['part1'],
+				'part2' => $data['part2'],
+				'part3' => $data['part3'],
+				'part4' => $data['part4'],
+				'part5' => $data['part5'],
+				'part6' => $data['part6'],
+				'part7' => $data['part7']
+			);
+			
+			$this->session->set_userdata( $array );
+		}
+		else
+		{
+			$data['part1'] = $this->part1(0,5);
+			$data['part2'] = $this->part2(0,20);
+			$data['part3'] = $this->part3(0,5);
+			$data['part4'] = $this->part4(0,5);
+			$data['part5'] = $this->part5(0,20);
+			$data['part6'] = $this->part6(0,4);
+			$data['part7'] = $this->mini_part7();
+
+			$array = array(
+				'part1' => $data['part1'],
+				'part2' => $data['part2'],
+				'part3' => $data['part3'],
+				'part4' => $data['part4'],
+				'part5' => $data['part5'],
+				'part6' => $data['part6'],
+				'part7' => $data['part7']
+			);
+			
+			$this->session->set_userdata( $array );
+		}
 		
 		//POST
 		if($this->input->post())
@@ -122,29 +167,6 @@ class Mini_test extends CI_Controller {
 
 			$huysess = array("part1","part2","part3","part4","part5","part6","part7");
 			$this->session->unset_userdata($huysess);
-		}
-		//GET
-		else
-		{
-			$data['part1'] = $this->part1(0,5);
-			$data['part2'] = $this->part2(0,20);
-			$data['part3'] = $this->part3(0,5);
-			$data['part4'] = $this->part4(0,5);
-			$data['part5'] = $this->part5(0,20);
-			$data['part6'] = $this->part6(0,4);
-			$data['part7'] = $this->mini_part7();
-
-			$array = array(
-				'part1' => $data['part1'],
-				'part2' => $data['part2'],
-				'part3' => $data['part3'],
-				'part4' => $data['part4'],
-				'part5' => $data['part5'],
-				'part6' => $data['part6'],
-				'part7' => $data['part7']
-			);
-			
-			$this->session->set_userdata( $array );
 		}
 		$data['template'] = 'mini_test/testtoeic';
 		$data['title'] ='Kiểm Tra Mini Test';
@@ -346,6 +368,55 @@ class Mini_test extends CI_Controller {
 		
 		return $a;
 	}
+	////////////////////////////////////////////
+	private function part1_not_rand ($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>1),$start, $limit);
+
+		return $result;
+	}
+	private function part2_not_rand($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>2),$start, $limit);
+
+		return $result;
+	}
+	private function part3_not_rand($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>3), $start, $limit);
+		return $result;
+	}
+	private function part4_not_rand($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>4), $start,$limit);
+		return $result;
+	}
+	private function part5_not_rand($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixQuesionChoice(array('group_id'=>5), $start, $limit);
+		return $result;
+	}
+	private function part6_not_rand($start = "", $limit = "")
+	{
+		$result = $this->query_sql->getFixLongQuestion(array('group_id'=>6), $start,$limit);
+		return $result;
+	}
+	private function mini_part7_not_rand($start = "", $limit = "")
+	{
+		
+		$a[] = $this->query_sql->getFixLongQuestion(array('group_id'=>7,'number_question'=>2),0,1);
+		$a[] = $this->query_sql->getFixLongQuestion(array('group_id'=>7,'number_question'=>3),0,1);
+		$a[] = $this->query_sql->getFixLongQuestion(array('group_id'=>7,'number_question'=>4),0,2);
+		
+		return $a;
+	}
+
+
+
+
+
+
+	/////////////////////////////////////////////
 	public function socaudungnghe($part1,$part2,$part3,$part4)
 	{
 		$diemnghe = 0;

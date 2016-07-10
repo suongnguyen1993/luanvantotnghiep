@@ -8,8 +8,8 @@
               
               if(miliSecond > 60000)
               {
-                // $(this).html(event.strftime('%H:%M:%S'));
-                $(this).html(event.strftime('%H:%M'));  
+                $(this).html(event.strftime('%H:%M:%S'));
+                // $(this).html(event.strftime('%H:%M'));  
               }
               else
               {
@@ -44,11 +44,23 @@
           $('#turnbackBtn').click(function(){
               window.location = 'index';
           });
+          $('button[aria-label="Close"]').click(function(){
+              window.location = 'index';
+          });
           $('#okBtn').click(function(){
               $('#ready').modal('hide');
               $('#audio_exam')[0].play();
               countdownFnc();
           });
+          $('input[type="submit"]').click(function(){
+           
+              if(confirm('Vẫn còn thời gian làm bài, bạn có chắc muốn hoàn thành bài thi không?'))
+              {
+                 $('#form-fulltest').submit();  
+              }
+              return false;
+          });
+          
         }
         //end đếm ngược
 

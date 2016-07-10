@@ -18,8 +18,12 @@
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-8">
-                <?php if(isset($error) && $error==1){ ?>
-                <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
+                <?php if(isset($error) && $error==0){ ?>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy đăng nhập để được dùng nhiều chức năng hơn!. </strong> 
+                </div>
+                <?php }?>
+               <?php if(isset($error) && $error==1 && $error != 0){ ?>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy làm bài kiểm tra đầu vào! Để hệ thống gợi ý câu hỏi phù hợp với bạn. </strong> 
                 </div>
                 <?php }?>
                     <div class="row">

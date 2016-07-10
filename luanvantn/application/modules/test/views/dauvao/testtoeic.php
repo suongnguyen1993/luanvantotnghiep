@@ -42,7 +42,7 @@
                                 <!-- part 7 -->
                                 <?php $this->load->view('dauvao/part7', $part7); ?>
                               <p class="clear-fix" align="center">
-                          <input  type="submit" name="btn-submit" value="Chấm điểm" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                          <input  type="submit" name="btn-submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
                         </p>
       
                                 </form>

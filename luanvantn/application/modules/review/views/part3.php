@@ -1,7 +1,7 @@
 <?php if(isset($error) && $error==1){ ?>
-<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Bạn hãy làm bài thi thử!</strong> Để hệ thống gợi ý câu hỏi phù hợp với bạn. 
-</div>
-<?php }?>
+  <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy làm bài kiểm tra đầu vào! Để hệ thống gợi ý câu hỏi phù hợp với bạn. </strong> 
+  </div>
+  <?php }?>
 <form action="" method="post" accept-charset="utf-8">
     <div class="col-sm-12 blog-padding-right" >
         <?php
@@ -199,9 +199,9 @@
                             }//end long_question
                             ?>
                         </div>
-                        <p class="clear-fix col-md-12 col-sm-12" align="center">
-                          <input  type="submit" name="submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
+                       <p class="clear-fix col-md-12 col-sm-12" align="center">
+                  <input  type="submit" name="submit" value="Xem đáp án" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
 
-                          <a href="/practice/chitiet/<?php echo $current ?>" ><button class="btn btn-sm btn-primary" >Làm tiếp</button></a>
-                      </p>
+                  <a class="btn btn-sm btn-primary" href="<?php echo base_url() ?>practice/chitiet/<?php echo $current ?>" >Làm tiếp</a>
+                </p>
                   </form>

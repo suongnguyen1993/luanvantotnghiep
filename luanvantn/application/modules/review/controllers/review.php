@@ -19,10 +19,10 @@ class Review extends CI_Controller {
 
 		$id_u= $this->session->userdata('id');
 		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_u));
-			if($data_user['level'] == 0)
-			{
-				$data['error'] = 1;
-			}
+		if($data_user['level'] == 0)
+		{
+			$data['error'] = 1;
+		}
 		
 		if(isset($id) && $id == 1)
 		{ 

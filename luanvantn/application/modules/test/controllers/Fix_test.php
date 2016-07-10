@@ -20,6 +20,7 @@ class Fix_test extends CI_Controller {
 
 		$id_user = $this->session->userdata('id');
 		$data_user = $this->query_sql->select_row('user','level',array('id'=>$id_user));
+
 		if($data_user['level'] == 0)
 		{
 			$data['error'] = 1;
@@ -35,9 +36,12 @@ class Fix_test extends CI_Controller {
 
 		$this->pagination->initialize($config);
 		$data['list_pagination'] = $this->pagination->create_links();
-
-		$data['exam']= $this->query_sql
-		->view('*',"exam",($page-1)*$config['per_page'],$config['per_page']);
+		if($this->session->has_userdata('username') == false)
+		{
+			$data["error"] = 0;
+			$data['exam']= $this->query_sql->view('*',"exam",0,1);
+		}
+		else {$data['exam']= $this->query_sql->view('*',"exam",($page-1)*$config['per_page'],$config['per_page']);}
 		$this->load->view('frontend/layout/user',isset($data)?$data:"");
 	}
 
@@ -62,6 +66,17 @@ class Fix_test extends CI_Controller {
 		$data['part2'] = $this->part2($maDeThi,0,40);
 		$data['part3'] = $this->part3($maDeThi,0,10);
 		$data['part4'] = $this->part4($maDeThi,0,10);
+		$data['part5'] = $this->part5($maDeThi,0,40);
+		$data['part6'] = $this->part6($maDeThi,0,4);
+		$data['part7'] = $this->part7($maDeThi);
+		$array = array(
+			'part5' => $data['part5'],
+			'part6' => $data['part6'],
+			'part7' => $data['part7'],
+			'maDeThi' => $maDeThi,
+		);
+		
+		$this->session->set_userdata( $array );
 		
 		//end hien thi part
 		//xu ly ket qua tra ve
@@ -101,23 +116,6 @@ class Fix_test extends CI_Controller {
 			//huy session
 			$huysess = array("part5","part6","part7");
 			$this->session->unset_userdata($huysess);
-		}
-		//GET
-		else
-		{
-			
-			$data['part5'] = $this->part5($maDeThi,0,40);
-			$data['part6'] = $this->part6($maDeThi,0,4);
-			$data['part7'] = $this->part7($maDeThi);
-
-			$array = array(
-				'part5' => $data['part5'],
-				'part6' => $data['part6'],
-				'part7' => $data['part7'],
-				'maDeThi' => $maDeThi,
-			);
-			
-			$this->session->set_userdata( $array );
 		}
 		$data['template'] = 'fix_test/testtoeic';
 		$data['title'] ='Đề Thi Toeic';
