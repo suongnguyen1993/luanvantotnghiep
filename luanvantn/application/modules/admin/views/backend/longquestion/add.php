@@ -71,10 +71,10 @@
                       <div class="form-group">
                       <h4>Number Question:</h4>
                           <div class="input-group">
-                            <input name="number_question" type="number" required="required" class="form-control" value=""><?php echo $this->input->post('number_question') ?>
+                            <input  name="number_question" id ='number_question' type="number" required="required" value="1" class="form-control" onkeyup="kiemtraso()"><?php echo $this->input->post('number_question') ?>
                           </div>
                       </div> 
-                     <div class="form-group">
+                     <div class="form-group"> 
                         <h4 for="audio_file">Audio:  </h4>   
                         <input type="file" name="audio_file" id="audio_file">
                         <div style="margin-top: 10px;">
@@ -91,3 +91,13 @@
 </form>
 </div>
 
+<script type="text/javascript">
+  function kiemtraso() 
+  {
+    var x = document.getElementById("number_question");
+    if(x.value > 5)
+    {
+      alert('The number of entered questions is more than 5, are you sure to enter these extra questions?');
+    }  
+  }
+</script>

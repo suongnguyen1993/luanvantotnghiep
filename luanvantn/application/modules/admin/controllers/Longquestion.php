@@ -162,6 +162,7 @@ class Longquestion extends CI_Controller {
 		$data['title'] = 'Manage Update Long Question';	
 		$data['long_question']= $this->query_sql->select_row('long_question','long_content,long_audio, exam_id,group_id,level,number_question',array('id'=>$id),'');
 		$data['question'] = $this->query_sql->select_array('question','id, content,',array('id_long_question'=>$id),'', "");
+		$data['count_question'] = count($data['question']);
 		$data ['exam'] = $this->query_sql
 			->select_array ("exam","id,name","","","");
 

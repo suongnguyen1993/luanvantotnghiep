@@ -23,7 +23,7 @@
                         <section class="_long_content"><?php echo $p2['long_content']; ?></section>
                         
                         <?php } ?>
-                        <b><?php echo $dem.'.'; ?></b><br>
+                        <b><?php echo $dem.'.';echo $p1['content']; ?></b><br>
                         <?php $dem1 = 0; 
                         foreach ($p1['choice']  as $choice1)
                         { 
@@ -68,7 +68,7 @@
                                     <section class="_long_content"><?php echo $p2['long_content']; ?></section>
                                     <?php } ?>
                                     
-                                    <b><?php echo $dem.'.'  ?></b><br>
+                                    <b><?php echo $dem.'.';echo $p1['content'];  ?></b><br>
                                     <?php 
                                     
                                     $dem1 = 0; 

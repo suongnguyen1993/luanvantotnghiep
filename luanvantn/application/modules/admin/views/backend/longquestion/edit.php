@@ -63,7 +63,7 @@
     <div class="form-group">
                       <h4>Number Question:</h4>
                           <div class="input-group">
-                            <input name="number_question"  type="number" required="required" min ='0' class="form-control" value="<?php echo $long_question['number_question']?>">
+                            <input name="number_question" id='number_question' type="number" required="required" min ='1' class="form-control" onkeyup="kiemtraso()" value="<?php echo $long_question['number_question']?>">
                           </div>
                       </div> 
 
@@ -93,9 +93,11 @@
             <div class="box">
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
+                  <?php if($count_question < $long_question['number_question']){ ?>
                   <div class="form-group text-right">
                        <a href="admin/question/add" type="button" class="btn btn-success btn-flat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add</a>                  
                   </div>
+                  <?php } ?>
                     <thead>
                       <tr>
                         <th>Question</th>                        
@@ -135,3 +137,13 @@
         }
      }
    </script>
+   <script type="text/javascript">
+    function kiemtraso() 
+    {
+      var x = document.getElementById("number_question");
+      if(x.value > 5)
+      {
+        alert('The number of entered questions is more than 5, are you sure to enter these extra questions?');
+      }  
+    }
+</script>

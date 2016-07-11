@@ -2,11 +2,11 @@
 <section id="blog" class="padding-top">
   <div class="container">
   <?php if(isset($error) && $error==0){ ?>
-                <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy đăng nhập để được dùng nhiều chức năng hơn!. </strong> 
-                </div>
-                <?php }?>
+  <div align='center' class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy đăng nhập để được dùng nhiều chức năng hơn! </strong> 
+  </div>
+  <?php }?>
   <?php if(isset($error) && $error==1 && $error!=0 ){ ?>
-  <div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy làm bài kiểm tra đầu vào! Để hệ thống gợi ý câu hỏi phù hợp với bạn. </strong> 
+  <div align='center' class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong class='thong_bao'>Bạn hãy làm bài kiểm tra đầu vào! Để hệ thống gợi ý câu hỏi phù hợp với bạn. </strong> 
   </div>
   <?php }?>
     <div class="row">
@@ -52,7 +52,7 @@
               <p  align="center">
                 <input  type="submit" name="btn-submit" value="Hoàn thành" class="btn btn-sm btn-primary" <?php echo isset($submit)?'disabled':"" ?>>
 
-                <a class="btn btn-sm btn-primary" href="<?php echo base_url() ?>test/full_test" >Làm tiếp</a>
+                <a class="btn btn-sm btn-primary" href="<?php echo base_url() ?>test/mini_test" >Làm tiếp</a>
               </p>
             </form>
           </div>
@@ -103,12 +103,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h2 class="modal-title" align="center" id="myModalLabel">Bạn đã sẵn sàng chưa?</h2>
       </div>
-
+      <?php if(!isset($error)){ ?>
       <div class="modal-body">
         <div class="diem">
           Khi làm bài kiểm tra những câu bạn làm sai sẽ được lưu lại ở phần ôn tập
         </div>
       </div>
+      <?php }?>
+
       <div class="modal-footer" style="text-align: center">
         <button id="turnbackBtn" type="button" class="btn btn-primary" data-dismiss="modal">Quay lại</button>
         <button id="okBtn" type="button" class="btn btn-primary" data-dismiss="modal">Sẵn sàng</button>
