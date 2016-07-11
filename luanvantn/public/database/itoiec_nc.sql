@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Lun 04 Juillet 2016 à 18:00
--- Version du serveur :  5.6.17-log
--- Version de PHP :  5.5.12
+-- Host: 127.0.0.1
+-- Generation Time: Jul 10, 2016 at 11:33 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `itoiec_nc`
+-- Database: `itoiec_nc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `fullname`, `email`, `created`, `updated`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `admin` (`id`, `username`, `password`, `fullname`, `email`, `created
 -- --------------------------------------------------------
 
 --
--- Structure de la table `choice`
+-- Table structure for table `choice`
 --
 
 CREATE TABLE IF NOT EXISTS `choice` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `choice` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=559 ;
 
 --
--- Contenu de la table `choice`
+-- Dumping data for table `choice`
 --
 
 INSERT INTO `choice` (`id`, `content`, `correct_answer`, `question_id`, `created`, `updated`) VALUES
@@ -266,7 +266,7 @@ INSERT INTO `choice` (`id`, `content`, `correct_answer`, `question_id`, `created
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exam`
+-- Table structure for table `exam`
 --
 
 CREATE TABLE IF NOT EXISTS `exam` (
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `false_statements`
+-- Table structure for table `false_statements`
 --
 
 CREATE TABLE IF NOT EXISTS `false_statements` (
@@ -295,10 +295,10 @@ CREATE TABLE IF NOT EXISTS `false_statements` (
   KEY `long_question_id` (`long_question_id`,`question_id`),
   KEY `question_id` (`question_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=484 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=790 ;
 
 --
--- Contenu de la table `false_statements`
+-- Dumping data for table `false_statements`
 --
 
 INSERT INTO `false_statements` (`id`, `long_question_id`, `question_id`, `user_id`) VALUES
@@ -784,12 +784,318 @@ INSERT INTO `false_statements` (`id`, `long_question_id`, `question_id`, `user_i
 (480, NULL, 43, 30),
 (481, NULL, 51, 30),
 (482, NULL, 49, 30),
-(483, NULL, 21, 30);
+(483, NULL, 21, 30),
+(484, 5, NULL, 30),
+(485, 6, NULL, 30),
+(486, NULL, 36, 30),
+(487, NULL, 51, 30),
+(488, NULL, 40, 30),
+(489, NULL, 47, 30),
+(490, NULL, 38, 30),
+(491, NULL, 46, 30),
+(492, NULL, 37, 30),
+(493, NULL, 43, 30),
+(494, NULL, 36, 30),
+(495, NULL, 51, 30),
+(496, NULL, 40, 30),
+(497, NULL, 50, 30),
+(498, NULL, 34, 30),
+(499, NULL, 41, 30),
+(500, NULL, 21, 30),
+(501, NULL, 48, 30),
+(502, NULL, 47, 30),
+(503, NULL, 38, 30),
+(504, NULL, 46, 30),
+(505, NULL, 37, 30),
+(506, NULL, 43, 30),
+(507, NULL, 36, 30),
+(508, NULL, 51, 30),
+(509, NULL, 40, 30),
+(510, NULL, 50, 30),
+(511, NULL, 34, 30),
+(512, NULL, 41, 30),
+(513, NULL, 21, 30),
+(514, NULL, 48, 30),
+(515, NULL, 47, 30),
+(516, NULL, 38, 30),
+(517, NULL, 46, 30),
+(518, NULL, 37, 30),
+(519, NULL, 43, 30),
+(520, NULL, 42, 30),
+(521, NULL, 36, 30),
+(522, NULL, 51, 30),
+(523, NULL, 20, 30),
+(524, NULL, 40, 30),
+(525, NULL, 49, 30),
+(526, NULL, 50, 30),
+(527, NULL, 45, 30),
+(528, NULL, 34, 30),
+(529, NULL, 41, 30),
+(530, NULL, 19, 30),
+(531, NULL, 21, 30),
+(532, NULL, 48, 30),
+(533, NULL, 39, 30),
+(534, NULL, 35, 30),
+(535, NULL, 48, 30),
+(536, NULL, 34, 30),
+(537, NULL, 48, 30),
+(538, NULL, 34, 30),
+(539, NULL, 48, 30),
+(540, NULL, 34, 30),
+(541, NULL, 41, 30),
+(542, NULL, 48, 30),
+(543, NULL, 34, 30),
+(544, NULL, 41, 30),
+(545, NULL, 48, 30),
+(546, NULL, 41, 30),
+(547, NULL, 50, 30),
+(548, NULL, 21, 30),
+(549, NULL, 48, 30),
+(550, NULL, 45, 30),
+(551, NULL, 34, 30),
+(552, NULL, 35, 30),
+(553, NULL, 41, 30),
+(554, NULL, 20, 30),
+(555, NULL, 19, 30),
+(556, NULL, 50, 30),
+(557, NULL, 49, 30),
+(558, NULL, 21, 30),
+(559, NULL, 36, 30),
+(560, NULL, 51, 30),
+(561, NULL, 39, 30),
+(562, NULL, 40, 30),
+(563, NULL, 48, 30),
+(564, NULL, 45, 30),
+(565, NULL, 34, 30),
+(566, NULL, 35, 30),
+(567, NULL, 41, 30),
+(568, NULL, 20, 30),
+(569, NULL, 19, 30),
+(570, NULL, 50, 30),
+(571, NULL, 49, 30),
+(572, NULL, 21, 30),
+(573, NULL, 36, 30),
+(574, NULL, 51, 30),
+(575, NULL, 39, 30),
+(576, NULL, 42, 30),
+(577, NULL, 40, 30),
+(578, NULL, 38, 30),
+(579, NULL, 43, 30),
+(580, NULL, 47, 30),
+(581, NULL, 48, 30),
+(582, NULL, 34, 30),
+(583, NULL, 41, 30),
+(584, NULL, 50, 30),
+(585, NULL, 21, 30),
+(586, NULL, 36, 30),
+(587, NULL, 51, 30),
+(588, NULL, 40, 30),
+(589, NULL, 50, 30),
+(590, NULL, 36, 30),
+(591, NULL, 38, 30),
+(592, NULL, 48, 30),
+(593, NULL, 21, 30),
+(594, NULL, 51, 30),
+(595, NULL, 46, 30),
+(596, NULL, 43, 30),
+(597, NULL, 37, 30),
+(598, NULL, 41, 30),
+(599, NULL, 20, 70),
+(600, NULL, 34, 70),
+(601, NULL, 19, 70),
+(602, NULL, 35, 70),
+(603, NULL, 21, 70),
+(604, NULL, 20, 70),
+(605, NULL, 34, 70),
+(606, NULL, 19, 70),
+(607, NULL, 35, 70),
+(608, NULL, 21, 70),
+(609, NULL, 35, 70),
+(610, NULL, 21, 70),
+(611, NULL, 20, 70),
+(612, NULL, 34, 70),
+(613, NULL, 19, 70),
+(614, NULL, 35, 70),
+(615, NULL, 21, 70),
+(616, NULL, 20, 70),
+(617, NULL, 34, 70),
+(618, NULL, 19, 70),
+(619, NULL, 35, 70),
+(620, NULL, 21, 70),
+(621, NULL, 20, 70),
+(622, NULL, 34, 70),
+(623, NULL, 19, 70),
+(624, NULL, 35, 70),
+(625, NULL, 21, 70),
+(626, NULL, 20, 70),
+(627, NULL, 34, 70),
+(628, NULL, 19, 70),
+(629, NULL, 35, 70),
+(630, NULL, 21, 70),
+(631, NULL, 20, 70),
+(632, NULL, 34, 70),
+(633, NULL, 19, 70),
+(634, NULL, 35, 70),
+(635, NULL, 21, 70),
+(636, NULL, 20, 70),
+(637, NULL, 34, 70),
+(638, NULL, 19, 70),
+(639, NULL, 35, 70),
+(640, NULL, 21, 70),
+(641, NULL, 20, 70),
+(642, NULL, 34, 70),
+(643, NULL, 19, 70),
+(644, NULL, 35, 70),
+(645, NULL, 21, 70),
+(646, NULL, 20, 70),
+(647, NULL, 34, 70),
+(648, NULL, 19, 70),
+(649, NULL, 35, 70),
+(650, NULL, 21, 70),
+(651, NULL, 20, 70),
+(652, NULL, 34, 70),
+(653, NULL, 19, 70),
+(654, NULL, 35, 70),
+(655, NULL, 21, 70),
+(656, NULL, 20, 70),
+(657, NULL, 34, 70),
+(658, NULL, 19, 70),
+(659, NULL, 35, 70),
+(660, NULL, 21, 70),
+(661, NULL, 20, 70),
+(662, NULL, 34, 70),
+(663, NULL, 19, 70),
+(664, NULL, 35, 70),
+(665, NULL, 21, 70),
+(666, NULL, 19, 70),
+(667, NULL, 35, 70),
+(668, NULL, 21, 70),
+(669, NULL, 35, 70),
+(670, NULL, 21, 70),
+(671, NULL, 20, 70),
+(672, NULL, 34, 70),
+(673, NULL, 19, 70),
+(674, NULL, 35, 70),
+(675, NULL, 21, 70),
+(676, NULL, 20, 70),
+(677, NULL, 34, 70),
+(678, NULL, 19, 70),
+(679, NULL, 35, 70),
+(680, NULL, 21, 70),
+(681, NULL, 20, 70),
+(682, NULL, 35, 70),
+(683, NULL, 21, 70),
+(684, NULL, 34, 70),
+(685, NULL, 35, 70),
+(686, NULL, 21, 70),
+(687, NULL, 34, 70),
+(688, NULL, 35, 70),
+(689, NULL, 21, 70),
+(690, NULL, 34, 70),
+(691, NULL, 35, 70),
+(692, NULL, 21, 70),
+(693, NULL, 35, 70),
+(694, NULL, 21, 70),
+(695, NULL, 20, 70),
+(696, NULL, 34, 70),
+(697, NULL, 35, 70),
+(698, NULL, 21, 70),
+(699, NULL, 20, 70),
+(700, NULL, 34, 70),
+(701, NULL, 19, 70),
+(702, NULL, 35, 70),
+(703, NULL, 21, 70),
+(704, NULL, 35, 70),
+(705, NULL, 21, 70),
+(706, NULL, 35, 70),
+(707, NULL, 21, 70),
+(708, NULL, 34, 70),
+(709, NULL, 19, 70),
+(710, NULL, 35, 70),
+(711, NULL, 20, 70),
+(712, NULL, 34, 70),
+(713, NULL, 35, 70),
+(714, NULL, 20, 70),
+(715, NULL, 34, 70),
+(716, NULL, 35, 70),
+(717, NULL, 20, 70),
+(718, NULL, 34, 70),
+(719, NULL, 19, 70),
+(720, NULL, 35, 70),
+(721, NULL, 21, 70),
+(722, NULL, 20, 70),
+(723, NULL, 34, 70),
+(724, NULL, 35, 70),
+(725, NULL, 20, 70),
+(726, NULL, 34, 70),
+(727, NULL, 35, 70),
+(728, NULL, 21, 70),
+(729, NULL, 35, 70),
+(730, NULL, 21, 70),
+(731, NULL, 19, 70),
+(732, NULL, 35, 70),
+(733, NULL, 21, 70),
+(734, NULL, 20, 70),
+(735, NULL, 34, 70),
+(736, NULL, 19, 70),
+(737, NULL, 35, 70),
+(738, NULL, 21, 70),
+(739, NULL, 19, 70),
+(740, NULL, 35, 70),
+(741, NULL, 21, 70),
+(742, NULL, 35, 70),
+(743, NULL, 21, 70),
+(744, NULL, 21, 70),
+(745, NULL, 19, 70),
+(746, NULL, 35, 70),
+(747, NULL, 21, 70),
+(748, NULL, 20, 70),
+(749, NULL, 34, 70),
+(750, NULL, 19, 70),
+(751, NULL, 35, 70),
+(752, NULL, 21, 70),
+(753, NULL, 19, 70),
+(754, NULL, 35, 70),
+(755, NULL, 21, 70),
+(756, NULL, 20, 70),
+(757, NULL, 34, 70),
+(758, NULL, 20, 70),
+(759, NULL, 19, 70),
+(760, NULL, 35, 70),
+(761, NULL, 21, 70),
+(762, NULL, 34, 70),
+(763, NULL, 19, 70),
+(764, NULL, 35, 70),
+(765, NULL, 21, 70),
+(766, NULL, 19, 70),
+(767, NULL, 35, 70),
+(768, NULL, 21, 70),
+(769, NULL, 19, 70),
+(770, NULL, 35, 70),
+(771, NULL, 21, 70),
+(772, NULL, 34, 70),
+(773, NULL, 35, 70),
+(774, NULL, 21, 70),
+(775, NULL, 19, 70),
+(776, NULL, 35, 70),
+(777, NULL, 21, 70),
+(778, NULL, 20, 70),
+(779, NULL, 34, 70),
+(780, NULL, 35, 70),
+(781, NULL, 21, 70),
+(782, NULL, 35, 70),
+(783, NULL, 21, 70),
+(784, NULL, 20, 70),
+(785, NULL, 34, 70),
+(786, NULL, 21, 70),
+(787, NULL, 20, 70),
+(788, NULL, 34, 70),
+(789, NULL, 19, 70);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Table structure for table `group`
 --
 
 CREATE TABLE IF NOT EXISTS `group` (
@@ -801,7 +1107,7 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `group`
+-- Dumping data for table `group`
 --
 
 INSERT INTO `group` (`id`, `name`, `created`, `updated`) VALUES
@@ -816,7 +1122,7 @@ INSERT INTO `group` (`id`, `name`, `created`, `updated`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `long_question`
+-- Table structure for table `long_question`
 --
 
 CREATE TABLE IF NOT EXISTS `long_question` (
@@ -832,7 +1138,7 @@ CREATE TABLE IF NOT EXISTS `long_question` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `long_question`
+-- Dumping data for table `long_question`
 --
 
 INSERT INTO `long_question` (`id`, `long_content`, `group_id`, `exam_id`, `long_audio`, `level`, `number_question`) VALUES
@@ -848,7 +1154,7 @@ INSERT INTO `long_question` (`id`, `long_content`, `group_id`, `exam_id`, `long_
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ma_tran_tra_loi`
+-- Table structure for table `ma_tran_tra_loi`
 --
 
 CREATE TABLE IF NOT EXISTS `ma_tran_tra_loi` (
@@ -858,7 +1164,7 @@ CREATE TABLE IF NOT EXISTS `ma_tran_tra_loi` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `ma_tran_tra_loi`
+-- Dumping data for table `ma_tran_tra_loi`
 --
 
 INSERT INTO `ma_tran_tra_loi` (`id_question`, `id_user`, `trloi`) VALUES
@@ -1321,25 +1627,37 @@ INSERT INTO `ma_tran_tra_loi` (`id_question`, `id_user`, `trloi`) VALUES
 (51, 65, 1),
 (50, 65, 1),
 (36, 65, 1),
-(42, 65, 1);
-
---
--- Déclencheurs `ma_tran_tra_loi`
---
-DROP TRIGGER IF EXISTS `update_total_do`;
-DELIMITER //
-CREATE TRIGGER `update_total_do` AFTER INSERT ON `ma_tran_tra_loi`
- FOR EACH ROW BEGIN
-update question set the_total_do = the_total_do + 1 where id = NEW.id_question;
-update question set the_total_do_correct = the_total_do_correct + 1 where id = NEW.id_question and NEW.trloi;
-END
-//
-DELIMITER ;
+(42, 65, 1),
+(41, 30, 0),
+(19, 30, 1),
+(37, 30, 0),
+(43, 30, 0),
+(46, 30, 0),
+(51, 30, 0),
+(47, 30, 0),
+(20, 30, 1),
+(45, 30, 1),
+(34, 30, 1),
+(49, 30, 1),
+(35, 30, 1),
+(40, 30, 0),
+(21, 30, 0),
+(48, 30, 0),
+(42, 30, 1),
+(38, 30, 0),
+(36, 30, 0),
+(50, 30, 0),
+(39, 30, 1),
+(20, 70, 0),
+(34, 70, 0),
+(19, 70, 0),
+(35, 70, 1),
+(21, 70, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `question`
+-- Table structure for table `question`
 --
 
 CREATE TABLE IF NOT EXISTS `question` (
@@ -1355,69 +1673,134 @@ CREATE TABLE IF NOT EXISTS `question` (
   `updated` datetime DEFAULT NULL,
   `the_total_do` int(11) NOT NULL,
   `the_total_do_correct` int(11) NOT NULL,
+  `do_kho_thuc` float NOT NULL,
+  `do_phan_biet` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
--- Contenu de la table `question`
+-- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`id`, `content`, `image`, `audio`, `level`, `exam_id`, `group_id`, `id_long_question`, `created`, `updated`, `the_total_do`, `the_total_do_correct`) VALUES
-(1, 'Listening Photograhs', 'cau1_test3.JPG', 'cau1_test3.mp3', 100, NULL, 1, NULL, '2016-04-21 14:40:36', NULL, 23, 0),
-(2, 'Listening Photographs', 'cau2_test3.JPG', 'cau2_test3.mp3', 250, NULL, 1, NULL, '2016-04-21 14:43:09', NULL, 23, 0),
-(3, 'Listening Photographs', 'cau3_test3.JPG', 'cau3_test3.mp3', 400, NULL, 1, NULL, '2016-04-21 14:45:03', NULL, 23, 0),
-(4, 'Where is Samantha moving?', '', 'cau11_test3.mp3', 400, NULL, 2, NULL, '2016-04-21 14:58:35', NULL, 23, 0),
-(5, 'How fast can you get here?', '', 'cau12_test3.mp3', 100, NULL, 2, NULL, '2016-04-21 14:59:46', NULL, 23, 0),
-(6, 'Will you be able to finish on time?', '', 'cau13_test3.mp3', 250, NULL, 2, NULL, '2016-04-21 15:01:19', NULL, 23, 0),
-(7, 'Where is this conversation most likely taking place?', '', '', 100, NULL, 3, '1', '2016-04-21 19:28:20', NULL, 23, 0),
-(8, 'What does the man want to buy?', '', '', 250, NULL, 3, '1', '2016-04-21 19:29:20', NULL, 23, 0),
-(9, 'When does the shop open?', '', '', 100, NULL, 3, '1', '2016-04-21 19:30:07', NULL, 23, 0),
-(10, 'What is the woman looking for?', '', '', 500, NULL, 3, '2', '2016-04-21 19:35:22', NULL, 23, 0),
-(11, 'Where is Johnny today?', '', '', 400, NULL, 3, '2', '2016-04-21 19:36:02', NULL, 23, 0),
-(12, 'What does Jackie say he will do?', '', '', 250, NULL, 3, '2', '2016-04-21 19:36:59', NULL, 23, 0),
-(13, 'What is the purpose of the message?', '', '', 250, NULL, 4, '3', '2016-04-21 20:20:36', NULL, 23, 0),
-(14, 'Who is most likely leaving the message?', '', '', 700, NULL, 4, '3', '2016-04-21 20:21:10', NULL, 23, 0),
-(15, 'What does the caller tell Ms. Spartan to do?', '', '', 100, NULL, 4, '3', '2016-04-21 20:21:45', NULL, 23, 0),
-(16, 'What is this advertisement about?', '', '', 400, NULL, 4, '4', '2016-04-21 20:26:29', NULL, 23, 0),
-(17, 'What is convenient about the product?', '', '', 100, NULL, 4, '4', '2016-04-21 20:27:10', NULL, 23, 0),
-(18, 'According to the advertisement, what is special about the product?', '', '', 250, NULL, 4, '4', '2016-04-21 20:27:52', NULL, 23, 0),
-(19, 'This weekend the Main Street Bar & Lounge ___ closing at 1 a.m', '', '', 100, NULL, 5, NULL, '2016-04-21 21:16:26', NULL, 23, 15),
-(20, 'The hotel reservation ___ Mr. Jenkin’s business trip to London has just been confirmed by his travel agent.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:18:03', NULL, 23, 9),
-(21, 'We estimate students will need ___ two hours to complete the online\r\napplication and submit it to \r\nus', '', '', 100, NULL, 5, NULL, '2016-04-21 21:19:04', NULL, 23, 15),
-(22, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:40:25', NULL, 23, 0),
-(23, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:41:57', NULL, 23, 0),
-(24, '.', '', '', 500, NULL, 6, '5', '2016-04-21 22:42:41', NULL, 23, 0),
-(25, '.', '', '', 100, NULL, 6, '6', '2016-04-21 22:49:46', NULL, 23, 0),
-(26, '.', '', '', 400, NULL, 6, '6', '2016-04-21 23:07:05', NULL, 23, 0),
-(27, '.', '', '', 700, NULL, 6, '6', '2016-04-21 23:07:48', NULL, 23, 0),
-(28, 'What position is being advertised?', '', '', 700, NULL, 7, '7', '2016-04-21 23:28:13', NULL, 23, 0),
-(29, 'What is mentioned as a requirement for the job?', '', '', 500, NULL, 7, '7', '2016-04-21 23:29:16', NULL, 23, 0),
-(30, 'Why have prices been reduced?', '', '', 250, NULL, 7, '8', '2016-04-21 23:31:37', NULL, 23, 0),
-(31, 'What product is in limited supply?', '', '', 400, NULL, 7, '8', '2016-04-21 23:36:25', NULL, 23, 0),
-(32, 'What will customers who spend more than $250 receive?', '', '', 700, NULL, 7, '8', '2016-04-21 23:37:59', NULL, 23, 0),
-(34, 'Mr. Anderson has been a  senior account manager ___ over three years at one of the leading consulting firms.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:20:53', NULL, 23, 15),
-(35, 'Around 90 percent of  individual stock investors were found to be not \r\nqualified for direct stock investment due to ___ of knowledge and skills in investment.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:22:18', NULL, 23, 18),
-(36, 'In its ongoing commitment to maintain the highest level of customer ___, Peterson Incorporated values your comments on its service.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:23:43', NULL, 23, 10),
-(37, 'The sales figures are not very favorable this quarter,but are expected to rise ___.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:24:31', NULL, 23, 7),
-(38, 'In spite of inclement weather, the staff Christmas party was ___ attended by both management and employees.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:26:15', NULL, 23, 6),
-(39, 'A responsible financial planner give clients enough advice to help them make a right decision for ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:26:51', NULL, 23, 17),
-(40, 'The city has received federal funding to ___ the historical City Hall building to its former beauty.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:27:42', NULL, 23, 12),
-(41, 'Human resources managers should have excellence speaking and conflict resolution skills to communicate ___ with a variety of employees.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:28:47', NULL, 23, 15),
-(42, 'Attached please find the file containing last week’s sales presentation ___ you requested', '', '', 100, NULL, 5, NULL, '2016-04-21 21:29:34', NULL, 23, 8),
-(43, 'Barnes & Noble can send invoices — for product orders at the customer’s request.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:37:24', NULL, 23, 10),
-(45, 'Ms. Swanson will manage all operations on the upcoming construction contract, and all supervisors will report directly back to ___.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:41:11', NULL, 23, 15),
-(46, 'Because of the lack of ticket sales, this evening’s theater performance has been ___ until next week.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:42:14', NULL, 23, 6),
-(47, 'Canadian customs and immigration staff report that most of the breaches of security involve travelers who did not — import illegal products into the country.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:43:18', NULL, 23, 4),
-(48, 'When the sales clerk finishes running all of the items through the scanner, the computer quickly prints ___ the receipt.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:44:21', NULL, 23, 15),
-(49, 'Product ___ at Wellington Industries work both independently and cooperatively with team members.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:45:42', NULL, 23, 12),
-(50, 'At Omega Engineering, we strongly believe that a ___ work environment is essential to productive and motivated employees .', '', '', 700, NULL, 5, NULL, '2016-04-21 21:47:02', NULL, 23, 15),
-(51, 'Ms. Pemberton removed a number of financial charts from her presentation after deciding they would be too ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:49:23', NULL, 23, 10);
+INSERT INTO `question` (`id`, `content`, `image`, `audio`, `level`, `exam_id`, `group_id`, `id_long_question`, `created`, `updated`, `the_total_do`, `the_total_do_correct`, `do_kho_thuc`, `do_phan_biet`) VALUES
+(1, 'Listening Photograhs', 'cau1_test3.JPG', 'cau1_test3.mp3', 100, NULL, 1, NULL, '2016-04-21 14:40:36', NULL, 23, 0, 0, 0),
+(2, 'Listening Photographs', 'cau2_test3.JPG', 'cau2_test3.mp3', 250, NULL, 1, NULL, '2016-04-21 14:43:09', NULL, 23, 0, 0, 0),
+(3, 'Listening Photographs', 'cau3_test3.JPG', 'cau3_test3.mp3', 400, NULL, 1, NULL, '2016-04-21 14:45:03', NULL, 23, 0, 0, 0),
+(4, 'Where is Samantha moving?', '', 'cau11_test3.mp3', 400, NULL, 2, NULL, '2016-04-21 14:58:35', NULL, 23, 0, 0, 0),
+(5, 'How fast can you get here?', '', 'cau12_test3.mp3', 100, NULL, 2, NULL, '2016-04-21 14:59:46', NULL, 23, 0, 0, 0),
+(6, 'Will you be able to finish on time?', '', 'cau13_test3.mp3', 250, NULL, 2, NULL, '2016-04-21 15:01:19', NULL, 23, 0, 0, 0),
+(7, 'Where is this conversation most likely taking place?', '', '', 100, NULL, 3, '1', '2016-04-21 19:28:20', NULL, 23, 0, 0, 0),
+(8, 'What does the man want to buy?', '', '', 250, NULL, 3, '1', '2016-04-21 19:29:20', NULL, 23, 0, 0, 0),
+(9, 'When does the shop open?', '', '', 100, NULL, 3, '1', '2016-04-21 19:30:07', NULL, 23, 0, 0, 0),
+(10, 'What is the woman looking for?', '', '', 500, NULL, 3, '2', '2016-04-21 19:35:22', NULL, 23, 0, 0, 0),
+(11, 'Where is Johnny today?', '', '', 400, NULL, 3, '2', '2016-04-21 19:36:02', NULL, 23, 0, 0, 0),
+(12, 'What does Jackie say he will do?', '', '', 250, NULL, 3, '2', '2016-04-21 19:36:59', NULL, 23, 0, 0, 0),
+(13, 'What is the purpose of the message?', '', '', 250, NULL, 4, '3', '2016-04-21 20:20:36', NULL, 23, 0, 0, 0),
+(14, 'Who is most likely leaving the message?', '', '', 700, NULL, 4, '3', '2016-04-21 20:21:10', NULL, 23, 0, 0, 0),
+(15, 'What does the caller tell Ms. Spartan to do?', '', '', 100, NULL, 4, '3', '2016-04-21 20:21:45', NULL, 23, 0, 0, 0),
+(16, 'What is this advertisement about?', '', '', 400, NULL, 4, '4', '2016-04-21 20:26:29', NULL, 23, 0, 0, 0),
+(17, 'What is convenient about the product?', '', '', 100, NULL, 4, '4', '2016-04-21 20:27:10', NULL, 23, 0, 0, 0),
+(18, 'According to the advertisement, what is special about the product?', '', '', 250, NULL, 4, '4', '2016-04-21 20:27:52', NULL, 23, 0, 0, 0),
+(19, 'This weekend the Main Street Bar & Lounge ___ closing at 1 a.m', '', '', 100, NULL, 5, NULL, '2016-04-21 21:16:26', NULL, 23, 15, -0.961394, 0.52233),
+(20, 'The hotel reservation ___ Mr. Jenkin’s business trip to London has just been confirmed by his travel agent.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:18:03', NULL, 23, 9, -0.105041, 0.742358),
+(21, 'We estimate students will need ___ two hours to complete the online\r\napplication and submit it to \r\nus', '', '', 100, NULL, 5, NULL, '2016-04-21 21:19:04', NULL, 23, 15, -0.961394, 0.482746),
+(22, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:40:25', NULL, 23, 0, 0, 0),
+(23, '.', '', '', 250, NULL, 6, '5', '2016-04-21 22:41:57', NULL, 23, 0, 0, 0),
+(24, '.', '', '', 500, NULL, 6, '5', '2016-04-21 22:42:41', NULL, 23, 0, 0, 0),
+(25, '.', '', '', 100, NULL, 6, '6', '2016-04-21 22:49:46', NULL, 23, 0, 0, 0),
+(26, '.', '', '', 400, NULL, 6, '6', '2016-04-21 23:07:05', NULL, 23, 0, 0, 0),
+(27, '.', '', '', 700, NULL, 6, '6', '2016-04-21 23:07:48', NULL, 23, 0, 0, 0),
+(28, 'What position is being advertised?', '', '', 700, NULL, 7, '7', '2016-04-21 23:28:13', NULL, 23, 0, 0, 0),
+(29, 'What is mentioned as a requirement for the job?', '', '', 500, NULL, 7, '7', '2016-04-21 23:29:16', NULL, 23, 0, 0, 0),
+(30, 'Why have prices been reduced?', '', '', 250, NULL, 7, '8', '2016-04-21 23:31:37', NULL, 23, 0, 0, 0),
+(31, 'What product is in limited supply?', '', '', 400, NULL, 7, '8', '2016-04-21 23:36:25', NULL, 23, 0, 0, 0),
+(32, 'What will customers who spend more than $250 receive?', '', '', 700, NULL, 7, '8', '2016-04-21 23:37:59', NULL, 23, 0, 0, 0),
+(34, 'Mr. Anderson has been a  senior account manager ___ over three years at one of the leading consulting firms.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:20:53', NULL, 23, 15, -0.778136, 0.660872),
+(35, 'Around 90 percent of  individual stock investors were found to be not \r\nqualified for direct stock investment due to ___ of knowledge and skills in investment.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:22:18', NULL, 23, 18, -1.206, 0.545504),
+(36, 'In its ongoing commitment to maintain the highest level of customer ___, Peterson Incorporated values your comments on its service.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:23:43', NULL, 23, 10, 0.0286433, 0.65148),
+(37, 'The sales figures are not very favorable this quarter,but are expected to rise ___.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:24:31', NULL, 23, 7, 0.524723, 0.159438),
+(38, 'In spite of inclement weather, the staff Christmas party was ___ attended by both management and employees.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:26:15', NULL, 23, 6, 0.763838, 0.449877),
+(39, 'A responsible financial planner give clients enough advice to help them make a right decision for ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:26:51', NULL, 23, 17, -1.10841, 0.430276),
+(40, 'The city has received federal funding to ___ the historical City Hall building to its former beauty.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:27:42', NULL, 23, 12, -0.206228, 0.413514),
+(41, 'Human resources managers should have excellence speaking and conflict resolution skills to communicate ___ with a variety of employees.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:28:47', NULL, 23, 15, -0.778136, 0.561913),
+(42, 'Attached please find the file containing last week’s sales presentation ___ you requested', '', '', 100, NULL, 5, NULL, '2016-04-21 21:29:34', NULL, 23, 8, 0.04438, 0.526632),
+(43, 'Barnes & Noble can send invoices — for product orders at the customer’s request.', '', '', 500, NULL, 5, NULL, '2016-04-21 21:37:24', NULL, 23, 10, 0.073272, 0.32822),
+(45, 'Ms. Swanson will manage all operations on the upcoming construction contract, and all supervisors will report directly back to ___.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:41:11', NULL, 23, 15, -0.684135, 0.740039),
+(46, 'Because of the lack of ticket sales, this evening’s theater performance has been ___ until next week.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:42:14', NULL, 23, 6, 0.651915, -0.322941),
+(47, 'Canadian customs and immigration staff report that most of the breaches of security involve travelers who did not — import illegal products into the country.', '', '', 700, NULL, 5, NULL, '2016-04-21 21:43:18', NULL, 23, 4, 1.17719, 0.430351),
+(48, 'When the sales clerk finishes running all of the items through the scanner, the computer quickly prints ___ the receipt.', '', '', 100, NULL, 5, NULL, '2016-04-21 21:44:21', NULL, 23, 15, -0.961394, 0.680663),
+(49, 'Product ___ at Wellington Industries work both independently and cooperatively with team members.', '', '', 400, NULL, 5, NULL, '2016-04-21 21:45:42', NULL, 23, 12, -0.250857, 0.639962),
+(50, 'At Omega Engineering, we strongly believe that a ___ work environment is essential to productive and motivated employees .', '', '', 700, NULL, 5, NULL, '2016-04-21 21:47:02', NULL, 23, 15, -0.572212, 0.561913),
+(51, 'Ms. Pemberton removed a number of financial charts from her presentation after deciding they would be too ___.', '', '', 250, NULL, 5, NULL, '2016-04-21 21:49:23', NULL, 23, 10, -0.0653574, 0.556404);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `tam`
+--
+
+CREATE TABLE IF NOT EXISTS `tam` (
+  `id_question` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `thong_tin` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tam`
+--
+
+INSERT INTO `tam` (`id_question`, `id_user`, `thong_tin`) VALUES
+(19, 68, 0.182112),
+(20, 68, 0.182147),
+(21, 68, 0.157342),
+(34, 68, 0.25689),
+(35, 68, 0.208),
+(36, 68, 0.148984),
+(37, 68, 0.0169246),
+(38, 68, 0.0708246),
+(39, 68, 0.12954),
+(40, 68, 0.0980833),
+(41, 68, 0.196337),
+(42, 68, 0.121703),
+(43, 68, 0.0630725),
+(45, 68, 0.288875),
+(46, 68, 0.0525798),
+(47, 68, 0.0548653),
+(48, 68, 0.292972),
+(49, 68, 0.180227),
+(50, 68, 0.180962),
+(51, 68, 0.137608),
+(19, 69, 0.19414),
+(20, 69, 0.349559),
+(21, 69, 0.166197),
+(34, 69, 0.314655),
+(35, 69, 0.202838),
+(36, 69, 0.263545),
+(37, 69, 0.0178829),
+(38, 69, 0.109231),
+(39, 69, 0.130577),
+(40, 69, 0.120136),
+(41, 69, 0.227657),
+(42, 69, 0.180547),
+(43, 69, 0.0744683),
+(45, 69, 0.395683),
+(46, 69, 0.0660727),
+(47, 69, 0.0869391),
+(48, 69, 0.326206),
+(49, 69, 0.280127),
+(50, 69, 0.227488),
+(51, 69, 0.20562),
+(19, 70, 0.165156),
+(20, 70, 0.396422),
+(21, 70, 0.144668),
+(34, 70, 0.262186),
+(35, 70, 0.15965);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -1436,15 +1819,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `fb_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
--- Contenu de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `fullname`, `username`, `password`, `email`, `level`, `total_listen`, `total_read`, `listen_correct`, `read_correct`, `created`, `updated`, `fb_id`) VALUES
 (29, 'Suong Nguyen', '884272688385370', '0', NULL, 200, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 884272688385370),
-(30, 'Suong Nguyen', 'suongnguyen93', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 0, 0, 0, 0, 0, '2016-05-20 12:03:10', '0000-00-00 00:00:00', NULL),
+(30, 'Suong Nguyen', 'suongnguyen93', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 500, 0, 0, 0, 0, '2016-05-20 12:03:10', '0000-00-00 00:00:00', NULL),
 (31, 'Suong Amy', '165713603829064', '0', NULL, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 165713603829064),
 (32, 'suong', 'alibaba', 'e10adc3949ba59abbe56e057f20f883e', 'aa@avb.com', 0, 0, 0, 0, 0, '2016-06-15 22:13:38', '0000-00-00 00:00:00', NULL),
 (33, 'ly khuong', 'lykhuongabc', '36d6ac67138c09c55b3f0cabf3dd4cce', 'lykhuongebi@gmail.com', 0, 0, 0, 0, 0, '2016-06-18 12:13:15', '0000-00-00 00:00:00', NULL),
@@ -1480,12 +1863,16 @@ INSERT INTO `user` (`id`, `fullname`, `username`, `password`, `email`, `level`, 
 (63, 'Nguyễn Thị Mỹ Xuân ', 'Xuân Nguyễn', 'dc2cb6539ddf5603077ebe1516566840', 'xuannguyen511@yahoo.com', 0, 0, 0, 0, 0, '2016-06-18 20:22:44', '0000-00-00 00:00:00', NULL),
 (64, 'Hoa Truong Tien', 'hoatruong.it.stu@gmail.com', '8bc0077a293c4248fb54b4586b740dd0', 'hoatruong.it.stu@gmail.com', 0, 0, 0, 0, 0, '2016-06-18 23:55:16', '0000-00-00 00:00:00', NULL),
 (65, 'vuong nhan', 'vuongnhan', '0d033b42741823c0729a37ce5234f57e', 'vuongtrongnhan2010@gmail.com', 0, 0, 0, 0, 0, '2016-06-19 07:52:24', '0000-00-00 00:00:00', NULL),
-(66, 'Quỳnh Hoa', 'hoaquynh497', 'efcfe9e3202d5c8ea00df75f004bb983', 'hoaquynh497@gmail.com', 0, 0, 0, 0, 0, '2016-06-23 16:36:40', '0000-00-00 00:00:00', NULL);
+(66, 'Quỳnh Hoa', 'hoaquynh497', 'efcfe9e3202d5c8ea00df75f004bb983', 'hoaquynh497@gmail.com', 0, 0, 0, 0, 0, '2016-06-23 16:36:40', '0000-00-00 00:00:00', NULL),
+(67, '123456', '123456', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 0, 0, 0, 0, 0, '2016-07-09 11:10:37', '0000-00-00 00:00:00', NULL),
+(68, 'suong nguyen', 'user200', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 200, 0, 0, 0, 0, '2016-07-09 21:43:00', '0000-00-00 00:00:00', NULL),
+(69, 'suong nguyen', 'user500', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 500, 0, 0, 0, 0, '2016-07-09 21:43:12', '0000-00-00 00:00:00', NULL),
+(70, 'suong nguyen', 'user300', 'e10adc3949ba59abbe56e057f20f883e', 'amy.suong93@gmail.com', 300, 0, 0, 0, 0, '2016-07-09 22:13:19', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `vocabularies`
+-- Table structure for table `vocabularies`
 --
 
 CREATE TABLE IF NOT EXISTS `vocabularies` (
