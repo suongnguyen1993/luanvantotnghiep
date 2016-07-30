@@ -2,7 +2,7 @@
             <div class="row">
                 <div class="main-slider">
                     <div class="slide-text">
-                        <h1>Chào bạn đến với iToeic</h1>
+                        <h1>Chào bạn đến với iTOEIC</h1>
                         <p>iToeic là hệ thống website thông minh. </p>
                         <p>Đến với hệ thống iToeic các học viên sẽ được hệ thống đưa ra câu hỏi phù hợp với trình độ của bạn.Giúp các bạn hứng thú trong việc học tiếng anh từ đó nâng cao được trình độ của mình </p>
                         <p>WELCOME TO iTOEIC - YOUR ENGLISH WORLD  </p>

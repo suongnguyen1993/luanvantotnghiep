@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li <?php echo (isset ($current) && $current == 'home')? 'class="active"':NULL; ?>><a  href="index.php">Trang Chủ</a></li>
-                        <li class="dropdown" ><a>Luyện Tập <i class="fa fa-angle-down"></i></a>
+                        <li <?php echo (isset ($current1) && $current1 == 'practice')? 'class="active"':NULL; ?> class="dropdown" ><a>Luyện Tập <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                             <?php foreach ($group as $g){?>
                                 <li >

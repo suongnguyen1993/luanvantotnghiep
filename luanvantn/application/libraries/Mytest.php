@@ -27,7 +27,7 @@ class MyTest {
 			case 19: $diem =87.5; break;
 			case 20: $diem =92.5; break;
 			case 21: $diem =97.5; break;
-			case 22: $diem =10.5; break;
+			case 22: $diem =100.5; break;
 			case 23: $diem =115; break;
 			case 24: $diem =120; break;
 			case 25: $diem =125; break;

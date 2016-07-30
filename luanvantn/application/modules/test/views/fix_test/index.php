@@ -33,7 +33,7 @@
                             
                        
                                <img src="<?php echo base_url(); ?>/public/user/images/tamgiac.png" style="width: 40px; height: 40px">                        
-                                 <a class="fixsize" href="test/fix_test/fix/<?php echo $ex['id'] ?>"><?php echo $info.','.'năm'.$nam ?></a> 
+                                 <a class="fixsize" href="test/fix_test/fix/<?php echo $ex['id'] ?>"><?php echo $info.', năm '.$nam ?></a> 
                         
                         </div>
                         <?php endforeach ?>
